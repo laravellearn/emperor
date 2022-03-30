@@ -11,9 +11,4 @@ use Illuminate\Support\Facades\DB;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
-    public function dbUsers(){
-        $db = DB::connection('mysql-users')->table('users')->get();
-        dd($db);
-    }
 }

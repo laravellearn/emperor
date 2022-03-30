@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\controller@dbUsers');
+Route::get('/', App\Http\Livewire\Home\Home\Index::class)->name('home');
 
 // Route::middleware([
 //     'auth:sanctum',
