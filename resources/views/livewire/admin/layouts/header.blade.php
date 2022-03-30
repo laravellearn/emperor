@@ -3,7 +3,7 @@
         <div class="left-side-content-area d-flex align-items-center">
             <!-- Mobile Logo -->
             <div class="mobile-logo mr-3 mr-sm-4">
-                <a href="index.html"><img src="img/core-img/small-logo.png" alt="آرم موبایل"></a>
+                <a href="index.html"><img src="{{ asset('admin/img/core-img/small-logo.png') }}" alt="آرم موبایل"></a>
             </div>
 
             <!-- Triggers -->
@@ -62,14 +62,14 @@
                 </li>
 
                 <li class="nav-item dropdown">
-                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="img/member-img/3.png" alt=""></button>
+                    <button type="button" class="btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('admin/img/member-img/3.png') }}" alt=""></button>
                     <div class="dropdown-menu dropdown-menu-right">
                         <!-- User Profile Area -->
                         <div class="user-profile-area">
                             <div class="user-profile-heading">
                                 <!-- Thumb -->
                                 <div class="profile-img">
-                                    <img class="chat-img mr-2" src="img/member-img/3.png" alt="">
+                                    <img class="chat-img mr-2" src="{{ asset('admin/img/member-img/3.png') }}" alt="">
                                 </div>
                                 <!-- Profile Text -->
                                 <div class="profile-text">
