@@ -7711,7 +7711,6 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child::
     font-size: 13px; } }
 .dashboard-clock ul li {
   font-size: 15px;
-  font-weight: 600;
   color: #0168fa;
 }
 @media only screen and (max-width: 767px) {

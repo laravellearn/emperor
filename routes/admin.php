@@ -13,4 +13,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin');
+Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');

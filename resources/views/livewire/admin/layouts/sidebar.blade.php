@@ -1,7 +1,7 @@
 <div class="ecaps-sidemenu-area">
     <!-- Desktop Logo -->
     <div class="ecaps-logo">
-        <a href="index.html"><img class="desktop-logo" src="{{ asset('admin/img/core-img/logo.png') }}" alt="لوگوی دسک تاپ"> <img class="small-logo" src="{{ asset('admin/img/core-img/small-logo.png') }}" alt="آرم موبایل"></a>
+        <a href="{{ route('home') }}" target="_blank"><img class="desktop-logo" src="{{ asset('admin/img/core-img/logo.png') }}" alt="لوگوی دسک تاپ"> <img class="small-logo" src="{{ asset('admin/img/core-img/small-logo.png') }}" alt="آرم موبایل"></a>
     </div>
 
     <!-- Side Nav -->
@@ -12,8 +12,8 @@
 
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="active"><a href="index.html"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
-                    <li class="treeview">
+                    <li class="{{ route('admin.home') ? 'active' : '' }}"><a href="{{ route('admin.home') }}"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+                    {{-- <li class="treeview">
                         <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span>مقالات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="article-categories.html">دسته بندی</a></li>
@@ -135,18 +135,18 @@
                         <ul class="treeview-menu">
                             <li><a href="#">موجودی</a></li>
                         </ul>
-                    </li>
+                    </li> --}}
 
                     <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
-                            <li><a href="#">تنظیمات عمومی</a></li>
+                            <li><a href="#">تنظیمات فوتر سایت</a></li>
                             <!-- استان و شهر و ... -  -->
                             <li><a href="#">تنظیمات فروشگاه</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><i class="zmdi zmdi-cloud-done"></i><span>بکاپ گیری</span></a></li>
+                    {{-- <li><a href="#"><i class="zmdi zmdi-cloud-done"></i><span>بکاپ گیری</span></a></li> --}}
                 </ul>
             </nav>
         </div>

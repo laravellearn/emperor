@@ -1,13 +1,5 @@
+@section('title','داشبورد')
 <div>
-    <div class="main-content">
-        <nav aria-label="خرده نان" class="container-fluid">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#">خانه</a></li>
-                <li class="breadcrumb-item"><a href="#">کتابخانه</a></li>
-                <li class="breadcrumb-item active" aria-current="page">داده ها</li>
-            </ol>
-        </nav>
-
         <div class="dashboard-area">
             <div class="container-fluid">
                 <div class="row">
@@ -243,5 +235,4 @@
                 </div>
             </div>
         </div>
-    </div>
 </div>

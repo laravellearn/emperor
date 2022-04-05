@@ -53,7 +53,10 @@
             <livewire:admin.layouts.header />
 
             <!-- Main Content Area -->
-            {{ $slot }}
+            <div class="main-content">
+                @include('livewire.admin.layouts.breadcrump')
+                {{ $slot }}
+            </div>
 
         </div>
     </div>

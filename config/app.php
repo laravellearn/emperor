@@ -167,6 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
+        Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -194,6 +195,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'Verta' => Hekmatinasser\Verta\Verta::class,
     ])->toArray(),
 
 ];
