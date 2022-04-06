@@ -52,7 +52,7 @@
                                     </ul>
                                     <div class="search-results-list js-search-ad-banner">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/banner-search.png') }}" alt="banner-search">
+                                            <img src="{{ asset('home/images/banner-search.jpg') }}" alt="banner-search">
                                         </a>
                                     </div>
                                 </div>
@@ -83,7 +83,7 @@
                                                 <li class="js-mini-cart-item">
                                                     <a href="#" class="header-basket-list-item">
                                                         <div class="header-basket-list-item-image">
-                                                            <img src="{{ asset('home/images/product-slider-2/GalaxyS20Ultra.png') }}"
+                                                            <img src="{{ asset('home/images/product-slider-2/GalaxyS20Ultra.jpg') }}"
                                                                 alt="img-slider">
                                                         </div>
                                                         <div class="header-basket-list-item-content">
@@ -115,7 +115,7 @@
                                                 <li class="js-mini-cart-item">
                                                     <a href="#" class="header-basket-list-item">
                                                         <div class="header-basket-list-item-image">
-                                                            <img src="{{ asset('home/images/product-slider-2/Huawei-WATCHFIT.png') }}"
+                                                            <img src="{{ asset('home/images/product-slider-2/Huawei-WATCHFIT.jpg') }}"
                                                                 alt="img-slider">
                                                         </div>
                                                         <div class="header-basket-list-item-content">
@@ -145,7 +145,7 @@
                                                 <li class="js-mini-cart-item">
                                                     <a href="#" class="header-basket-list-item">
                                                         <div class="header-basket-list-item-image">
-                                                            <img src="{{ asset('home/images/product-slider-2/NIGHT-HUNTER.png') }}"
+                                                            <img src="{{ asset('home/images/product-slider-2/NIGHT-HUNTER.jpg') }}"
                                                                 alt="img-slider">
                                                         </div>
                                                         <div class="header-basket-list-item-content">
@@ -199,7 +199,7 @@
                                     <div class="header-profile-dropdown-account">
                                         <div class="header-profile-dropdown-user">
                                             <div class="header-profile-dropdown-user-img">
-                                                <img src="{{ asset('home/images/svg/user-profile.png') }}" alt="profile">
+                                                <img src="{{ asset('home/images/svg/user-profile.svg') }}" alt="profile">
                                             </div>
                                             <div class="header-profile-dropdown-user-info">
                                                 <p class="header-profile-dropdown-user-name">حمید متقی پیشه
@@ -256,7 +256,7 @@
                                     <div class="header-profile-dropdown-account">
                                         <div class="header-profile-dropdown-user">
                                             <div class="header-profile-dropdown-user-img">
-                                                <img src="{{ asset('home/images/svg/user-profile.png') }}" alt="profile">
+                                                <img src="{{ asset('home/images/svg/user-profile.svg') }}" alt="profile">
                                             </div>
                                             <div class="header-profile-dropdown-user-info">
                                                 <p class="header-profile-dropdown-user-name">حمید متقی پیشه
@@ -319,7 +319,7 @@
                                                     <li class="js-mini-cart-item">
                                                         <a href="#" class="header-basket-list-item">
                                                             <div class="header-basket-list-item-image">
-                                                                <img src="{{ asset('home/images/product-slider-2/GalaxyS20Ultra.png') }}"
+                                                                <img src="{{ asset('home/images/product-slider-2/GalaxyS20Ultra.jpg') }}"
                                                                     alt="img-slider">
                                                             </div>
                                                             <div class="header-basket-list-item-content">
@@ -355,7 +355,7 @@
                                                     <li class="js-mini-cart-item">
                                                         <a href="#" class="header-basket-list-item">
                                                             <div class="header-basket-list-item-image">
-                                                                <img src="{{ asset('home/images/product-slider-2/Huawei-WATCHFIT.png') }}"
+                                                                <img src="{{ asset('home/images/product-slider-2/Huawei-WATCHFIT.jpg') }}"
                                                                     alt="img-slider">
                                                             </div>
                                                             <div class="header-basket-list-item-content">
@@ -391,7 +391,7 @@
                                                     <li class="js-mini-cart-item">
                                                         <a href="#" class="header-basket-list-item">
                                                             <div class="header-basket-list-item-image">
-                                                                <img src="{{ asset('home/images/product-slider-2/NIGHT-HUNTER.png') }}"
+                                                                <img src="{{ asset('home/images/product-slider-2/NIGHT-HUNTER.jpg') }}"
                                                                     alt="img-slider">
                                                             </div>
                                                             <div class="header-basket-list-item-content">
@@ -1321,7 +1321,7 @@
                             </li>
                             <li class="discounts-offers-list-item main-banner">
                                 <a href="#">
-                                    <img src="{{ asset('home/images/banner.png') }}" alt="banner">
+                                    <img src="{{ asset('home/images/banner.jpg') }}" alt="banner">
                                 </a>
                             </li>
                         </ul>

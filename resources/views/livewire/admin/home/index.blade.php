@@ -116,9 +116,6 @@
                                                     <tr>
                                                         <td>
                                                             <div class="media align-items-center">
-                                                                <div class="chat-img mr-2">
-                                                                    <img src="img/shop-img/best-4.png" alt="">
-                                                                </div>
                                                                 <div>
                                                                     <span>تلفن تلفن</span>
                                                                 </div>
@@ -160,9 +157,6 @@
                                                     <tr>
                                                         <td>
                                                             <div class="media align-items-center">
-                                                                <div class="chat-img mr-2">
-                                                                    <img src="img/shop-img/best-4.png" alt="">
-                                                                </div>
                                                                 <div>
                                                                     <span>تلفن تلفن</span>
                                                                 </div>

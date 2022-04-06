@@ -3,7 +3,7 @@
 
 <head>
     @include('livewire.admin.layouts.head')
-    <title>@yield('title')|پنل مدیریت</title>
+    <title>@yield('title') | پنل مدیریت</title>
 </head>
 
 <body>

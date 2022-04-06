@@ -3,7 +3,7 @@
 
 <head>
     @include('livewire.home.layouts.head')
-    <title>@yield('title')|دیجی استور</title>
+    <title>@yield('title') | دیجی استور</title>
 </head>
 
 <body>

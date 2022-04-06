@@ -37,7 +37,7 @@
         </div>
         <div class="col-12">
             <div class="middle-bar-footer">
-                <div class="col-lg-6 col-xs-12 pull-right">
+                <div class="col-lg-9 col-xs-12 pull-right">
                     <div class="footer-links">
                         <div class="links-col">
                             <a href="#" class="head-line">راهنمای خرید از دیجی‌استور</a>
@@ -69,10 +69,32 @@
                                 <li><a href="#">درباره ما دیجی استور</a></li>
                             </ul>
                         </div>
+
+                        <div class="links-col">
+                            <a href="#" class="head-line">با دیجی استور</a>
+                            <ul class="links-ul">
+                                <li><a href="#">اتاق خبر دیجی استور</a></li>
+                                <li><a href="#">فروش در دیجی استور</a></li>
+                                <li><a href="#">فرصت های شغلی</a></li>
+                                <li><a href="#">تماس با دیجی استور</a></li>
+                                <li><a href="#">درباره ما دیجی استور</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="links-col">
+                            <a href="#" class="head-line">با دیجی استور</a>
+                            <ul class="links-ul">
+                                <li><a href="#">اتاق خبر دیجی استور</a></li>
+                                <li><a href="#">فروش در دیجی استور</a></li>
+                                <li><a href="#">فرصت های شغلی</a></li>
+                                <li><a href="#">تماس با دیجی استور</a></li>
+                                <li><a href="#">درباره ما دیجی استور</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-xs-12 pull-left">
+                <div class="col-lg-3 col-xs-12 pull-left">
                     <div class="footer-form">
                         <span class="newslitter-form">از تخفیف‌ها و جدیدترین‌های دیجی‌استور باخبر
                             شوید:
@@ -106,8 +128,9 @@
                         <li>هفت روز هفته ، ۲۴ ساعت شبانه‌روز پاسخگوی شما هستیم</li>
                         <li style="float:right">شماره تماس : <a href="#" class="phone-contact">۶۱۹۳۰۰۰۰ - ۰۲۱ ، ۹۵۱۱۹۰۹۵
                                 - ۰۲۱</a></li>
-                        <li class="email-title">آدرس ایمیل : <a href="#">info@digistore.com</a></li>
-                    </ul>
+                                <li class="email-title">آدرس ایمیل : <a href="#">info@digistore.com</a></li>
+                                <li class="email-title">آدرس فروشگاه : <a href="#">استان فارس، شیراز</a></li>
+                            </ul>
                 </div>
 
                 <div class="address-images">

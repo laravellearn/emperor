@@ -1,3 +1,4 @@
+@section('title','فروشگاه')
 <div>
     <!--    Start Main Slider -------------------->
     <div class="col-12">
