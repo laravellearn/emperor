@@ -25,11 +25,11 @@ return new class extends Migration
             $table->string('socialLabel')->nullable();
             $table->string('supportLabel')->nullable();
             $table->string('phoneLabel')->nullable();
-            $table->string('AddressLabel')->nullable();
+            $table->string('addressLabel')->nullable();
             $table->string('emailLabel')->nullable();
             $table->string('aboutHeadLabel')->nullable();
-            $table->string('aboutbodyLabel')->nullable();
-            $table->string('copyright')->nullable();
+            $table->text('aboutbodyLabel')->nullable();
+            $table->text('copyright')->nullable();
 
             $table->timestamps();
         });
