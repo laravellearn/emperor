@@ -12,7 +12,7 @@
 
             <nav>
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="{{ route('admin.home') ? 'active' : '' }}"><a href="{{ route('admin.home') }}"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
+                    <li class="{{ Request::routeIs('admin.home') ? 'active' : '' }}"><a href="{{ route('admin.home') }}"><i class="zmdi zmdi-view-dashboard"></i><span>داشبورد</span></a></li>
                     {{-- <li class="treeview">
                         <a href="javascript:void(0)"><i class="fa fa-newspaper-o"></i> <span>مقالات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
@@ -137,11 +137,11 @@
                         </ul>
                     </li> --}}
 
-                    <li class="treeview">
+                    <li class="treeview {{ Request::routeIs('admin.settings.footer.label') ? 'active' : ''}}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
-                            <li><a href="#">تنظیمات فوتر سایت</a></li>
+                            <li><a {{ Request::routeIs('admin.settings.footer.label') ? "style=color:#54c6d0" : '' }} href="{{ route('admin.settings.footer.label') }}">تنظیمات فوتر</a></li>
                             <!-- استان و شهر و ... -  -->
                             <li><a href="#">تنظیمات فروشگاه</a></li>
                         </ul>
