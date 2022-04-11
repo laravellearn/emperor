@@ -174,7 +174,7 @@
                 </div>
 
                 <div class="copy-right-footer">
-                    <p>{{ $footer->copyright }}</p>
+                    <p>{{ $footer->copyRight }}</p>
                 </div>
             </div>
         </div>

@@ -29,7 +29,7 @@ return new class extends Migration
             $table->string('emailLabel')->nullable();
             $table->string('aboutHeadLabel')->nullable();
             $table->text('aboutbodyLabel')->nullable();
-            $table->text('copyright')->nullable();
+            $table->text('copyRight')->nullable();
 
             $table->timestamps();
         });
