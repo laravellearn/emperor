@@ -83,5 +83,7 @@ class Label extends Component
             'copyRight'     => $this->copyRight
         ]);
 
+        $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');
+
     }
 }

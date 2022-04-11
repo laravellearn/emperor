@@ -13,5 +13,5 @@
     <!-- These plugins only need for the run this page -->
     <script src="{{ asset('admin/js/default-assets/peity.min.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/peity-demo.js') }}"></script>
-
-<livewire:scripts />
+    <script src="{{ mix('/js/app.js') }}"></script>
+    <livewire:scripts />
