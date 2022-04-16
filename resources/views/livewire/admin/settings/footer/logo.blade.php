@@ -1,6 +1,6 @@
 @section('title','لوگو های فوتر')
 <div>
-    <div class="container-fluid">
+    <div class="container-fluid" wire:init='loadLogo'>
         <div class="inbox-area">
             <div class="row">
                 <div class="col-12 box-margin">
@@ -74,18 +74,34 @@
                                                                 </tr>
                                                             </thead>
 
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>نام کاربری</td>
-                                                                    <td>سیستم</td>
-                                                                    <td>شرکت</td>
-                                                                    <td>35</td>
-                                                                    <td>
-                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                                        <a href="javascript:void(0);" class="action-icon"> <i class="zmdi zmdi-delete zmdi-custom"></i></a>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
+                                                            @if ($readyToLoad)
+                                                                <tbody>
+                                                                    @foreach ($logos as $logo)
+                                                                        <tr>
+                                                                            <td>
+                                                                                <img src="/{{ $logo->image }}" width="50px">
+                                                                            </td>
+                                                                            <td>{{ $logo->title }}</td>
+                                                                            <td>{{ $logo->type=="top" ? 'لوگوی بالای فوتر' : 'لوگوی پایین فوتر' }}</td>
+                                                                            <td>
+                                                                                @if ($logo->isActive==1)
+                                                                                    <a wire:click="changeStatus({{ $logo->id }})" style="cursor:pointer"><span class="badge badge-success">فعال</span></a>
+                                                                                @else
+                                                                                    <a wire:click="changeStatus({{ $logo->id }})" style="cursor:pointer"><span class="badge badge-danger">غیرفعال</span></a>
+                                                                                @endif
+                                                                            </td>
+                                                                            <td>
+                                                                                <button class="action-icon"> <i class="zmdi zmdi-edit zmdi-custom"></i></button>
+                                                                                <button  wire:click="deleteLogo({{ $logo->id }})" class="action-icon"> <i class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endforeach
+                                                                </tbody>
+                                                                @else
+                                                                    <div class="alert alert-warning">
+                                                                        در حال بارگزاری اطلاعات از پایگاه داده ....
+                                                                    </div>
+                                                                @endif
                                                         </table>
 
                                                     </div> <!-- end card body-->

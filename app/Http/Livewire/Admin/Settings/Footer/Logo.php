@@ -13,6 +13,7 @@ class Logo extends Component
 
     public $title,$type,$isActive,$image;
     public Footerlogo $Footerlogo;
+    public $readyToLoad = false;
 
     public function mount(){
         $this->Footerlogo = new Footerlogo;
@@ -26,19 +27,16 @@ class Logo extends Component
 
     public function LogoForm(){
         $this->validate();
-
         $logo = $this->Footerlogo->query()->create([
             'title'    => $this->Footerlogo->title,
             'type'     => $this->Footerlogo->type,
             'isActive' => 1,
         ]);
-
         if($this->image){
             $logo->update([
                 'image' => $this->uploadImage()
             ]);
         }
-
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ثبت شد');
     }
 
@@ -53,6 +51,31 @@ class Logo extends Component
 
     public function render()
     {
-        return view('livewire.admin.settings.footer.logo');
+        $logos = Footerlogo::all();
+        return view('livewire.admin.settings.footer.logo',compact('logos'));
+    }
+
+    public function loadLogo(){
+        $this->readyToLoad = true;
+    }
+
+    public function changeStatus($id){
+        $logo = Footerlogo::find($id);
+        if($logo->isActive == 1){
+            $logo->update([
+                'isActive' => 0
+            ]);
+        }else{
+            $logo->update([
+                'isActive' => 1
+            ]);
+        }
+        $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
+    }
+
+    public function deleteLogo($id){
+        $logo = Footerlogo::find($id);
+        $logo->delete();
+        $this->emit('toast', 'success', 'اطلاعات با موفقیت حذف شد');
     }
 }
