@@ -4,9 +4,13 @@ namespace App\Http\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
 use App\Models\Admin\settings\Footerlogo;
+use Livewire\WithFileUploads;
 
 class Logo extends Component
 {
+
+    use WithFileUploads;
+
     public $title,$type,$isActive,$image;
     public Footerlogo $Footerlogo;
 
@@ -17,19 +21,23 @@ class Logo extends Component
     protected $rules = [
         'Footerlogo.title'    => 'required',
         'Footerlogo.type'     => 'required',
-        'Footerlogo.isActive' => 'nullable',
+        'Footerlogo.image'     => 'nullable',
     ];
 
     public function LogoForm(){
         $this->validate();
 
-        $this->Footerlogo->image = $this->uploadImage();
-
-        $this->Footerlogo->query()->create([
-            'Footerlogo.title'    => $this->Footerlogo->title,
-            'Footerlogo.type'     => $this->Footerlogo->type,
-            'Footerlogo.isActive' => 1,
+        $logo = $this->Footerlogo->query()->create([
+            'title'    => $this->Footerlogo->title,
+            'type'     => $this->Footerlogo->type,
+            'isActive' => 1,
         ]);
+
+        if($this->image){
+            $logo->update([
+                'image' => $this->uploadImage()
+            ]);
+        }
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ثبت شد');
     }
@@ -38,7 +46,7 @@ class Logo extends Component
         $year = now()->year;
         $month = now()->month;
         $directory = "footerlogo/$year/$month";
-        $name = $this->image->getOriginalName();
+        $name = $this->image->getClientOriginalName();
         $this->image->storeAs($directory,$name);
         return "$directory/$name";
     }

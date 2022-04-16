@@ -43,10 +43,11 @@
                                                                       </select>
                                                                 </div>
 
-                                                                <div class="checkbox checkbox-primary d-inline">
-                                                                    <input type="checkbox" wire:model="Footerlogo.isActive" id="checkbox-p-1" checked="">
-                                                                    <label for="checkbox-p-1" class="cr">فعال</label>
-                                                                </div>
+                                                                <input type="file"  wire:model="image" class="form-control">
+                                                                @if ($image)
+                                                                    <img class="form-control mt-3 mb-3" src="{{ $image->temporaryUrl() }}" alt="">
+                                                                @endif
+
                                                                 <button type="submit" class="btn btn-outline-success mb-2 mr-2" style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
                                                             </form>
                                                         </div>
