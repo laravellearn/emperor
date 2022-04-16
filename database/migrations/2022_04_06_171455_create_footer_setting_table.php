@@ -30,6 +30,23 @@ return new class extends Migration
             $table->string('aboutHeadLabel')->nullable();
             $table->text('aboutbodyLabel')->nullable();
             $table->text('copyRight')->nullable();
+/////////////////////////////// Social Media
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
+            $table->string('address')->nullable();
+
+            $table->string('socialIcon1')->nullable();
+            $table->string('socialLink1')->nullable();
+            $table->string('socialIcon2')->nullable();
+            $table->string('socialLink2')->nullable();
+            $table->string('socialIcon3')->nullable();
+            $table->string('socialLink3')->nullable();
+            $table->string('socialIcon4')->nullable();
+            $table->string('socialLink4')->nullable();
+            $table->string('socialIcon5')->nullable();
+            $table->string('socialLink5')->nullable();
+            $table->string('socialIcon6')->nullable();
+            $table->string('socialLink6')->nullable();
 
             $table->timestamps();
         });

@@ -17,3 +17,4 @@ Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
 
 //Settings Footer
 Route::get('/settings/footer/label', App\Http\Livewire\Admin\Settings\Footer\Label::class)->name('admin.settings.footer.label');
+Route::get('/settings/footer/socialmedia', App\Http\Livewire\Admin\Settings\Footer\Social::class)->name('admin.settings.footer.social');

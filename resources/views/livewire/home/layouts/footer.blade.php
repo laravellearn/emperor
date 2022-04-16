@@ -109,10 +109,12 @@
                         <span class="newslitter-form-social">{{ $footer->socialLabel }}</span>
 
                         <div class="social-links">
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-linkedin-square"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink1 }}" ><i class="{{ $footer->socialIcon1 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink2 }}"><i class="{{ $footer->socialIcon2 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink3 }}"><i class="{{ $footer->socialIcon3 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink4 }}"><i class="{{ $footer->socialIcon4 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink5 }}"><i class="{{ $footer->socialIcon5 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink6 }}"><i class="{{ $footer->socialIcon6 }}"></i></a>
                         </div>
                     </div>
                 </div>
@@ -124,10 +126,9 @@
                 <div class="footer-contact">
                     <ul>
                         <li>{{ $footer->supportLabel }}</li>
-                        <li style="float:right">{{ $footer->phoneLabel }}<a href="#" class="phone-contact">۶۱۹۳۰۰۰۰ - ۰۲۱ ، ۹۵۱۱۹۰۹۵
-                                - ۰۲۱</a></li>
-                                <li class="email-title">{{ $footer->emailLabel }}<a href="#">info@digistore.com</a></li>
-                                <li class="email-title">{{ $footer->addressLabel }}<a href="#">استان فارس، شیراز</a></li>
+                        <li style="float:right">{{ $footer->phoneLabel }}{{ $footer->phone }}</li>
+                                <li class="email-title">{{ $footer->emailLabel }}<a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
+                                <li class="email-title">{{ $footer->addressLabel }}{{ $footer->address }}</li>
                             </ul>
                 </div>
 
