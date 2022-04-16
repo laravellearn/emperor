@@ -28,21 +28,23 @@
                                                 <div class="card card-body">
                                                     <div class="row">
                                                         <div class="col-sm-12 col-xs-12">
-                                                            <form>
+                                                            <form role="form" wire:submit.prevent='LogoForm'>
+                                                                @include('errors.error')
                                                                 <div class="form-group">
                                                                     <label for="exampleInputEmail111">عنوان لوگو:</label>
-                                                                    <input type="text" name="title" class="form-control" id="exampleInputEmail111">
+                                                                    <input type="text" wire:model="Footerlogo.title" class="form-control" id="exampleInputEmail111">
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="exampleInputEmail12">جایگاه لوگو:</label>
-                                                                    <select class="form-control" name="type" style="width: 100%;">
+                                                                    <select class="form-control"  wire:model="Footerlogo.type" style="width: 100%;">
+                                                                        <option value="">-- هیچکدام --</option>
                                                                         <option value="top">لوگوی بالای فوتر</option>
                                                                         <option value="bottom">لوگوی پایین فوتر</option>
                                                                       </select>
                                                                 </div>
 
                                                                 <div class="checkbox checkbox-primary d-inline">
-                                                                    <input type="checkbox" name="isActive" id="checkbox-p-1" checked="">
+                                                                    <input type="checkbox" wire:model="Footerlogo.isActive" id="checkbox-p-1" checked="">
                                                                     <label for="checkbox-p-1" class="cr">فعال</label>
                                                                 </div>
                                                                 <button type="submit" class="btn btn-outline-success mb-2 mr-2" style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
