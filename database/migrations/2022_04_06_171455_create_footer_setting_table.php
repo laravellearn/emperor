@@ -50,6 +50,17 @@ return new class extends Migration
 
             $table->timestamps();
         });
+
+        Schema::connection('mysql-settings')->create('footer-logos', function (Blueprint $table) {
+            $table->id();
+            $table->string('title')->nullable();
+            $table->string('image');
+            $table->enum('type',['top','bottom']);
+            $table->boolean('isActive')->nullable();
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -59,6 +70,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::connection('mysql-settings')->dropIfExists('footer-logos');
         Schema::connection('mysql-settings')->dropIfExists('footers');
     }
 };

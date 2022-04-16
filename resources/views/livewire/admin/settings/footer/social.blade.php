@@ -1,4 +1,4 @@
-@section('title','برچسب های فوتر')
+@section('title','شبکه های اجتماعی فوتر')
 <div>
     <div class="container-fluid">
         <div class="inbox-area">
@@ -14,6 +14,7 @@
                                             <ul class="folder-list">
                                                 <li><a href="{{ route('admin.settings.footer.label') }}"> برچسب ها </a></li>
                                                 <li class="active"><a href="{{ route('admin.settings.footer.social') }}"> شبکه های اجتماعی </a></li>
+                                                <li><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای فوتر </a></li>
                                             </ul>
                                             <div class="clearfix"></div>
                                         </div>
