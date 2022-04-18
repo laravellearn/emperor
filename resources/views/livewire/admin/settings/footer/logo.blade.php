@@ -150,7 +150,9 @@
                                                                                     <button class="action-icon"> <i
                                                                                             class="zmdi zmdi-edit zmdi-custom"></i></button>
                                                                                     <button
-                                                                                        wire:click="$emit('triggerDelete',{{ $logo->id }})"
+                                                                                        wire:click="deleteId({{ $logo->id }})"
+                                                                                        data-toggle="modal"
+                                                                                        data-target="#exampleModal"
                                                                                         class="action-icon"> <i
                                                                                             class="zmdi zmdi-delete zmdi-custom"></i></button>
                                                                                 </td>
@@ -182,34 +184,35 @@
         </div>
 
     </div>
-
-    <script>
-        document.addEventListener('livewire:load', () => {
-            let progressSection = document.querySelector('#progressbar'),
-                progressBar = progressSection.querySelector('.progress-bar');
-
-            document.addEventListener('livewire-upload-start', () => {
-                console.log('شروع بارگزاری');
-                progressSection.style.display = 'flex';
-            });
-
-            document.addEventListener('livewire-upload-finish', () => {
-                console.log('اتمام بارگزاری');
-                progressSection.style.display = 'none';
-            });
-
-            document.addEventListener('livewire-upload-error', () => {
-                console.log('خطا در بارگزاری');
-                progressSection.style.display = 'none';
-            });
-
-            document.addEventListener('livewire-upload-progress', (event) => {
-                console.log(`${event.detail.progress}%`);
-                progressBar.style.width = `${event.detail.progress}%`;
-                progressBar.textContent = `${event.detail.progress}%`;
-            });
-        });
-    </script>
-
+    @include('livewire.admin.include.modal')
 </div>
 
+<script>
+    document.addEventListener('livewire:load', () => {
+        let progressSection = document.querySelector('#progressbar'),
+            progressBar = progressSection.querySelector('.progress-bar');
+
+        document.addEventListener('livewire-upload-start', () => {
+            console.log('شروع بارگزاری');
+            progressSection.style.display = 'flex';
+        });
+
+        document.addEventListener('livewire-upload-finish', () => {
+            console.log('اتمام بارگزاری');
+            progressSection.style.display = 'none';
+        });
+
+        document.addEventListener('livewire-upload-error', () => {
+            console.log('خطا در بارگزاری');
+            progressSection.style.display = 'none';
+        });
+
+        document.addEventListener('livewire-upload-progress', (event) => {
+            console.log(`${event.detail.progress}%`);
+            progressBar.style.width = `${event.detail.progress}%`;
+            progressBar.textContent = `${event.detail.progress}%`;
+        });
+    });
+</script>
+
+</div>

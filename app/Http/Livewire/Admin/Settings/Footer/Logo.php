@@ -45,7 +45,7 @@ class Logo extends Component
                 'image' => $this->uploadImage()
             ]);
         }
-        $this->emit('toast', 'success', 'اطلاعات با موفقیت ثبت شد');
+        $this->emit('toast', 'success', 'رکورد با موفقیت ثبت شد');
     }
 
     public function uploadImage()
@@ -84,10 +84,15 @@ class Logo extends Component
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
 
-    public function deleteLogo($id)
+    public function deleteId($id)
     {
-        $logo = Footerlogo::find($id);
+        $this->deleteId = $id;
+    }
+
+    public function delete()
+    {
+        $logo = Footerlogo::find($this->deleteId);
         $logo->delete();
-        $this->emit('toast', 'success', 'اطلاعات با موفقیت حذف شد');
+        $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
 }
