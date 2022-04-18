@@ -1,4 +1,4 @@
-@section('title', 'لوگو های فوتر')
+@section('title', 'ویرایش لوگوی فوتر')
 <div>
     <div class="data-table-area">
         <div class="container-fluid" wire:init='loadLogo'>
@@ -31,7 +31,7 @@
                                             <div class="row">
                                                 <div class="col-xl-4 box-margin height-card">
                                                     <div class=" card-body">
-                                                        <h4 class="card-title mb-2">افزودن لوگوی فوتر</h4>
+                                                        <h4 class="card-title mb-2">ویرایش لوگوی فوتر</h4>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-12 col-xs-12">
@@ -71,6 +71,11 @@
                                                                         </div>
                                                                     </div>
 
+                                                                    <div class="checkbox checkbox-primary d-inline">
+                                                                        <input type="checkbox" wire:model="Footerlogo.isActive" id="checkbox-p-1" >
+                                                                        <label for="checkbox-p-1" class="cr">فعال</label>
+                                                                    </div>
+
                                                                     <div wire:ignore id="progressbar"
                                                                         class="progress mb-0 mt-1 mb-1"
                                                                         style="display: none">
@@ -106,6 +111,7 @@
                                                             <button type="button" class="btn btn-primary mb-2 mr-2"
                                                                 style="float:left;margin-top:-37px;"><i
                                                                     class="fa fa-file-excel-o"></i> خروجی اکسل</button>
+                                                                    <a href="{{ route('admin.settings.footer.logo') }}" class="btn btn-success mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-plus-square"></i> افزودن</a>
                                                             <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-25 float-right"
