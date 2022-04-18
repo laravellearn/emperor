@@ -6152,7 +6152,8 @@ Main Components
 
 /* :: Form CSS */
 .form-group label {
-  font-size: 0.874rem; }
+  font-size: 0.874rem;
+font-weight: bold; }
 
 .form-control {
   border-color: #dbdbdb; }

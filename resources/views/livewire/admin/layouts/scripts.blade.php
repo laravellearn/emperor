@@ -14,4 +14,6 @@
     <script src="{{ asset('admin/js/default-assets/peity.min.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/peity-demo.js') }}"></script>
     <script src="{{ mix('/js/app.js') }}"></script>
+
+    @yield('scripts')
     <livewire:scripts />
