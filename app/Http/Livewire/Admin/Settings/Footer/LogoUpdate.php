@@ -6,6 +6,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Admin\settings\Footerlogo;
+use Carbon\Carbon;
 
 class LogoUpdate extends Component
 {
@@ -30,14 +31,11 @@ class LogoUpdate extends Component
     public function LogoForm()
     {
         $this->validate();
-        $this->Footerlogo->query()->update([
-            'title'    => $this->Footerlogo->title,
-            'type'     => $this->Footerlogo->type,
-            'isActive' => $this->Footerlogo->isActive,
-        ]);
+        $this->Footerlogo->update($this->validate());
         if ($this->image) {
-            $this->Footerlogo->query()->update([
-                'image' => $this->uploadImage()
+            $uploadImage = $this->uploadImage();
+            $this->Footerlogo->update([
+                'image' => $uploadImage
             ]);
         }
         $this->emit('toast', 'success', 'رکورد با موفقیت ویرایش شد');
@@ -48,9 +46,10 @@ class LogoUpdate extends Component
         $year = now()->year;
         $month = now()->month;
         $directory = "footerlogo/$year/$month";
-        $name = $this->image->getClientOriginalName();
+        $name = time() . '-' . $this->image->getClientOriginalName();
+        $name = str_replace(' ','-',$name);
         $this->image->storeAs($directory, $name);
-        return "$directory/$name";
+        return "/$directory/$name";
     }
 
     public function changeStatus($id)
@@ -81,7 +80,7 @@ class LogoUpdate extends Component
         $footerlogo->isActive == 1 ? $footerlogo->isActive = true : $footerlogo->isActive = false;
         return view('livewire.admin.settings.footer.logo-update', compact('footerlogo', 'logos'));
     }
-    
+
     public function deleteId($id)
     {
         $this->deleteId = $id;

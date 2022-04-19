@@ -55,9 +55,10 @@ class Logo extends Component
         $year = now()->year;
         $month = now()->month;
         $directory = "footerlogo/$year/$month";
-        $name = $this->image->getClientOriginalName();
+        $name = time() . '-' . $this->image->getClientOriginalName();
+        $name = str_replace(' ','-',$name);
         $this->image->storeAs($directory, $name);
-        return "$directory/$name";
+        return "/$directory/$name";
     }
 
     public function render()

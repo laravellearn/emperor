@@ -57,6 +57,7 @@
                                                                             </option>
                                                                         </select>
                                                                     </div>
+
                                                                     <div class="input-group cust-file-button mb-3">
                                                                         <div class="custom-file">
                                                                             <input type="file" wire:model="image"
@@ -100,12 +101,10 @@
                                                     <div class="">
                                                         <div class="card-body">
                                                             <h4 class="card-title mb-2">لیست لوگو های فوتر</h4>
-                                                            <button type="button" class="btn btn-danger mb-2 mr-2"
+                                                            <a href="{{ route('admin.settings.footer.logo.trash') }}"
+                                                             class="btn btn-danger mb-2 mr-2"
                                                                 style="float:left;margin-top:-37px;"><i
-                                                                    class="fa fa-refresh"></i> سطل زباله</button>
-                                                            <button type="button" class="btn btn-primary mb-2 mr-2"
-                                                                style="float:left;margin-top:-37px;"><i
-                                                                    class="fa fa-file-excel-o"></i> خروجی اکسل</button>
+                                                                    class="fa fa-trash"></i> سطل زباله</a>
                                                             <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-25 float-right"
@@ -129,7 +128,7 @@
                                                                         @foreach ($logos as $logo)
                                                                             <tr>
                                                                                 <td>
-                                                                                    <img src="/{{ $logo->image }}"
+                                                                                    <img src="{{ $logo->image }}"
                                                                                         width="50px">
                                                                                 </td>
                                                                                 <td>{{ $logo->title }}</td>
