@@ -22,6 +22,8 @@
                                                     <li class="active"><a
                                                             href="{{ route('admin.settings.footer.menu') }}"> منوهای
                                                             فوتر </a></li>
+                                                            <li><a
+                                                                href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت </a></li>
 
                                                 </ul>
                                                 <div class="clearfix"></div>
@@ -56,21 +58,27 @@
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail12">جایگاه
                                                                             منو:</label>
-                                                                        <select class="form-control"
+                                                                            <select class="form-control"
                                                                             wire:model="Footermenu.type"
                                                                             style="width: 100%;" required>
                                                                             <option value="">-- هیچکدام --</option>
-                                                                            <option value="widgetLabel1">ستون اول
-                                                                            </option>
-                                                                            <option value="widgetLabel2">ستون دوم
-                                                                            </option>
-                                                                            <option value="widgetLabel3">ستون سوم
-                                                                            </option>
-                                                                            <option value="widgetLabel4">ستون چهارم
-                                                                            </option>
-                                                                            <option value="widgetLabel5">ستون پنجم
-                                                                            </option>
+                                                                            @php
+                                                                                $i = 0;
+                                                                            @endphp
+                                                                            @foreach ($headerMenu as $header)
+                                                                                @php
+                                                                                    $i++;
+                                                                                    $widgetLabel = 'widgetLabel' . $i;
+                                                                                @endphp
+                                                                                <option value="{{ $widgetLabel }}">
+                                                                                    {{ $header }}</option>
+                                                                            @endforeach
                                                                         </select>
+                                                                    </div>
+
+                                                                    <div class="checkbox checkbox-primary d-inline">
+                                                                        <input type="checkbox" wire:model="Footermenu.isActive" id="checkbox-p-1" >
+                                                                        <label for="checkbox-p-1" class="cr">فعال</label>
                                                                     </div>
 
                                                                     <button type="submit"

@@ -4,6 +4,8 @@ namespace App\Http\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
 use App\Models\Admin\settings\Footermenu;
+use App\Models\Admin\settings\Footer;
+use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 
 class Menu extends Component
@@ -45,7 +47,16 @@ class Menu extends Component
     public function render()
     {
         $menus = $this->readyToLoad ? Footermenu::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
-        return view('livewire.admin.settings.footer.menu',compact('menus'));
+
+        $footer = DB::connection('mysql-settings')->table('footers')->first();
+
+        $headerMenu[] = $footer->widgetLabel1;
+        $headerMenu[] = $footer->widgetLabel2;
+        $headerMenu[] = $footer->widgetLabel3;
+        $headerMenu[] = $footer->widgetLabel4;
+        $headerMenu[] = $footer->widgetLabel5;
+
+        return view('livewire.admin.settings.footer.menu',compact('menus','headerMenu'));
     }
 
     public function loadMenu()

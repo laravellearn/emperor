@@ -27,5 +27,7 @@ Route::get('/settings/footer/trashed/logo', App\Http\Livewire\Admin\Settings\Foo
 //Settings Footer MENU
 Route::get('/settings/footer/menu', App\Http\Livewire\Admin\Settings\Footer\Menu::class)->name('admin.settings.footer.menu');
 Route::get('/settings/footer/menu/{Footermenu}', App\Http\Livewire\Admin\Settings\Footer\menuUpdate::class)->name('admin.settings.footer.menu.update');
+//Settings Footer Enamad
+Route::get('/settings/footer/namad', App\Http\Livewire\Admin\Settings\Footer\Namad::class)->name('admin.settings.footer.namad');
 
 //--------------------------------------------------------------------------------------//

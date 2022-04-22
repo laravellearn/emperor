@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('aboutHeadLabel')->nullable();
             $table->text('aboutbodyLabel')->nullable();
             $table->text('copyRight')->nullable();
-/////////////////////////////// Social Media
+            /////////////////////////////// Social Media
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('address')->nullable();
@@ -47,7 +47,12 @@ return new class extends Migration
             $table->string('socialLink5')->nullable();
             $table->string('socialIcon6')->nullable();
             $table->string('socialLink6')->nullable();
-
+            /////////////////////////////////enamad
+            $table->string('enamad')->nullable();
+            $table->string('linkApp1')->nullable();
+            $table->string('imageApp1')->nullable();
+            $table->string('linkApp2')->nullable();
+            $table->string('imageApp2')->nullable();
             $table->timestamps();
         });
 
@@ -56,7 +61,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('image');
             $table->string('url')->nullable();
-            $table->enum('type',['top','bottom']);
+            $table->enum('type', ['top', 'bottom']);
             $table->boolean('isActive')->nullable();
             $table->softDeletes();
             $table->timestamps();
@@ -66,11 +71,10 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('url');
-            $table->enum('type',['widgetLabel1','widgetLabel2','widgetLabel3','widgetLabel4','widgetLabel5']);
+            $table->enum('type', ['widgetLabel1', 'widgetLabel2', 'widgetLabel3', 'widgetLabel4', 'widgetLabel5']);
             $table->boolean('isActive')->nullable();
             $table->timestamps();
         });
-
     }
 
     /**

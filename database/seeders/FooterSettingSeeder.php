@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -48,6 +47,11 @@ class FooterSettingSeeder extends Seeder
             'socialLink4' => '#',
             'socialLink5' => '#',
             'socialLink6' => '#',
+            'enamad' => '<img src="/home/images/footer-img/enamad.png"><img src="/home/images/footer-img/samandehi.png">',
+            'linkApp1' => "#",
+            'imageApp1' => "/home/images/footer-img/71abe5c9.png",
+            'linkApp2' => "#",
+            'imageApp2' => "/home/images/footer-img/1090a120.png"
 
 
         ]);

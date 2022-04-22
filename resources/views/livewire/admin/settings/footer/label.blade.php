@@ -18,6 +18,9 @@
                                                 <li><a
                                                     href="{{ route('admin.settings.footer.menu') }}"> منوهای
                                                     فوتر </a></li>
+                                                    <li><a
+                                                        href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت </a></li>
+
                                             </ul>
                                             <div class="clearfix"></div>
                                         </div>

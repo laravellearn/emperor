@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Settings\Footer;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Admin\settings\Footermenu;
+use Illuminate\Support\Facades\DB;
 
 class MenuUpdate extends Component
 {
@@ -57,7 +58,27 @@ class MenuUpdate extends Component
 
         $footerMenu = $this->Footermenu;
         $footerMenu->isActive == 1 ? $footerMenu->isActive = true : $footerMenu->isActive = false;
+        $footer = DB::connection('mysql-settings')->table('footers')->first();
 
-        return view('livewire.admin.settings.footer.menu-update',compact('menus','footerMenu'));
+        $headerMenu[] = $footer->widgetLabel1;
+        $headerMenu[] = $footer->widgetLabel2;
+        $headerMenu[] = $footer->widgetLabel3;
+        $headerMenu[] = $footer->widgetLabel4;
+        $headerMenu[] = $footer->widgetLabel5;
+
+        return view('livewire.admin.settings.footer.menu-update',compact('menus','footerMenu','headerMenu'));
     }
+
+    public function deleteId($id)
+    {
+        $this->deleteId = $id;
+    }
+
+    public function delete()
+    {
+        $logo = Footermenu::find($this->deleteId);
+        $logo->delete();
+        $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
+    }
+
 }

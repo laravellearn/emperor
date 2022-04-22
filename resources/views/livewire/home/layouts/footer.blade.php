@@ -78,7 +78,7 @@
                         <div class="links-col">
                             <a href="#" class="head-line">نماد ها</a>
                             <ul class="links-ul">
-                                {{ $footer->socialIcon3 }}
+                                {!! $footer->enamad !!}
                             </ul>
                         </div>
 
@@ -131,10 +131,8 @@
                 </div>
 
                 <div class="address-images">
-                    <a href="#">
-                        <img src="{{ asset('home/images/footer-img/1090a120.png') }}" alt="address">
-                        <img src="{{ asset('home/images/footer-img/71abe5c9.png') }}" alt="address">
-                    </a>
+                    <a href="{{ $footer->linkApp1 }}"><img src="{{ $footer->imageApp1 }}"></a>
+                    <a href="{{ $footer->linkApp2 }}"><img src="{{ $footer->imageApp2 }}"></a>
                 </div>
             </div>
         </div>
