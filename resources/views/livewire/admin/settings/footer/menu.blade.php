@@ -1,7 +1,7 @@
-@section('title', 'لوگو های فوتر')
+@section('title', 'منو های فوتر')
 <div>
     <div class="data-table-area">
-        <div class="container-fluid" wire:init='loadLogo'>
+        <div class="container-fluid" wire:init='loadMenu'>
             <div class="inbox-area">
                 <div class="row">
                     <div class="col-12 box-margin">
@@ -17,12 +17,11 @@
                                                         </a></li>
                                                     <li><a href="{{ route('admin.settings.footer.social') }}"> شبکه
                                                             های اجتماعی </a></li>
-                                                    <li class="active"><a
-                                                            href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
+                                                    <li><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
                                                             فوتر </a></li>
-                                                            <li><a
-                                                                href="{{ route('admin.settings.footer.menu') }}"> منوهای
-                                                                فوتر </a></li>
+                                                    <li class="active"><a
+                                                            href="{{ route('admin.settings.footer.menu') }}"> منوهای
+                                                            فوتر </a></li>
 
                                                 </ul>
                                                 <div class="clearfix"></div>
@@ -35,66 +34,44 @@
                                             <div class="row">
                                                 <div class="col-xl-4 box-margin height-card">
                                                     <div class=" card-body">
-                                                        <h4 class="card-title mb-2">افزودن لوگوی فوتر</h4>
+                                                        <h4 class="card-title mb-2">افزودن منو برای فوتر</h4>
                                                         <hr>
                                                         <div class="row">
                                                             <div class="col-sm-12 col-xs-12">
-                                                                <form role="form" wire:submit.prevent='LogoForm'>
+                                                                <form role="form" wire:submit.prevent='MenuForm'>
                                                                     @include('errors.error')
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail111">عنوان
-                                                                            لوگو:</label>
-                                                                        <input type="text" wire:model="Footerlogo.title"
+                                                                            منو:</label>
+                                                                        <input type="text" wire:model="Footermenu.title"
                                                                             class="form-control"
                                                                             id="exampleInputEmail111">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail111">لینک:</label>
-                                                                        <input type="text" wire:model="Footerlogo.url"
+                                                                        <input type="text" style="text-align:left" wire:model="Footermenu.url"
                                                                             class="form-control"
                                                                             id="exampleInputEmail111">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail12">جایگاه
-                                                                            لوگو:</label>
+                                                                            منو:</label>
                                                                         <select class="form-control"
-                                                                            wire:model="Footerlogo.type"
-                                                                            style="width: 100%;">
+                                                                            wire:model="Footermenu.type"
+                                                                            style="width: 100%;" required>
                                                                             <option value="">-- هیچکدام --</option>
-                                                                            <option value="top">لوگوی بالای فوتر
+                                                                            <option value="widgetLabel1">ستون اول
                                                                             </option>
-                                                                            <option value="bottom">لوگوی پایین فوتر
+                                                                            <option value="widgetLabel2">ستون دوم
+                                                                            </option>
+                                                                            <option value="widgetLabel3">ستون سوم
+                                                                            </option>
+                                                                            <option value="widgetLabel4">ستون چهارم
+                                                                            </option>
+                                                                            <option value="widgetLabel5">ستون پنجم
                                                                             </option>
                                                                         </select>
                                                                     </div>
-
-                                                                    <div class="input-group cust-file-button mb-3">
-                                                                        <div class="custom-file">
-                                                                            <input type="file" wire:model="image"
-                                                                                class="custom-file-input form-control"
-                                                                                id="inputGroupFile03">
-                                                                            <label class="custom-file-label"
-                                                                                for="inputGroupFile03">تصویر
-                                                                                لوگو</label>
-                                                                            <span class="text-info"
-                                                                                wire:target='image' wire:loading>درحال
-                                                                                بارگزاری...</span>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div wire:ignore id="progressbar"
-                                                                        class="progress mb-0 mt-1 mb-1"
-                                                                        style="display: none">
-                                                                        <div class="progress-bar" role="progressbar"
-                                                                            style="width: 0%;" aria-valuenow="0"
-                                                                            aria-valuemin="0" aria-valuemax="100">0٪
-                                                                        </div>
-                                                                    </div>
-
-                                                                    @if ($image)
-                                                                        <img class="form-control mt-3 mb-3"
-                                                                            src="{{ $image->temporaryUrl() }}" alt="">
-                                                                    @endif
 
                                                                     <button type="submit"
                                                                         class="btn btn-outline-success mt-3 mb-2 mr-2"
@@ -110,14 +87,7 @@
                                                 <div class="col-12 col-lg-8 box-margin">
                                                     <div class="">
                                                         <div class="card-body">
-                                                            <h4 class="card-title mb-2">لیست لوگو های فوتر</h4>
-                                                            <a href="{{ route('admin.settings.footer.logo.trash') }}"
-                                                             class="btn btn-danger mb-2 mr-2"
-                                                                style="float:left;margin-top:-37px;"><i
-                                                                    class="fa fa-trash"></i> سطل زباله
-                                                                <span class="badge badge-danger">
-                                                                    {{ \App\Models\Admin\Settings\Footerlogo::onlyTrashed()->count() }}
-                                                                </span></a>
+                                                            <h4 class="card-title mb-2">لیست منو های فوتر</h4>
                                                             <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-25 float-right"
@@ -128,8 +98,7 @@
                                                                 style="width:104%">
                                                                 <thead>
                                                                     <tr>
-                                                                        <th>تصویر</th>
-                                                                        <th>عنوان لوگو</th>
+                                                                        <th>عنوان منو</th>
                                                                         <th>جایگاه</th>
                                                                         <th>وضعیت</th>
                                                                         <th>عملیات</th>
@@ -138,32 +107,55 @@
 
                                                                 @if ($readyToLoad)
                                                                     <tbody>
-                                                                        @foreach ($logos as $logo)
+                                                                        @foreach ($menus as $menu)
                                                                             <tr>
-                                                                                <td>
-                                                                                    <img src="{{ $logo->image }}"
-                                                                                        width="50px">
-                                                                                </td>
-                                                                                <td><a href="{{ $logo->url }}" target="_blank">{{ $logo->title }}</a></td>
-                                                                                <td>{{ $logo->type == 'top' ? 'لوگوی بالای فوتر' : 'لوگوی پایین فوتر' }}
+                                                                                <td><a href="{{ $menu->url }}"
+                                                                                        target="_blank">{{ $menu->title }}</a>
                                                                                 </td>
                                                                                 <td>
-                                                                                    @if ($logo->isActive == 1)
-                                                                                        <a wire:click="changeStatus({{ $logo->id }})"
+                                                                                    @switch($menu->type)
+                                                                                        @case('widgetLabel1')
+                                                                                            ستون اول
+                                                                                        @break
+
+                                                                                        @case('widgetLabel2')
+                                                                                            ستون دوم
+                                                                                        @break
+
+                                                                                        @case('widgetLabel3')
+                                                                                            ستون سوم
+                                                                                        @break
+
+                                                                                        @case('widgetLabel4')
+                                                                                            ستون چهارم
+                                                                                        @break
+
+                                                                                        @case('widgetLabel5')
+                                                                                            ستون پنجم
+                                                                                        @break
+
+                                                                                        @default
+                                                                                            {{ هیچکدام }}
+                                                                                    @endswitch
+                                                                                </td>
+                                                                                <td>
+                                                                                    @if ($menu->isActive == 1)
+                                                                                        <a wire:click="changeStatus({{ $menu->id }})"
                                                                                             style="cursor:pointer"><span
                                                                                                 class="badge badge-success">فعال</span></a>
                                                                                     @else
-                                                                                        <a wire:click="changeStatus({{ $logo->id }})"
+                                                                                        <a wire:click="changeStatus({{ $menu->id }})"
                                                                                             style="cursor:pointer"><span
                                                                                                 class="badge badge-danger">غیرفعال</span></a>
                                                                                     @endif
                                                                                 </td>
                                                                                 <td>
-                                                                                    <a href="{{ route('admin.settings.footer.logo.update', $logo->id) }}"
-                                                                                         class="action-icon">
-                                                                                        <i class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                                    <a href="{{ route('admin.settings.footer.menu.update', $menu->id) }}"
+                                                                                        class="action-icon">
+                                                                                        <i
+                                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
                                                                                     <button
-                                                                                        wire:click="deleteId({{ $logo->id }})"
+                                                                                        wire:click="deleteId({{ $menu->id }})"
                                                                                         data-toggle="modal"
                                                                                         data-target="#exampleModal"
                                                                                         class="action-icon"> <i
@@ -172,7 +164,7 @@
                                                                             </tr>
                                                                         @endforeach
                                                                     </tbody>
-                                                                    {{ $logos->links() }}
+                                                                    {{ $menus->links() }}
                                                                 @else
                                                                     <div class="alert alert-warning">
                                                                         در حال بارگزاری اطلاعات از پایگاه داده ....
@@ -199,33 +191,4 @@
     </div>
     @include('livewire.admin.include.modal')
 </div>
-
-<script>
-    document.addEventListener('livewire:load', () => {
-        let progressSection = document.querySelector('#progressbar'),
-            progressBar = progressSection.querySelector('.progress-bar');
-
-        document.addEventListener('livewire-upload-start', () => {
-            console.log('شروع بارگزاری');
-            progressSection.style.display = 'flex';
-        });
-
-        document.addEventListener('livewire-upload-finish', () => {
-            console.log('اتمام بارگزاری');
-            progressSection.style.display = 'none';
-        });
-
-        document.addEventListener('livewire-upload-error', () => {
-            console.log('خطا در بارگزاری');
-            progressSection.style.display = 'none';
-        });
-
-        document.addEventListener('livewire-upload-progress', (event) => {
-            console.log(`${event.detail.progress}%`);
-            progressBar.style.width = `${event.detail.progress}%`;
-            progressBar.textContent = `${event.detail.progress}%`;
-        });
-    });
-</script>
-
 </div>

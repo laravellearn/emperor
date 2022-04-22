@@ -20,6 +20,10 @@
                                                     <li class="active"><a
                                                             href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
                                                             فوتر </a></li>
+                                                            <li><a
+                                                                href="{{ route('admin.settings.footer.menu') }}"> منوهای
+                                                                فوتر </a></li>
+
                                                 </ul>
                                                 <div class="clearfix"></div>
                                             </div>

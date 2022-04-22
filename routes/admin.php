@@ -13,11 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//---------------------------------------HomePage---------------------------------------//
 Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
 
-//Settings Footer
+//---------------------------------------Settings---------------------------------------//
+//Settings Footer ETC
 Route::get('/settings/footer/label', App\Http\Livewire\Admin\Settings\Footer\Label::class)->name('admin.settings.footer.label');
 Route::get('/settings/footer/socialmedia', App\Http\Livewire\Admin\Settings\Footer\Social::class)->name('admin.settings.footer.social');
+//Settings Footer LOGO
 Route::get('/settings/footer/logo', App\Http\Livewire\Admin\Settings\Footer\Logo::class)->name('admin.settings.footer.logo');
 Route::get('/settings/footer/logo/{Footerlogo}', App\Http\Livewire\Admin\Settings\Footer\LogoUpdate::class)->name('admin.settings.footer.logo.update');
 Route::get('/settings/footer/trashed/logo', App\Http\Livewire\Admin\Settings\Footer\LogoTrash::class)->name('admin.settings.footer.logo.trash');
+//Settings Footer MENU
+Route::get('/settings/footer/menu', App\Http\Livewire\Admin\Settings\Footer\Menu::class)->name('admin.settings.footer.menu');
+Route::get('/settings/footer/menu/{Footermenu}', App\Http\Livewire\Admin\Settings\Footer\menuUpdate::class)->name('admin.settings.footer.menu.update');
+
+//--------------------------------------------------------------------------------------//

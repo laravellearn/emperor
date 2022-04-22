@@ -62,6 +62,15 @@ return new class extends Migration
             $table->timestamps();
         });
 
+        Schema::connection('mysql-settings')->create('footer-menus', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->string('url');
+            $table->enum('type',['widgetLabel1','widgetLabel2','widgetLabel3','widgetLabel4','widgetLabel5']);
+            $table->boolean('isActive')->nullable();
+            $table->timestamps();
+        });
+
     }
 
     /**
@@ -71,6 +80,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::connection('mysql-settings')->dropIfExists('footer-menus');
         Schema::connection('mysql-settings')->dropIfExists('footer-logos');
         Schema::connection('mysql-settings')->dropIfExists('footers');
     }
