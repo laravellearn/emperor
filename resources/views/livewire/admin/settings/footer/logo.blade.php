@@ -45,6 +45,12 @@
                                                                             id="exampleInputEmail111">
                                                                     </div>
                                                                     <div class="form-group">
+                                                                        <label for="exampleInputEmail111">لینک:</label>
+                                                                        <input type="text" wire:model="Footerlogo.url"
+                                                                            class="form-control"
+                                                                            id="exampleInputEmail111">
+                                                                    </div>
+                                                                    <div class="form-group">
                                                                         <label for="exampleInputEmail12">جایگاه
                                                                             لوگو:</label>
                                                                         <select class="form-control"
@@ -134,7 +140,7 @@
                                                                                     <img src="{{ $logo->image }}"
                                                                                         width="50px">
                                                                                 </td>
-                                                                                <td>{{ $logo->title }}</td>
+                                                                                <td><a href="{{ $logo->url }}" target="_blank">{{ $logo->title }}</a></td>
                                                                                 <td>{{ $logo->type == 'top' ? 'لوگوی بالای فوتر' : 'لوگوی پایین فوتر' }}
                                                                                 </td>
                                                                                 <td>

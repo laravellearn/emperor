@@ -26,6 +26,7 @@ class LogoUpdate extends Component
         'Footerlogo.type'     => 'required',
         'Footerlogo.isActive'     => 'nullable',
         'Footerlogo.image'     => 'nullable',
+        'Footerlogo.url'     => 'nullable',
     ];
 
     public function LogoForm()
@@ -47,7 +48,7 @@ class LogoUpdate extends Component
         $month = now()->month;
         $directory = "footerlogo/$year/$month";
         $name = time() . '-' . $this->image->getClientOriginalName();
-        $name = str_replace(' ','-',$name);
+        $name = str_replace(' ', '-', $name);
         $this->image->storeAs($directory, $name);
         return "/$directory/$name";
     }
@@ -92,6 +93,4 @@ class LogoUpdate extends Component
         $logo->delete();
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
-
-
 }

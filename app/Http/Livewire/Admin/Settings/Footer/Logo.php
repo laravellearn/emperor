@@ -30,6 +30,7 @@ class Logo extends Component
         'Footerlogo.title'    => 'required',
         'Footerlogo.type'     => 'required',
         'Footerlogo.image'     => 'nullable',
+        'Footerlogo.url'     => 'nullable',
     ];
 
     public function LogoForm()
@@ -38,6 +39,7 @@ class Logo extends Component
         $logo = $this->Footerlogo->query()->create([
             'title'    => $this->Footerlogo->title,
             'type'     => $this->Footerlogo->type,
+            'url'      => $this->Footerlogo->url,
             'isActive' => 1,
         ]);
         if ($this->image) {
@@ -56,7 +58,7 @@ class Logo extends Component
         $month = now()->month;
         $directory = "footerlogo/$year/$month";
         $name = time() . '-' . $this->image->getClientOriginalName();
-        $name = str_replace(' ','-',$name);
+        $name = str_replace(' ', '-', $name);
         $this->image->storeAs($directory, $name);
         return "/$directory/$name";
     }
@@ -104,7 +106,7 @@ class Logo extends Component
         $this->Footerlogo->title = null;
         $this->Footerlogo->type = null;
         $this->Footerlogo->image = null;
+        $this->Footerlogo->url = null;
         $this->image = null;
-
     }
 }

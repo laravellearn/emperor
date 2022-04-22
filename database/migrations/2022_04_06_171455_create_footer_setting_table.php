@@ -55,6 +55,7 @@ return new class extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('image');
+            $table->string('url')->nullable();
             $table->enum('type',['top','bottom']);
             $table->boolean('isActive')->nullable();
             $table->softDeletes();

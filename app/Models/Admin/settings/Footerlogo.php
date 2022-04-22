@@ -12,5 +12,5 @@ class Footerlogo extends Model
     use SoftDeletes;
     protected $connection = "mysql-settings";
     protected $table = "footer-logos";
-    protected $fillable = ['title','type','image','isActive'];
+    protected $fillable = ['title','type','image','url','isActive'];
 }
