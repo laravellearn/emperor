@@ -21,58 +21,60 @@
             <div class="middle-bar-footer">
                 <div class="col-lg-9 col-xs-12 pull-right">
                     <div class="footer-links">
-                        <div class="links-col">
-                            <a href="#" class="head-line">{{ $footer->widgetLabel1 }}</a>
-                            <ul class="links-ul">
-                                <li><a href="#">نحوه ثبت سفارش</a></li>
-                                <li><a href="#">رویه ارسال سفارش</a></li>
-                                <li><a href="#">شیوه‌های پرداخت</a></li>
-                            </ul>
-                        </div>
+                        @if ($menus1->count() != 0)
+                            <div class="links-col">
+                                <a href="#" class="head-line">{{ $footer->widgetLabel1 }}</a>
+                                <ul class="links-ul">
+                                    @foreach ($menus1 as $menu)
+                                        <li><a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
-                        <div class="links-col">
-                            <a href="#" class="head-line">{{ $footer->widgetLabel2 }}</a>
-                            <ul class="links-ul">
-                                <li><a href="#">پرسش یه پاسخ های متداول</a></li>
-                                <li><a href="#">رویه های بازگرداندن کالا</a></li>
-                                <li><a href="#">شرایط استفاده</a></li>
-                                <li><a href="#">حریم خصوصی</a></li>
-                                <li><a href="#">گزارش باگ</a></li>
-                            </ul>
-                        </div>
+                        @if ($menus2->count() != 0)
+                            <div class="links-col">
+                                <a href="#" class="head-line">{{ $footer->widgetLabel2 }}</a>
+                                <ul class="links-ul">
+                                    @foreach ($menus2 as $menu)
+                                        <li><a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if ($menus3->count() != 0)
 
-                        <div class="links-col">
-                            <a href="#" class="head-line">{{ $footer->widgetLabel3 }}</a>
-                            <ul class="links-ul">
-                                <li><a href="#">اتاق خبر دیجی استور</a></li>
-                                <li><a href="#">فروش در دیجی استور</a></li>
-                                <li><a href="#">فرصت های شغلی</a></li>
-                                <li><a href="#">تماس با دیجی استور</a></li>
-                                <li><a href="#">درباره ما دیجی استور</a></li>
-                            </ul>
-                        </div>
+                            <div class="links-col">
+                                <a href="#" class="head-line">{{ $footer->widgetLabel3 }}</a>
+                                <ul class="links-ul">
+                                    @foreach ($menus3 as $menu)
+                                        <li><a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if ($menus4->count() != 0)
 
-                        <div class="links-col">
-                            <a href="#" class="head-line">{{ $footer->widgetLabel4 }}</a>
-                            <ul class="links-ul">
-                                <li><a href="#">اتاق خبر دیجی استور</a></li>
-                                <li><a href="#">فروش در دیجی استور</a></li>
-                                <li><a href="#">فرصت های شغلی</a></li>
-                                <li><a href="#">تماس با دیجی استور</a></li>
-                                <li><a href="#">درباره ما دیجی استور</a></li>
-                            </ul>
-                        </div>
+                            <div class="links-col">
+                                <a href="#" class="head-line">{{ $footer->widgetLabel4 }}</a>
+                                <ul class="links-ul">
+                                    @foreach ($menus4 as $menu)
+                                        <li><a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        @if ($menus5->count() != 0)
 
-                        <div class="links-col">
-                            <a href="#" class="head-line">{{ $footer->widgetLabel5 }}</a>
-                            <ul class="links-ul">
-                                <li><a href="#">اتاق خبر دیجی استور</a></li>
-                                <li><a href="#">فروش در دیجی استور</a></li>
-                                <li><a href="#">فرصت های شغلی</a></li>
-                                <li><a href="#">تماس با دیجی استور</a></li>
-                                <li><a href="#">درباره ما دیجی استور</a></li>
-                            </ul>
-                        </div>
+                            <div class="links-col">
+                                <a href="#" class="head-line">{{ $footer->widgetLabel5 }}</a>
+                                <ul class="links-ul">
+                                    @foreach ($menus5 as $menu)
+                                        <li><a href="{{ $menu->url }}">{{ $menu->title }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                 </div>
 

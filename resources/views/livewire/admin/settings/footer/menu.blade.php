@@ -90,7 +90,7 @@
                                                             <h4 class="card-title mb-2">لیست منو های فوتر</h4>
                                                             <hr>
                                                             <input wire:model="search" type="search"
-                                                                class="form-control mb-2 w-25 float-right"
+                                                                class="form-control mb-2 w-50 float-left"
                                                                 placeholder="جستجو...">
 
                                                             <table id="datatable-buttons"

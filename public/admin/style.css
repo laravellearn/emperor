@@ -8051,7 +8051,9 @@ direction: ltr;
   border: 1px solid #e9ecef;
   float: right;
   position: relative; }
-
+  .pagination{
+      float:left !important
+  }
 /* :: Avatar CSS */
 .avatar-area .thumb-md {
   height: 50px;

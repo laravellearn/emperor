@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 class Menu extends Component
 {
 
-    public $image;
     public Footermenu $Footermenu;
     public $readyToLoad = false;
     public $search;

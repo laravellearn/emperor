@@ -6,7 +6,6 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Admin\settings\Footerlogo;
-use Carbon\Carbon;
 
 class LogoUpdate extends Component
 {
