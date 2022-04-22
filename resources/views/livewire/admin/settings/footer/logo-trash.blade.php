@@ -33,6 +33,8 @@
                                                     <div class="">
                                                         <div class="card-body">
                                                             <h4 class="card-title mb-2">لیست لوگو های حذف شده فوتر</h4>
+                                                            <a href="{{ route('admin.settings.footer.logo') }}" class="btn btn-success mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-list-alt"></i> لیست لوگوهای فوتر</a>
+                                                            <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-25 float-right"
                                                                 placeholder="جستجو...">
@@ -69,9 +71,9 @@
                                                                                     @endif
                                                                                 </td>
                                                                                 <td>
-                                                                                    <a href=""
+                                                                                    <button wire:click="restore({{ $logo->id }})"
                                                                                          class="action-icon">
-                                                                                        <i class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                                        <i class="zmdi zmdi-replay zmdi-custom"></i></button>
                                                                                     <button
                                                                                         wire:click="deleteId({{ $logo->id }})"
                                                                                         data-toggle="modal"

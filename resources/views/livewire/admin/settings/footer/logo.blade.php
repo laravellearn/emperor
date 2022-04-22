@@ -104,7 +104,10 @@
                                                             <a href="{{ route('admin.settings.footer.logo.trash') }}"
                                                              class="btn btn-danger mb-2 mr-2"
                                                                 style="float:left;margin-top:-37px;"><i
-                                                                    class="fa fa-trash"></i> سطل زباله</a>
+                                                                    class="fa fa-trash"></i> سطل زباله
+                                                                <span class="badge badge-danger">
+                                                                    {{ \App\Models\Admin\Settings\Footerlogo::onlyTrashed()->count() }}
+                                                                </span></a>
                                                             <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-25 float-right"

@@ -45,4 +45,11 @@ class LogoTrash extends Component
         $this->emit('toast', 'success', 'رکورد برای همیشه حذف شد');
     }
 
+    public function restore($id)
+    {
+        $logo = Footerlogo::withTrashed()->findOrFail($id);
+        $logo->restore();
+        $this->emit('toast', 'success', 'رکورد با موفقیت بازیابی شد');
+    }
+
 }
