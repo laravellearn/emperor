@@ -75,6 +75,13 @@
                                 </ul>
                             </div>
                         @endif
+                        <div class="links-col">
+                            <a href="#" class="head-line">نماد ها</a>
+                            <ul class="links-ul">
+                                {{ $footer->socialIcon3 }}
+                            </ul>
+                        </div>
+
                     </div>
                 </div>
 
