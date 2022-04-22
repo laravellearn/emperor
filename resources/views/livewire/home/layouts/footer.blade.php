@@ -9,30 +9,12 @@
 
         <div class="container">
             <div class="footer-inner-box">
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/delivery.svg') }}" alt="badge">
-                    <span class="item-feature">تحویل اکسپرس</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/contact-us.svg') }}" alt="badge">
-                    <span class="item-feature">پشتیبانی 24 ساعته</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/payment-terms.svg') }}" alt="badge">
-                    <span class="item-feature">پرداخت در منزل</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/return-policy.svg') }}" alt="badge">
-                    <span class="item-feature">7 روز ضمانت برگشت</span>
-                </a>
-
-                <a href="#" class="footer-badge">
-                    <img src="{{ asset('home/images/footer-svg/origin-guarantee.svg') }}" alt="badge">
-                    <span class="item-feature">ضمانت اصل بودن کالا</span>
-                </a>
+                @foreach ($topLogoFooter as $logo)
+                    <a href="#" class="footer-badge">
+                        <img src="{{ $logo->image }}" alt="badge">
+                        <span class="item-feature">{{ $logo->title }}</span>
+                    </a>
+                @endforeach
             </div>
         </div>
         <div class="col-12">
@@ -109,12 +91,18 @@
                         <span class="newslitter-form-social">{{ $footer->socialLabel }}</span>
 
                         <div class="social-links">
-                            <a target="_blank" href="{{ $footer->socialLink1 }}" ><i class="{{ $footer->socialIcon1 }}"></i></a>
-                            <a target="_blank" href="{{ $footer->socialLink2 }}"><i class="{{ $footer->socialIcon2 }}"></i></a>
-                            <a target="_blank" href="{{ $footer->socialLink3 }}"><i class="{{ $footer->socialIcon3 }}"></i></a>
-                            <a target="_blank" href="{{ $footer->socialLink4 }}"><i class="{{ $footer->socialIcon4 }}"></i></a>
-                            <a target="_blank" href="{{ $footer->socialLink5 }}"><i class="{{ $footer->socialIcon5 }}"></i></a>
-                            <a target="_blank" href="{{ $footer->socialLink6 }}"><i class="{{ $footer->socialIcon6 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink1 }}"><i
+                                    class="{{ $footer->socialIcon1 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink2 }}"><i
+                                    class="{{ $footer->socialIcon2 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink3 }}"><i
+                                    class="{{ $footer->socialIcon3 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink4 }}"><i
+                                    class="{{ $footer->socialIcon4 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink5 }}"><i
+                                    class="{{ $footer->socialIcon5 }}"></i></a>
+                            <a target="_blank" href="{{ $footer->socialLink6 }}"><i
+                                    class="{{ $footer->socialIcon6 }}"></i></a>
                         </div>
                     </div>
                 </div>
@@ -127,9 +115,10 @@
                     <ul>
                         <li>{{ $footer->supportLabel }}</li>
                         <li style="float:right">{{ $footer->phoneLabel }}{{ $footer->phone }}</li>
-                                <li class="email-title">{{ $footer->emailLabel }}<a href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
-                                <li class="email-title">{{ $footer->addressLabel }}{{ $footer->address }}</li>
-                            </ul>
+                        <li class="email-title">{{ $footer->emailLabel }}<a
+                                href="mailto:{{ $footer->email }}">{{ $footer->email }}</a></li>
+                        <li class="email-title">{{ $footer->addressLabel }}{{ $footer->address }}</li>
+                    </ul>
                 </div>
 
                 <div class="address-images">
@@ -148,29 +137,11 @@
                     <p>{{ $footer->aboutbodyLabel }}</p>
 
                     <div class="footer-inner-box">
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-1.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-2.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-3.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-4.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
-                        <a href="#" class="footer-badge">
-                            <img src="{{ asset('home/images/footer-svg/footer-5.svg') }}" style="width: 130px !important;"
-                                alt="badge">
-                        </a>
+                        @foreach ($bottomLogoFooter as $logo)
+                            <a href="#" class="footer-badge">
+                                <img src="{{ $logo->image }}" style="width: 130px !important;" alt="badge">
+                            </a>
+                        @endforeach
                     </div>
                 </div>
 
