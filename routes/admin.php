@@ -30,4 +30,5 @@ Route::get('/settings/footer/menu/{Footermenu}', App\Http\Livewire\Admin\Setting
 //Settings Footer Enamad
 Route::get('/settings/footer/namad', App\Http\Livewire\Admin\Settings\Footer\Namad::class)->name('admin.settings.footer.namad');
 
-//--------------------------------------------------------------------------------------//
+//------------------------------------------Logs--------------------------------------------//
+Route::get('/logs', App\Http\Livewire\Admin\Logs\Index::class)->name('admin.logs');
