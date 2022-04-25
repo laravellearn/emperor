@@ -24,7 +24,7 @@ class Index extends Component
 
     public function render()
     {
-        $logs = $this->readyToLoad ? Log::where('actionType', 'LIKE', '%' . $this->search . '%')->latest()->paginate(15) : [];
+        $logs = $this->readyToLoad ? Log::where('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(15) : [];
         return view('livewire.admin.logs.index',compact('logs'));
     }
 

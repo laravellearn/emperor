@@ -35,7 +35,7 @@
                                                 </td>
                                                 <td>
                                                     @switch($log->actionType)
-                                                        @case('insert')
+                                                        @case('create')
                                                             <div class="badge badge-success">ایجاد</div>
                                                         @break
 
@@ -47,10 +47,13 @@
                                                             <div class="badge badge-primary">ویرایش</div>
                                                         @break
 
+                                                        @case('restore')
+                                                            <div class="badge badge-info">بازیابی</div>
+                                                        @break
+
                                                         @default
                                                     @endswitch
-                                                    {{-- <div class="badge badge-info">دیگر</div>
-                                                <div class="badge badge-warning">دیگر</div> --}}
+                                                {{-- <div class="badge badge-warning">دیگر</div>  --}}
                                                 </td>
                                                 <td>
                                                     {{ $log->description }}

@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Admin\settings\Footerlogo;
 use Livewire\WithFileUploads;
 use Livewire\WithPagination;
+use App\Models\Admin\Log;
 
 class Logo extends Component
 {
@@ -49,6 +50,14 @@ class Logo extends Component
         }
         $this->resetForm();
 
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'create',
+            'description' => 'یک لوگو ایجاد شد'. ' '.$logo->title
+        ]);
+
         $this->emit('toast', 'success', 'رکورد با موفقیت ثبت شد');
     }
 
@@ -86,6 +95,15 @@ class Logo extends Component
                 'isActive' => 1
             ]);
         }
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'update',
+            'description' => 'وضعیت لوگو تغییر کرد'
+        ]);
+
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
 
@@ -98,6 +116,15 @@ class Logo extends Component
     {
         $logo = Footerlogo::find($this->deleteId);
         $logo->delete();
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'delete',
+            'description' => 'لوگوی فوتر حذف شد'
+        ]);
+
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
 

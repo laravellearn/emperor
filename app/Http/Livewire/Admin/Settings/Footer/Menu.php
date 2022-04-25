@@ -7,6 +7,7 @@ use App\Models\Admin\settings\Footermenu;
 use App\Models\Admin\settings\Footer;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
+use App\Models\Admin\Log;
 
 class Menu extends Component
 {
@@ -40,6 +41,14 @@ class Menu extends Component
             'isActive' => 1,
         ]);
         $this->resetForm();
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'create',
+            'description' => 'یک منوی فوتر ایجاد شد'
+        ]);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ثبت شد');
     }
@@ -76,6 +85,15 @@ class Menu extends Component
                 'isActive' => 1
             ]);
         }
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'update',
+            'description' => 'وضعیت منوی فوتر تغییر کرد'
+        ]);
+
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
 
@@ -88,6 +106,15 @@ class Menu extends Component
     {
         $menu = Footermenu::find($this->deleteId);
         $menu->delete();
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'delete',
+            'description' => 'یک منوی فوتر حذف شد'
+        ]);
+
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
 

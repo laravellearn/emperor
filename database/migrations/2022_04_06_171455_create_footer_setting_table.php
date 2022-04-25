@@ -59,7 +59,7 @@ return new class extends Migration
         Schema::connection('mysql-settings')->create('footer-logos', function (Blueprint $table) {
             $table->id();
             $table->string('title')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('url')->nullable();
             $table->enum('type', ['top', 'bottom']);
             $table->boolean('isActive')->nullable();

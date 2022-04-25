@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Admin\Settings\Footer;
 
+use App\Models\Admin\Log;
 use Livewire\Component;
 use App\Models\Admin\settings\Footer;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class Social extends Component
@@ -61,6 +63,14 @@ class Social extends Component
             'socialLink5'  => $this->socialLink5,
             'socialIcon6'  => $this->socialIcon6,
             'socialLink6'  => $this->socialLink6
+        ]);
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'update',
+            'description' => 'شبکه های اجتماعی در فوتر ویرایش شد'
         ]);
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');

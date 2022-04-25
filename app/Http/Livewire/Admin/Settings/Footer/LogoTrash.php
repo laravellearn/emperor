@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\Admin\settings\Footerlogo;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
+use App\Models\Admin\Log;
 
 class LogoTrash extends Component
 {
@@ -42,6 +43,15 @@ class LogoTrash extends Component
         $logo = Footerlogo::withTrashed()->findOrFail($this->deleteId);
         Storage::delete($logo->image);
         $logo->forceDelete();
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'delete',
+            'description' => 'لوگوی فوتر برای همیشه حذف شد'
+        ]);
+
         $this->emit('toast', 'success', 'رکورد برای همیشه حذف شد');
     }
 
@@ -49,6 +59,15 @@ class LogoTrash extends Component
     {
         $logo = Footerlogo::withTrashed()->findOrFail($id);
         $logo->restore();
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'restore',
+            'description' => 'یک لوگوی فوتر بازیابی شد'
+        ]);
+
         $this->emit('toast', 'success', 'رکورد با موفقیت بازیابی شد');
     }
 

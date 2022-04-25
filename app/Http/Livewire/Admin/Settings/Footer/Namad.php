@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin\Settings\Footer;
 use Livewire\Component;
 use App\Models\Admin\settings\Footer;
 use Illuminate\Support\Facades\DB;
+use App\Models\Admin\Log;
 
 class Namad extends Component
 {
@@ -41,6 +42,15 @@ class Namad extends Component
             'linkApp2'  => $this->linkApp2,
             'imageApp2'  => $this->imageApp2,
         ]);
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'update',
+            'description' => 'نمادهای فوتر ویرایش شد'
+        ]);
+
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');
     }

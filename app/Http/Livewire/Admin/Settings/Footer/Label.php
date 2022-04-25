@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Settings\Footer;
 
+use App\Models\Admin\Log;
 use App\Models\Admin\settings\Footer;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
@@ -81,6 +82,14 @@ class Label extends Component
             'aboutHeadLabel'=> $this->aboutHeadLabel,
             'aboutbodyLabel'=> $this->aboutbodyLabel,
             'copyRight'     => $this->copyRight
+        ]);
+
+        //Create Log
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => 'update',
+            'description' => 'برچسب های فوتر توسط کاربر ویرایش شد'
         ]);
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');
