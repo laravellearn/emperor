@@ -137,18 +137,18 @@
                         </ul>
                     </li> --}}
 
-                    <li class="treeview {{ Request::routeIs(['admin.settings.footer.label','admin.settings.footer.social','admin.settings.footer.logo','admin.settings.footer.logo.update']) ? 'active' : ''}}">
+                    <li class="treeview {{ Request::routeIs(['admin.settings.footer.label','admin.settings.footer.social','admin.settings.footer.logo','admin.settings.footer.logo.update','admin.settings.footer.menu','admin.settings.footer.menu.update','admin.settings.footer.namad','admin.settings.footer.logo.trash']) ? 'active' : ''}}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
-                            <li><a {{ Request::routeIs(['admin.settings.footer.label','admin.settings.footer.social','admin.settings.footer.logo','admin.settings.footer.logo.update']) ? "style=color:#54c6d0" : '' }} href="{{ route('admin.settings.footer.label') }}">تنظیمات فوتر</a></li>
+                            <li><a {{ Request::routeIs(['admin.settings.footer.label','admin.settings.footer.social','admin.settings.footer.logo','admin.settings.footer.logo.update','admin.settings.footer.menu','admin.settings.footer.menu.update','admin.settings.footer.namad','admin.settings.footer.logo.trash']) ? "style=color:#54c6d0" : '' }} href="{{ route('admin.settings.footer.label') }}">تنظیمات فوتر</a></li>
                             <!-- استان و شهر و ... -  -->
                             <li><a href="#">تنظیمات فروشگاه</a></li>
                         </ul>
                     </li>
                     {{-- <li><a href="#"><i class="zmdi zmdi-cloud-done"></i><span>بکاپ گیری</span></a></li> --}}
                 </ul>
-            </nav>
+            </nav>,'admin.settings.footer.logo.trash'
         </div>
     </div>
 </div>

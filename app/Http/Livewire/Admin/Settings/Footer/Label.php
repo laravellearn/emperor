@@ -47,21 +47,21 @@ class Label extends Component
 
         //Validate
         $this->validate([
-            'upLabel'       => 'required',
-            'widgetLabel1'  => 'required',
-            'widgetLabel2'  => 'required',
-            'widgetLabel3'  => 'required',
-            'widgetLabel4'  => 'required',
-            'widgetLabel5'  => 'required',
-            'rssLabel'      => 'required',
-            'socialLabel'   => 'required',
-            'supportLabel'  => 'required',
-            'phoneLabel'    => 'required',
-            'addressLabel'  => 'required',
-            'emailLabel'    => 'required',
-            'aboutHeadLabel'=> 'required',
-            'aboutbodyLabel'=> 'required',
-            'copyRight'     => 'required',
+            'upLabel'       => 'nullable',
+            'widgetLabel1'  => 'nullable',
+            'widgetLabel2'  => 'nullable',
+            'widgetLabel3'  => 'nullable',
+            'widgetLabel4'  => 'nullable',
+            'widgetLabel5'  => 'nullable',
+            'rssLabel'      => 'nullable',
+            'socialLabel'   => 'nullable',
+            'supportLabel'  => 'nullable',
+            'phoneLabel'    => 'nullable',
+            'addressLabel'  => 'nullable',
+            'emailLabel'    => 'nullable',
+            'aboutHeadLabel'=> 'nullable',
+            'aboutbodyLabel'=> 'nullable',
+            'copyRight'     => 'nullable',
         ]);
 
         //Update

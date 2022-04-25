@@ -147,5 +147,49 @@ class FooterSettingSeeder extends Seeder
                 'image' => '/home/images/footer-svg/footer-5.svg',
             ],
         ]);
+
+        DB::connection('mysql-settings')->table('footer-menus')->insert([
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => 'منوی تست',
+                'type' => 'widgetLabel1',
+                'url' => '#',
+                'isActive' => '1',
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => 'منوی تست',
+                'type' => 'widgetLabel2',
+                'url' => '#',
+                'isActive' => '1',
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => 'منوی تست',
+                'type' => 'widgetLabel3',
+                'url' => '#',
+                'isActive' => '1',
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => 'منوی تست',
+                'type' => 'widgetLabel4',
+                'url' => '#',
+                'isActive' => '1',
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => 'منوی تست',
+                'type' => 'widgetLabel5',
+                'url' => '#',
+                'isActive' => '1',
+            ],
+
+        ]);
     }
 }

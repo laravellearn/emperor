@@ -22,8 +22,8 @@
                                                     <li class="active"><a
                                                             href="{{ route('admin.settings.footer.menu') }}"> منوهای
                                                             فوتر </a></li>
-                                                            <li><a
-                                                                href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت </a></li>
+                                                    <li><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای
+                                                            سایت </a></li>
 
                                                 </ul>
                                                 <div class="clearfix"></div>
@@ -51,14 +51,15 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail111">لینک:</label>
-                                                                        <input type="text" style="text-align:left" wire:model="Footermenu.url"
+                                                                        <input type="text" style="text-align:left"
+                                                                            wire:model="Footermenu.url"
                                                                             class="form-control"
                                                                             id="exampleInputEmail111">
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label for="exampleInputEmail12">جایگاه
                                                                             منو:</label>
-                                                                            <select class="form-control"
+                                                                        <select class="form-control"
                                                                             wire:model="Footermenu.type"
                                                                             style="width: 100%;" required>
                                                                             <option value="">-- هیچکدام --</option>
@@ -70,15 +71,21 @@
                                                                                     $i++;
                                                                                     $widgetLabel = 'widgetLabel' . $i;
                                                                                 @endphp
-                                                                                <option value="{{ $widgetLabel }}">
-                                                                                    {{ $header }}</option>
+                                                                                @if ($header != null)
+                                                                                    <option
+                                                                                        value="{{ $widgetLabel }}">
+                                                                                        {{ $header }}</option>
+                                                                                @endif
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
 
                                                                     <div class="checkbox checkbox-primary d-inline">
-                                                                        <input type="checkbox" wire:model="Footermenu.isActive" id="checkbox-p-1" >
-                                                                        <label for="checkbox-p-1" class="cr">فعال</label>
+                                                                        <input type="checkbox"
+                                                                            wire:model="Footermenu.isActive"
+                                                                            id="checkbox-p-1">
+                                                                        <label for="checkbox-p-1"
+                                                                            class="cr">فعال</label>
                                                                     </div>
 
                                                                     <button type="submit"
@@ -96,7 +103,10 @@
                                                     <div class="">
                                                         <div class="card-body">
                                                             <h4 class="card-title mb-2">لیست منو های فوتر</h4>
-                                                            <a href="{{ route('admin.settings.footer.menu') }}" class="btn btn-success mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-plus-square"></i> افزودن</a>
+                                                            <a href="{{ route('admin.settings.footer.menu') }}"
+                                                                class="btn btn-success mb-2 mr-2"
+                                                                style="float:left;margin-top:-37px;"><i
+                                                                    class="fa fa-plus-square"></i> افزودن</a>
                                                             <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-50 float-left"
