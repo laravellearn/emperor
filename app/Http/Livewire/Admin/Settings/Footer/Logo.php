@@ -51,12 +51,7 @@ class Logo extends Component
         $this->resetForm();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'create',
-            'description' => 'یک لوگو ایجاد شد'. ' '.$logo->title
-        ]);
+        Log::logWritter('create','لوگوی فوتر ایجاد شد - '.$logo->title);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ثبت شد');
     }
@@ -97,12 +92,7 @@ class Logo extends Component
         }
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'وضعیت لوگو تغییر کرد'
-        ]);
+        Log::logWritter('update','وضعیت لوگوی فوتر تغییر کرد - '.$logo->title);
 
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
@@ -118,12 +108,7 @@ class Logo extends Component
         $logo->delete();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'delete',
-            'description' => 'لوگوی فوتر حذف شد'
-        ]);
+        Log::logWritter('delete', 'لوگوی فوتر حذف شد - ' . $logo->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }

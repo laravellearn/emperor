@@ -41,12 +41,7 @@ class LogoUpdate extends Component
         }
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'لوگوی فوتر ویرایش شد'
-        ]);
+        Log::logWritter('update', 'لوگوی فوتر ویرایش شد - ' . $this->Footerlogo->title );
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ویرایش شد');
     }
@@ -76,12 +71,7 @@ class LogoUpdate extends Component
         }
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'وضعیت لوگوی فوتر تغییر کرد'
-        ]);
+        Log::logWritter('update', 'وضعیت لوگوی فوتر تغییر کرد - ' . $logo->title);
 
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
@@ -111,12 +101,7 @@ class LogoUpdate extends Component
         $logo->delete();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'delete',
-            'description' => 'یک لوگوی فوتر حذف شد'
-        ]);
+        Log::logWritter('delete', 'لوگوی فوتر حذف شد - ' . $logo->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }

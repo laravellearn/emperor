@@ -34,7 +34,7 @@ class Menu extends Component
     public function MenuForm()
     {
         $this->validate();
-        $logo = $this->Footermenu->query()->create([
+        $menu = $this->Footermenu->query()->create([
             'title'    => $this->Footermenu->title,
             'type'     => $this->Footermenu->type,
             'url'      => $this->Footermenu->url,
@@ -43,12 +43,7 @@ class Menu extends Component
         $this->resetForm();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'create',
-            'description' => 'یک منوی فوتر ایجاد شد'
-        ]);
+        Log::logWritter('create','منوی فوتر ایجاد شد - '.$menu->title);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ثبت شد');
     }
@@ -87,12 +82,7 @@ class Menu extends Component
         }
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'وضعیت منوی فوتر تغییر کرد'
-        ]);
+        Log::logWritter('update','وضعیت منوی فوتر تغییر کرد - '.$menu->title);
 
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
@@ -108,12 +98,7 @@ class Menu extends Component
         $menu->delete();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'delete',
-            'description' => 'یک منوی فوتر حذف شد'
-        ]);
+        Log::logWritter('delete', 'منوی فوتر حذف شد - ' . $menu->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }

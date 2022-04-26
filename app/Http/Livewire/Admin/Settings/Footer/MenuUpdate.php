@@ -30,13 +30,7 @@ class MenuUpdate extends Component
         $this->validate();
         $this->Footermenu->update($this->validate());
 
-        //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'منوی فوتر ویرایش شد'
-        ]);
+        Log::logWritter('update', 'منوی فوتر ویرایش شد - ' . $this->Footermenu->title );
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ویرایش شد');
     }
@@ -54,13 +48,7 @@ class MenuUpdate extends Component
             ]);
         }
 
-        //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'وضعیت منوی فوتر تغییر کرد'
-        ]);
+        Log::logWritter('update', 'وضعیت منوی فوتر تغییر کرد - ' . $menu->title);
 
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
@@ -85,7 +73,7 @@ class MenuUpdate extends Component
         $headerMenu[] = $footer->widgetLabel4;
         $headerMenu[] = $footer->widgetLabel5;
 
-        return view('livewire.admin.settings.footer.menu-update',compact('menus','footerMenu','headerMenu'));
+        return view('livewire.admin.settings.footer.menu-update', compact('menus', 'footerMenu', 'headerMenu'));
     }
 
     public function deleteId($id)
@@ -95,18 +83,12 @@ class MenuUpdate extends Component
 
     public function delete()
     {
-        $logo = Footermenu::find($this->deleteId);
-        $logo->delete();
+        $menu = Footermenu::find($this->deleteId);
+        $menu->delete();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'delete',
-            'description' => 'منوی فوتر حذف شد'
-        ]);
+        Log::logWritter('delete', 'منوی فوتر حذف شد - ' . $menu->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
-
 }

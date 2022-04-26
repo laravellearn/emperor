@@ -65,13 +65,7 @@ class Social extends Component
             'socialLink6'  => $this->socialLink6
         ]);
 
-        //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'شبکه های اجتماعی در فوتر ویرایش شد'
-        ]);
+        Log::logWritter('update','شبکه های اجتماعی در فوتر ویرایش شد');
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');
 

@@ -85,12 +85,7 @@ class Label extends Component
         ]);
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'برچسب های فوتر توسط کاربر ویرایش شد'
-        ]);
+        Log::logWritter('delete', 'برچسب های فوتر توسط کاربر ویرایش شد');
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');
 

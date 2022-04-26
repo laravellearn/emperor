@@ -8,6 +8,10 @@
                         <div class="card-body">
                             <h4 class="card-title mb-2">گزارشات سیستمی</h4>
                             <hr>
+                            <input wire:model="search" type="search"
+                            class="form-control mb-2 w-50 float-left"
+                            placeholder="جستجو...">
+
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
                                     <tr>
@@ -15,7 +19,7 @@
                                         <th>موبایل کاربر</th>
                                         <th>آیپی</th>
                                         <th>نوع کار</th>
-                                        <th>شرح عملیات</th>
+                                        <th>شرح عملیات - عنوان</th>
                                         <th>تاریخ انجام</th>
                                     </tr>
                                 </thead>

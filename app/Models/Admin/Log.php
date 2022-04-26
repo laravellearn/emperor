@@ -21,6 +21,16 @@ class Log extends Model
         return $createDate;
     }
 
+    public static function logWritter($actionType,$description)
+    {
+        Log::create([
+            'user_id' => \Auth::user()->id,
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'actionType' => $actionType,
+            'description' => $description
+        ]);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

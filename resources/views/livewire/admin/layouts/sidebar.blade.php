@@ -136,8 +136,8 @@
                         </ul>
                     </li> --}}
 
-                    <li><a {{ Request::routeIs(['admin.logs']) ? "style=color:#54c6d0" : '' }}
-                         href="{{ route('admin.logs') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات سیستم</span></a></li>
+                    <li class="{{ Request::routeIs(['admin.logs']) ? 'active' : '' }}">
+                        <a href="{{ route('admin.logs') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات سیستم</span></a></li>
 
                     <li class="treeview {{ Request::routeIs(['admin.settings.footer.label','admin.settings.footer.social','admin.settings.footer.logo','admin.settings.footer.logo.update','admin.settings.footer.menu','admin.settings.footer.menu.update','admin.settings.footer.namad','admin.settings.footer.logo.trash']) ? 'active' : ''}}">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i class="fa fa-angle-left"></i></a>

@@ -45,12 +45,7 @@ class LogoTrash extends Component
         $logo->forceDelete();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'delete',
-            'description' => 'لوگوی فوتر برای همیشه حذف شد'
-        ]);
+        Log::logWritter('delete', 'لوگوی فوتر برای همیشه حذف شد - ' . $logo->title);
 
         $this->emit('toast', 'success', 'رکورد برای همیشه حذف شد');
     }
@@ -61,12 +56,7 @@ class LogoTrash extends Component
         $logo->restore();
 
         //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'restore',
-            'description' => 'یک لوگوی فوتر بازیابی شد'
-        ]);
+        Log::logWritter('restore', 'لوگوی فوتر بازیابی شد - ' . $logo->title);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت بازیابی شد');
     }

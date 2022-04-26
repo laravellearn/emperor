@@ -43,14 +43,7 @@ class Namad extends Component
             'imageApp2'  => $this->imageApp2,
         ]);
 
-        //Create Log
-        Log::create([
-            'user_id' => \Auth::user()->id,
-            'ip' => $_SERVER['REMOTE_ADDR'],
-            'actionType' => 'update',
-            'description' => 'نمادهای فوتر ویرایش شد'
-        ]);
-
+        Log::logWritter('update', 'نمادهای فوتر ویرایش شد');
 
         $this->emit('toast', 'success', 'اطلاعات با موفقیت ویرایش شد');
     }
