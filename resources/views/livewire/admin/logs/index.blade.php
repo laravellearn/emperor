@@ -16,6 +16,7 @@
                                 <thead>
                                     <tr>
                                         <th>نام کاربر</th>
+                                        <th>نقش کاربری</th>
                                         <th>موبایل کاربر</th>
                                         <th>آیپی</th>
                                         <th>نوع کار</th>
@@ -30,6 +31,9 @@
                                             <tr>
                                                 <td>
                                                     {{ $log->user->name }}
+                                                </td>
+                                                <td>
+
                                                 </td>
                                                 <td>
                                                     {{ $log->user->mobile }}
@@ -64,8 +68,6 @@
                                                 </td>
                                                 <td>
                                                     {{ $log->created_at }}
-                                                </td>
-                                                <td>
                                                 </td>
                                             </tr>
                                         @endforeach

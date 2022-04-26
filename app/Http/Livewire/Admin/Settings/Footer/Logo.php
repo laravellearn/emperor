@@ -14,6 +14,7 @@ class Logo extends Component
     use WithFileUploads;
 
     public $image;
+    public $ids;
     public Footerlogo $Footerlogo;
     public $readyToLoad = false;
     public $search;
@@ -121,4 +122,5 @@ class Logo extends Component
         $this->Footerlogo->url = null;
         $this->image = null;
     }
+
 }

@@ -130,6 +130,7 @@
                                                                 style="width:104%">
                                                                 <thead>
                                                                     <tr>
+                                                                        <th>#</th>
                                                                         <th>تصویر</th>
                                                                         <th>عنوان لوگو</th>
                                                                         <th>جایگاه</th>

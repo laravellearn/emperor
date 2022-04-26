@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="col-md-8 box-margin">
+                    <div class="col-md-8 box-margin" wire:init='loadLogs'>
                         <div class="card">
                             <div class="card-body">
                                 <h5 class="card-title">گزارشات سیستمی</h5>
@@ -45,37 +45,71 @@
                                         <table class="table table-hover">
                                             <thead>
                                                 <tr>
-                                                    <th>آیپی کاربر</th>
-                                                    <th>نام و سمت</th>
-                                                    <th>موبایل</th>
-                                                    <th>شرح عملیات</th>
-                                                    <th>تاریخ و ساعت</th>
+                                                    <th>نام کاربر</th>
+                                                    <th>نقش کاربری</th>
+                                                    <th>موبایل کاربر</th>
+                                                    <th>آیپی</th>
+                                                    <th>نوع کار</th>
+                                                    <th>شرح عملیات - عنوان</th>
+                                                    <th>تاریخ انجام</th>
+
                                                 </tr>
                                             </thead>
+                                            @if ($readyToLoad)
+
                                             <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <div class="media align-items-center">
-                                                            <div>
-                                                                <span>تلفن تلفن</span>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>2864</td>
-                                                    <td>81</td>
-                                                    <td>1،912.00 تومان</td>
-                                                    <td>
-                                                        <div class="d-flex align-items-center">
-                                                            <div class="progress progress-sm">
-                                                                <div class="progress-bar bg-success" style="width: 82%"></div>
-                                                            </div>
-                                                            <div>
-                                                                824
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                @foreach ($logs as $log)
+                                                    <tr>
+                                                        <td>
+                                                            {{ $log->user->name }}
+                                                        </td>
+                                                        <td>
+
+                                                        </td>
+                                                        <td>
+                                                            {{ $log->user->mobile }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $log->ip }}
+                                                        </td>
+                                                        <td>
+                                                            @switch($log->actionType)
+                                                                @case('create')
+                                                                    <div class="badge badge-success">ایجاد</div>
+                                                                @break
+
+                                                                @case('delete')
+                                                                    <div class="badge badge-danger">حذف</div>
+                                                                @break
+
+                                                                @case('update')
+                                                                    <div class="badge badge-primary">ویرایش</div>
+                                                                @break
+
+                                                                @case('restore')
+                                                                    <div class="badge badge-info">بازیابی</div>
+                                                                @break
+
+                                                                @default
+                                                            @endswitch
+                                                        {{-- <div class="badge badge-warning">دیگر</div>  --}}
+                                                        </td>
+                                                        <td>
+                                                            {{ $log->description }}
+                                                        </td>
+                                                        <td>
+                                                            {{ $log->created_at }}
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+
                                             </tbody>
+                                        @else
+                                            <div class="alert alert-warning">
+                                                در حال بارگزاری اطلاعات از پایگاه داده ....
+                                            </div>
+                                        @endif
+
                                         </table>
                                     </div>
                                 </div>
