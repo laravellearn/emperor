@@ -15,9 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Http\Livewire\Home\Home\Index::class)->name('home');
 
-Route::get('/login', App\Http\Livewire\Home\Profile\Login::class)->name('user.login');
-Route::get('/user/token', App\Http\Livewire\Home\Profile\Token::class)->name('user.token');
-
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),
