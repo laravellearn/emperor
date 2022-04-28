@@ -15,12 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Http\Livewire\Home\Home\Index::class)->name('home');
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         return view('dashboard');
-//     })->name('dashboard');
-// });
+Route::get('/register', App\Http\Livewire\Home\Users\Register::class)->name('register');
+Route::get('/login', App\Http\Livewire\Home\Users\Login::class)->name('login');
+
+
+// \Auth::routes();
