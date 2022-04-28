@@ -17,6 +17,7 @@ Route::get('/', App\Http\Livewire\Home\Home\Index::class)->name('home');
 
 Route::get('/register', App\Http\Livewire\Home\Users\Register::class)->name('register');
 Route::get('/login', App\Http\Livewire\Home\Users\Login::class)->name('login');
+Route::post('/logout', [App\Http\Controllers\HomeController::class,'logout'])->name('logout');
 
 
 // \Auth::routes();
