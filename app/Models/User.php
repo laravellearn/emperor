@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Admin\Log;
+use SoapClient;
 
 class User extends Authenticatable
 {
@@ -43,6 +44,20 @@ class User extends Authenticatable
     public function logs()
     {
         return $this->belongsToMany(Log::class);
+    }
+
+    public static function sendSms($code,$mobile)
+    {
+        $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
+        $user = "erampayam";
+        $pass = "GoodBoom(123)";
+        $fromNum = "+983000505";
+        $toNum = $mobile;
+        $pattern_code = "ovvjcd95qay5i8d";
+        $input_data = array('code' => $code);
+
+        return $client->sendPatternSms($fromNum,$toNum,$user,$pass,$pattern_code,$input_data);
+
     }
 
     public function tokens()
