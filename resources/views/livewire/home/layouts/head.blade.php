@@ -8,4 +8,6 @@
 <link rel="stylesheet" href="{{ asset('home/css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('home/css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('home/css/style.css') }}">
+
+@yield('styles')
 <livewire:styles />

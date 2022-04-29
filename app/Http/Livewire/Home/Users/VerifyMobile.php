@@ -6,36 +6,45 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Home\Token;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VerifyMobile extends Component
 {
     public $user;
+    public $token;
     public $code;
-    public $codeVerify;
 
     protected $rules = [
-        'codeVerify'    => 'required',
+        'code'    => 'required',
     ];
 
     public function mount($id)
     {
         $this->user = User::findOrFail($id);
-        $this->code = Token::where('user_id',$id)->latest()->first();
+        $this->token = Token::where('user_id',$id)->latest()->first();
+
     }
 
     public function verifyCode()
     {
         $this->validate();
-        if($this->code == $this->codeVerify)
+        if($this->token->code == $this->code)
         {
-            if ($this->user->token->expired_at < Carbon::now())
+            if ($this->token->expired_at > Carbon::now())
             {
+                $this->user->update([
+                    'mobile_verified_at' => now()
+                ]);
+                Auth::loginUsingId($this->user->id);
+
                 //TODO
-                dd('ok');
+                //Role detect
+                return to_route('admin.home');
             }else
             {
                 //TODO
-                dd('expired_at');
+                //show button repeat send sms
+                $this->emit('toast', 'error', 'کد تائید منقضی شده است'."<br/>".'بر روی دکمه ارسال مجدد کلیک کنید.');
             }
         }else
         {
@@ -45,9 +54,25 @@ class VerifyMobile extends Component
 
     }
 
+    public function resendSms($id)
+    {
+        $user = User::find($id);
+        $code = random_int(1000,9999);
+        Token::create([
+            'user_id' => $user->id,
+            'code' => $code,
+            'type' => 'resendSms',
+            'expired_at' => Carbon::now()->addMinutes(3)
+        ]);
+        //TODO
+        // User::sendSms($code, $user->mobile);
+        return $this->redirect(request()->header('Referer'));
+    }
+
     public function render()
     {
         $user = $this->user;
         return view('livewire.home.users.verify-mobile',compact('user'))->layout('layouts.auth');
+
     }
 }

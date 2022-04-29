@@ -30,7 +30,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('emperor.users');
-            $table->enum('type',['register']);
+            $table->enum('type',['verify','resendSms','register']);
             $table->string('code',4)->unique();
             $table->string('expired_at');
             $table->timestamps();
