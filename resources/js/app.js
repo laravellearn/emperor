@@ -29,4 +29,3 @@ const Toast = Swal.mixin({
 
       })
   })
-

@@ -8,9 +8,8 @@
                         <div class="card-body">
                             <h4 class="card-title mb-2">گزارشات سیستمی</h4>
                             <hr>
-                            <input wire:model="search" type="search"
-                            class="form-control mb-2 w-50 float-left"
-                            placeholder="جستجو...">
+                            <input wire:model="search" type="search" class="form-control mb-2 w-50 float-left"
+                                placeholder="جستجو...">
 
                             <table id="datatable-buttons" class="table table-striped dt-responsive nowrap w-100">
                                 <thead>
@@ -59,9 +58,13 @@
                                                             <div class="badge badge-info">بازیابی</div>
                                                         @break
 
+                                                        @case('sendSms')
+                                                            <div class="badge badge-info">ارسال پیامک</div>
+                                                        @break
+
                                                         @default
                                                     @endswitch
-                                                {{-- <div class="badge badge-warning">دیگر</div>  --}}
+                                                    {{-- <div class="badge badge-warning">دیگر</div> --}}
                                                 </td>
                                                 <td>
                                                     {{ $log->description }}

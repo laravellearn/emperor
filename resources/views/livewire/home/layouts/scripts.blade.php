@@ -5,5 +5,5 @@
 <script src="{{ asset('home/js/bootstrap.js') }}"></script>
 <script src="{{ asset('home/js/main.js') }}"></script>
 <script src="{{ mix('/js/app.js') }}"></script>
-
+@yield('scripts')
 <livewire:scripts />

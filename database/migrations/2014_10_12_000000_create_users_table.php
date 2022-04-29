@@ -21,7 +21,18 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('password');
+            $table->string('profilePhoto')->nullable();
             $table->rememberToken();
+            $table->timestamps();
+        });
+
+        Schema::create('tokens', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('emperor.users');
+            $table->enum('type',['register']);
+            $table->string('code',4)->unique();
+            $table->string('expired_at');
             $table->timestamps();
         });
     }
@@ -33,6 +44,7 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('tokens');
         Schema::dropIfExists('users');
     }
 };

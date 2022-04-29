@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Home\Users;
 
+use App\Models\Admin\Log;
+use App\Models\Home\Token;
 use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class Login extends Component
 {
@@ -23,9 +26,6 @@ class Login extends Component
         'password'    => 'required',
     ];
 
-    public function __construct()
-    {
-    }
     public function LoginForm()
     {
         $this->validate();
@@ -33,8 +33,16 @@ class Login extends Component
 
         if (isset($user)) {
             if ($user->mobile_verified_at == null) {
-                //TODO
-                dd('Not verified');
+                $code = random_int(1000,9999);
+                Token::create([
+                    'user_id' => $user->id,
+                    'code' => $code,
+                    'type' => 'register',
+                    'expired_at' => Carbon::now()->addMinutes(3)
+                ]);
+                // Log::logWritter('sendSms','یک پیامک ارسال شد - '.$user->name);
+
+                return to_route('verify.mobile',[$user->id,$code]);
             }
 
             if (Hash::check($this->password, $user->password)) {
@@ -42,12 +50,10 @@ class Login extends Component
                 //TODO
                 return to_route('admin.home');
             } else {
-
-                dd('wrong password');
+                $this->emit('toast', 'error', 'اطلاعات ورود نادرست است!');
             }
         } else {
-
-            dd('not Exist');
+            $this->emit('toast', 'error', 'شما در سایت ثبت نام نکرده اید!');
         }
     }
 
@@ -55,6 +61,5 @@ class Login extends Component
     {
 
         return view('livewire.home.users.login')->layout('layouts.auth');
-
     }
 }

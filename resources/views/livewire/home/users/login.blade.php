@@ -11,7 +11,7 @@
                         @include('errors.error')
 
                         <label for="mobile">شماره موبایل:</label>
-                        <input type="text" id="mobile" wire:model.defer="mobile" class="input-email-account" placeholder="">
+                        <input type="text" inputmode="numeric" id="mobile" wire:model.defer="mobile" class="input-email-account" placeholder="">
                         <label for="password">رمز عبور:</label>
                         <input type="password" id="password" wire:model.defer="password" class="input-password" placeholder="">
                         <div class="parent-btn">

@@ -12,7 +12,7 @@
                         <label for="name">نام و نام خانوادگی:</label>
                         <input type="text" id="name" required wire:model.defer="name" class="input-email-account" style="text-align:right">
                         <label for="mobile">شماره موبایل:</label>
-                        <input type="text" required id="mobile" wire:model.defer="mobile" class="input-email-account" placeholder="">
+                        <input type="text" inputmode="numeric" required id="mobile" wire:model.defer="mobile" class="input-email-account" placeholder="">
                         <label for="password">رمز عبور:</label>
                         <input type="password" required id="password" wire:model.defer="password" class="input-password" placeholder="">
                         <label for="password_confirmation">تکرار رمز عبور:</label>
