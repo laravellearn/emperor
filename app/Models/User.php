@@ -49,8 +49,8 @@ class User extends Authenticatable
     public static function sendSms($code,$mobile)
     {
         $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
-        $user = "erampayam";
-        $pass = "GoodBoom(123)";
+        $user = "";
+        $pass = "";
         $fromNum = "+983000505";
         $toNum = $mobile;
         $pattern_code = "ovvjcd95qay5i8d";
