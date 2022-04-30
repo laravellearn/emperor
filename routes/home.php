@@ -22,7 +22,7 @@ Route::post('/logout', [App\Http\Controllers\HomeController::class,'logout'])->n
 Route::get('/verify-mobile/{id}', App\Http\Livewire\Home\Users\VerifyMobile::class)->name('verify.mobile');
 Route::get('/forget-password', App\Http\Livewire\Home\Users\ForgetPassword::class)->name('forget-password');
 Route::get('/verify-mobile-forget/{id}', App\Http\Livewire\Home\Users\ForgetVerifyPassword::class)->name('verify.forget.password');
-Route::get('/change-password/{id}', App\Http\Livewire\Home\Users\ChangePassword::class)->name('change.password');
+Route::get('/change-password/{code}', App\Http\Livewire\Home\Users\ChangePassword::class)->name('change.password');
 
 
 // \Auth::routes();

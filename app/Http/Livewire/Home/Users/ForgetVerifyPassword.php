@@ -30,10 +30,10 @@ class ForgetVerifyPassword extends Component
                 $this->user->update([
                     'mobile_verified_at' => now()
                 ]);
-                Log::logwrite('update', 'موبایل کاربر تائید شد - ' . $this->user->name );
+                Log::logWritter('update', 'موبایل کاربر تائید شد - ' . $this->user->name );
 
                 //TODO
-                return to_route('change.password', $this->user->id);
+                return to_route('change.password', $this->token->code);
 
                 //TODO
                 // return to_route('admin.home');
@@ -53,7 +53,7 @@ class ForgetVerifyPassword extends Component
         $code = random_int(1000, 9999);
         Token::tokenCreate($user->id, $code, 'resendSmsVerify');
         User::sendSms($code, $user->mobile);
-        Log::logwrite('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
+        Log::logWritter('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . ' کد تائید: ' . $code);
         return $this->redirect(request()->header('Referer'));
     }
 

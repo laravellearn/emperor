@@ -53,7 +53,7 @@ class VerifyMobile extends Component
         $code = random_int(1000, 9999);
         Token::tokenCreate($user->id, $code, 'verify');
         User::sendSms($code, $user->mobile);
-        Log::logwrite('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
+        Log::logWritter('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . ' کد تائید: ' . $code);
         return $this->redirect(request()->header('Referer'));
     }
 

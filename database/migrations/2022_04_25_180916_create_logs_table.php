@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::connection('mysql-settings')->create('logs', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('emperor.users');
             $table->string('ip');
             $table->enum('actionType',['delete','create','update','restore','sendSms','resendSms']);

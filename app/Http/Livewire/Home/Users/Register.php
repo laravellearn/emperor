@@ -44,7 +44,7 @@ class Register extends Component
             ]);
             Token::tokenCreate($user->id, $code, 'verify');
             User::sendSms($code, $user->mobile);
-            Log::logwrite('create', 'کاربر جدید در سایت ثبت نام کرد - ' . $user->name );
+            Log::logWritter('create', 'کاربر جدید در سایت ثبت نام کرد - ' . $user->name );
             return to_route('verify.mobile', $user->id);
         }
     }

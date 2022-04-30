@@ -6,6 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Home\Token;
 
 class ChangePassword extends Component
 {
@@ -15,15 +16,14 @@ class ChangePassword extends Component
         'password'    => 'required|min:8|confirmed',
     ];
 
-    public function mount($id)
+    public function mount($code)
     {
-        $this->user = User::findOrFail($id);
+        $this->token = Token::where('code',$code)->first();
+        $this->user = User::where('id',$this->token->user_id)->first();
     }
 
     public function PasswordChange()
     {
-        //TODO
-        //bug for change password
         $this->validate();
         $this->user->update([
             'password' => Hash::make($this->password),

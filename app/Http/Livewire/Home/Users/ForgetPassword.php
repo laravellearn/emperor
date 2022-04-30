@@ -31,7 +31,7 @@ class ForgetPassword extends Component
         if ($userExist) {
             Token::tokenCreate($userExist->id, $code, 'verify');
             User::sendSms($code, $userExist->mobile);
-            Log::logwrite('resendSms', 'کد برای کاربر پیامک شد - ' . $userExist->name . 'کد تائید: ' . $code);
+            Log::logWritter('resendSms', 'کد برای کاربر پیامک شد - ' . $userExist->name . ' کد تائید: ' . $code);
             return to_route('verify.forget.password', $userExist->id);
         } else {
             $this->emit('toast', 'error', 'کاربری با این شماره موبایل ثبت نام نکرده است!');

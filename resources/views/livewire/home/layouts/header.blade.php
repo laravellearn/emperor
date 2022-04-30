@@ -12,8 +12,8 @@
                             <div class="search-header search-box">
                                 <form action="#">
                                     <input type="text" class="header-search-input" placeholder="جستجو در دیجی استور...">
-                                    <button class="btn-search" type="submit"><img src="{{ asset('home/images/search.png') }}"
-                                            alt="search"></button>
+                                    <button class="btn-search" type="submit"><img
+                                            src="{{ asset('home/images/search.png') }}" alt="search"></button>
                                 </form>
                                 <div class="search-result">
                                     <ul class="search-result-list">
@@ -52,7 +52,8 @@
                                     </ul>
                                     <div class="search-results-list js-search-ad-banner">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/banner-search.jpg') }}" alt="banner-search">
+                                            <img src="{{ asset('home/images/banner-search.jpg') }}"
+                                                alt="banner-search">
                                         </a>
                                     </div>
                                 </div>
@@ -191,18 +192,18 @@
                             </div>
                         </div>
 
-                        <a href="login.html" class="login-link">
-                            <div class="btn-login">
+                        <div class="btn-login">
+                            @auth
                                 <span class="mdi mdi-account"></span>
                                 پروفایل من
                                 <div class="dropdown-menu-login">
                                     <div class="header-profile-dropdown-account">
                                         <div class="header-profile-dropdown-user">
                                             <div class="header-profile-dropdown-user-img">
-                                                <img src="{{ asset('home/images/svg/user-profile.svg') }}" alt="profile">
+                                                <img src="{{ $user->profilePhoto }}" alt="profile">
                                             </div>
                                             <div class="header-profile-dropdown-user-info">
-                                                <p class="header-profile-dropdown-user-name">حمید متقی پیشه
+                                                <p class="header-profile-dropdown-user-name">{{ $user->name }}
                                                     <span class="header-profile-dropdown-user-profile-link">مشاهده حساب
                                                         کاربری</span>
                                                 </p>
@@ -212,8 +213,7 @@
                                                     <span class="header-profile-dropdown-account-item-title">کیف
                                                         پول</span>
                                                     <div class="header-profile-dropdown-account-item-amount">
-                                                        <span
-                                                            class="header-profile-dropdown-account-item-amount-number">۰
+                                                        <span class="header-profile-dropdown-account-item-amount-number">۰
                                                         </span>
                                                         تومان
                                                     </div>
@@ -222,8 +222,7 @@
                                                     <span
                                                         class="header-profile-dropdown-account-item-title">دیجی‌کلاب</span>
                                                     <div class="header-profile-dropdown-account-item-amount">
-                                                        <span
-                                                            class="header-profile-dropdown-account-item-amount-number">۰
+                                                        <span class="header-profile-dropdown-account-item-amount-number">۰
                                                         </span>
                                                         تومان
                                                     </div>
@@ -239,13 +238,19 @@
                                             <span class="header-profile-dropdown-action-link">جوایز دیجی‌کلاب</span>
                                         </div>
                                         <div class="header-profile-dropdown-action-container">
+                                            <a wire:click="logout({{ $user->id }})">
                                             <span class="header-profile-dropdown-action-link">خروج از حساب
                                                 کاربری</span>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </a>
+                            @endauth
+                            @guest
+                                <a href="{{ route('login') }}" style="color:#3f3f3f"><span class="mdi mdi-account"></span> ورود </a>
+                            @endguest
+                        </div>
+
                         <!-- Example single danger button -->
                         <!-- responsive header-->
                         <div class="responsive-header-left">
@@ -256,7 +261,8 @@
                                     <div class="header-profile-dropdown-account">
                                         <div class="header-profile-dropdown-user">
                                             <div class="header-profile-dropdown-user-img">
-                                                <img src="{{ asset('home/images/svg/user-profile.svg') }}" alt="profile">
+                                                <img src="{{ asset('home/images/svg/user-profile.svg') }}"
+                                                    alt="profile">
                                             </div>
                                             <div class="header-profile-dropdown-user-info">
                                                 <p class="header-profile-dropdown-user-name">حمید متقی پیشه
@@ -453,7 +459,8 @@
             <nav class="main-menu">
                 <ul class="new-list-menu">
                     <li class="item-list-menu megamenu-1 category nav-overlay"><a href="#"
-                            class="list-category first after" style="font-weight: bold;"><i class="mdi mdi-menu"></i>
+                            class="list-category first after" style="font-weight: bold;"><i
+                                class="mdi mdi-menu"></i>
                             دسته بندی کالاها</a>
 
                         <ul class="list-menu-level-2">
@@ -478,7 +485,8 @@
                                                     class="fa fa-angle-left"></i></span></a></li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">سامسونگ</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">اپل</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">اپل</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">نوکیا</a></li>
@@ -507,9 +515,11 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>لوازم جانبی دوربین<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لنز</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">لنز</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کیف</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">کیف</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کارت
                                             حافظه</a></li>
@@ -518,12 +528,14 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>کامپیوتر و تجهیزات جانبی<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">تجهیزات
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">تجهیزات
                                             مخصوص بازی</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">قطعات
                                             داخلی کامپیوتر</a></li>
 
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">ماوس</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">ماوس</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">کیبورد</a></li>
@@ -565,15 +577,18 @@
                                             صورت</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">آرایش
                                             مو</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">سنگ پا،
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">سنگ
+                                            پا،
                                             بهداشت و زیبایی ناخن</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">تجهیزات
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">تجهیزات
                                             جانبی آرایش</a></li>
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>لوازم آرایشی<i
                                                     class="fa fa-angle-left"></i></span></a></li>
 
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">شامپو و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">شامپو
+                                            و
                                             مراقبت مو</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">بهداشت
                                             دهان و دندان</a></li>
@@ -597,13 +612,15 @@
                                             بدن بانوان</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">اصلاح
                                             موی گوش، بینی ابرو</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">برس پاک
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">برس
+                                            پاک
                                             سازی</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">اتو مو
                                             و حالت دهنده</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">مسواک
                                             برقی</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لیزر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">لیزر</a>
                                     </li>
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>طلا و نقره زیور آلات زنانه<i
@@ -624,7 +641,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>ابزار سلامت و طبی<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">تست قند
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">تست
+                                            قند
                                             خون</a></li>
                                 </ul>
                             </li>
@@ -633,7 +651,8 @@
 
                                 <ul class="megamenu-level-3">
                                     <li class="list-category">
-                                        <a href="#" class="list-category-megamenu">همه دسته بندی های خودرو ، ابزار اداری
+                                        <a href="#" class="list-category-megamenu">همه دسته بندی های خودرو ، ابزار
+                                            اداری
                                         </a>
                                     </li>
                                     <li class="item-megamenu-title"><a href="#"
@@ -678,7 +697,8 @@
 
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">سیستم
                                             دزگیر و در بازکن</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کمپرسور
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">کمپرسور
                                             و جک خودرو</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">ابزار
                                             غیر برقی</a></li>
@@ -712,7 +732,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>ماشین های اداری<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">فکس</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">فکس</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">پرینتر</a></li>
@@ -750,7 +771,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>اکسسوری مردانه<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کیف</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">کیف</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">کمربند</a></li>
@@ -803,7 +825,8 @@
                                                     class="fa fa-angle-left"></i></span></a></li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">پسرانه</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">دخترانه
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">دخترانه
                                         </a></li>
                                 </ul>
                             </li>
@@ -835,7 +858,8 @@
 
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">مبلمان
                                             خانگی</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">پرده</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">پرده</a>
                                     </li>
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>فرش ماشینی ، دستباف و تابلو<i
@@ -843,7 +867,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>لوازم خانگی برقی<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">یخچال و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">یخچال
+                                            و
                                             فریزر</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">ماشین
                                             لباسشویی</a></li>
@@ -852,9 +877,11 @@
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">جارو
                                             برقی</a></li>
 
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">تلفن بی
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">تلفن
+                                            بی
                                             سیم</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کولر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">کولر</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">ترازوی
                                             آشپزخانه</a></li>
@@ -866,7 +893,8 @@
                                             چنگال</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">نور و
                                             روشنایی</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لوستر و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لوستر
+                                            و
                                             چراغ تزیینی</a></li>
 
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لامپ و
@@ -874,7 +902,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>آشپزخانه<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">بشقاب و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">بشقاب
+                                            و
                                             سایر ظروف</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لوازم
                                             ظرف شویی و روشویی</a></li>
@@ -954,7 +983,8 @@
                                             class="list-category-megamenu-3">کیبورد</a></li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">پیانو</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">درام</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">درام</a>
                                     </li>
 
                                     <li class="item-megamenu-item"><a href="#"
@@ -989,11 +1019,13 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>بهداشت و حمام کودک و نوزاد<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">پوشک</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">پوشک</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">دستمال
                                             مرطوب</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">حوله</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">حوله</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">وان
                                             حمام نوزاد</a></li>
@@ -1002,7 +1034,8 @@
                                                     class="fa fa-angle-left"></i></span></a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لباس
                                             کودک و لباس نوزادی</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کفش</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">کفش</a>
                                     </li>
 
                                     <li class="item-megamenu-title"><a href="#"
@@ -1033,7 +1066,8 @@
                                             class="list-category-megamenu-3">ترازو</a></li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">دماسنج</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">محافظ و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">محافظ
+                                            و
                                             ابزار ایمنی</a></li>
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>خواب کودک<i
@@ -1087,13 +1121,15 @@
                                                     class="fa fa-angle-left"></i></span></a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">ورزش
                                             بدن سازی</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چتر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">چتر</a>
                                     </li>
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>تجهیزات سفر<i
                                                     class="fa fa-angle-left"></i></span></a></li>
 
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چمدان و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چمدان
+                                            و
                                             ساک</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کیف و
                                             کوله پشتی</a></li>
@@ -1103,7 +1139,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>لوازم جانبی دوچرخه<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چراغ</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">چراغ</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">تلمبه</a></li>
@@ -1112,7 +1149,8 @@
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">زنگ و
                                             بوق</a></li>
 
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">قفل</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">قفل</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">لوازم
                                             ایمنی</a></li>
@@ -1124,7 +1162,8 @@
                                                     class="fa fa-angle-left"></i></span></a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چاقو و
                                             ابزار چند کاره</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چادر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">چادر</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کیسه
                                             خواب</a></li>
@@ -1134,7 +1173,8 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>تجهیزات سفر<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چمدان و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چمدان
+                                            و
                                             ساک</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کیف و
                                             کوله</a></li>
@@ -1154,22 +1194,29 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>کالای اساسی خوار و بار<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">نان</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">نان</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">برنج</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">برنج</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">روغن</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">روغن</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">شکر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">شکر</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">سس</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">قند</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">قند</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">رب گوجه
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">رب
+                                            گوجه
                                             فرنگی</a></li>
 
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">خیارشور
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">خیارشور
                                             و تریشیجات</a></li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">ماکارونی</a></li>
@@ -1178,19 +1225,24 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>لبنیات<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">شیر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">شیر</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">ماست</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">ماست</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">خامه</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">خامه</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">پنیر</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">پنیر</a>
                                     </li>
 
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>مواد پروتئینی<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">سوسیس و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">سوسیس
+                                            و
                                             کالباس</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">گوشت
                                             گوسفندی</a></li>
@@ -1201,22 +1253,26 @@
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>صبحانه<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">مربا</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">مربا</a>
                                     </li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">عسل</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">عسل</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">حلوا
                                             شکری</a></li>
                                     <li class="item-megamenu-title"><a href="#"
                                             class="list-category-megamenu-3"><span>نوشیدنی ها<i
                                                     class="fa fa-angle-left"></i></span></a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">چای</a>
+                                    <li class="item-megamenu-item"><a href="#"
+                                            class="list-category-megamenu-3">چای</a>
                                     </li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">نوشابه</a></li>
                                     <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">کیک و
                                             کلوچه</a></li>
-                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">آدامس و
+                                    <li class="item-megamenu-item"><a href="#" class="list-category-megamenu-3">آدامس
+                                            و
                                             خوش بو کننده</a></li>
                                     <li class="item-megamenu-item"><a href="#"
                                             class="list-category-megamenu-3">پاستیل</a></li>
@@ -1298,7 +1354,8 @@
                                     </li>
                                     <li class="discounts-offers-item">
                                         <a href="#"
-                                            class="list-category-megamenu-3 list-category-megamenu-3-medium"><span>با هر
+                                            class="list-category-megamenu-3 list-category-megamenu-3-medium"><span>با
+                                                هر
                                                 خرید هدیه بگیرید!</span></a>
                                     </li>
                                     <li class="discounts-offers-item">
@@ -1341,7 +1398,8 @@
                     <li class="item-list-menu megamenu-1 item-set"><a href="#" class="list-category first after">سوالی
                             دارید؟</a>
                     </li>
-                    <li class="item-list-menu megamenu-1 item-set"><a href="#" class="list-category first after">فروشنده
+                    <li class="item-list-menu megamenu-1 item-set"><a href="#"
+                            class="list-category first after">فروشنده
                             شوید</a>
                     </li>
                     <li class="map-city-item">
@@ -1361,7 +1419,8 @@
             <div class="nav-header">
                 <div class="header-cover"></div>
                 <div class="logo-wrap">
-                    <a class="logo-icon" href="#"><img alt="logo-icon" src="{{ asset('home/images/logo.png') }}" width="40"></a>
+                    <a class="logo-icon" href="#"><img alt="logo-icon"
+                            src="{{ asset('home/images/logo.png') }}" width="40"></a>
                 </div>
             </div>
             <ul class="nav-categories ul-base">

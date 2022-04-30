@@ -61,13 +61,26 @@
                                                 @foreach ($logs as $log)
                                                     <tr>
                                                         <td>
-                                                            {{ $log->user->name }}
+                                                            @if ($log->user_id == null)
+                                                                ناشناس
+                                                            @else
+                                                                {{ $log->user->name }}
+                                                            @endif
                                                         </td>
                                                         <td>
+                                                            @if ($log->user_id == null)
+                                                                -
+                                                            @else
+                                                            @endif
 
                                                         </td>
                                                         <td>
-                                                            {{ $log->user->mobile }}
+                                                            @if ($log->user_id == null)
+                                                                -
+                                                            @else
+                                                                {{ $log->user->mobile }}
+                                                            @endif
+
                                                         </td>
                                                         <td>
                                                             {{ $log->ip }}
@@ -91,7 +104,11 @@
                                                                 @break
 
                                                                 @case('sendSms')
-                                                                    <div class="badge badge-info">ارسال پیامک</div>
+                                                                    <div class="badge badge-info">ارسال کد تائید</div>
+                                                                @break
+
+                                                                @case('resendSms')
+                                                                    <div class="badge badge-info">ارسال کد تائید مجدد</div>
                                                                 @break
 
                                                                 @default

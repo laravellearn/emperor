@@ -12,7 +12,7 @@ class Log extends Model
     use HasFactory;
     protected $connection = "mysql-settings";
 
-    protected $fillable = ['user_id','ip','actionType','description'];
+    protected $fillable = ['user_id', 'ip', 'actionType', 'description'];
 
     public function getCreatedAtAttribute($created_at)
     {
@@ -21,9 +21,13 @@ class Log extends Model
         return $createDate;
     }
 
-    public static function logWritter($actionType,$description)
+    public static function logWritter($actionType, $description)
     {
-        $user = \Auth::user()->id ? \Auth::user()->id : 'ناشناس';
+        if (\Auth::check()) {
+            $user = \Auth::user()->id;
+        } else {
+            $user = null;
+        }
         Log::create([
             'user_id' => $user,
             'ip' => $_SERVER['REMOTE_ADDR'],

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('mobile')->unique();
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('password');
-            $table->string('profilePhoto')->nullable();
+            $table->string('profilePhoto')->default('/home/images/svg/user-profile.svg');
             $table->rememberToken();
             $table->timestamps();
         });

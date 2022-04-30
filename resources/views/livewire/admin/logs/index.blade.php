@@ -29,13 +29,26 @@
                                         @foreach ($logs as $log)
                                             <tr>
                                                 <td>
-                                                    {{ $log->user->name }}
+                                                    @if ($log->user_id == null)
+                                                        ناشناس
+                                                    @else
+                                                        {{ $log->user->name }}
+                                                    @endif
                                                 </td>
                                                 <td>
+                                                    @if ($log->user_id == null)
+                                                        -
+                                                    @else
+                                                    @endif
 
                                                 </td>
                                                 <td>
-                                                    {{ $log->user->mobile }}
+                                                    @if ($log->user_id == null)
+                                                        -
+                                                    @else
+                                                        {{ $log->user->mobile }}
+                                                    @endif
+
                                                 </td>
                                                 <td>
                                                     {{ $log->ip }}

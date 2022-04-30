@@ -37,12 +37,12 @@ class Login extends Component
                 if (isset($user->token->expired_at)) {
                     if ($user->token->expired_at > Carbon::now()) {
                         Token::tokenCreate($user->id, $code, 'verify');
-                        Log::logwrite('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
+                        Log::logWritter('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . ' کد تائید: ' . $code);
                         User::sendSms($code, $user->mobile);
                     }
                 } else {
                     Token::tokenCreate($user->id, $code, 'verify');
-                    Log::logwrite('sendSms', 'کد برای کاربر پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
+                    Log::logWritter('sendSms', 'کد برای کاربر پیامک شد - ' . $user->name . ' کد تائید: ' . $code);
                     User::sendSms($code, $user->mobile);
                 }
                 return to_route('verify.mobile', $user->id);
