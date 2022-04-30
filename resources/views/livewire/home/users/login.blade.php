@@ -20,7 +20,7 @@
                                 <i class="fa fa-sign-in sign-in"></i>
                             </button>
                         </div>
-                        <a href="password-forget.html" class="account-link-password">رمز خود را فراموش کرده ام</a>
+                        <a href="{{ route('forget-password') }}" class="account-link-password">رمز خود را فراموش کرده ام</a>
 
                         <div class="form-auth-row">
                             <label for="remember" class="ui-checkbox">

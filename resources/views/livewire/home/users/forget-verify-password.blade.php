@@ -43,10 +43,6 @@
                     </div>
 
                 </div>
-                <div class="account-footer">
-                    <span>کاربر جدید هستید؟</span>
-                    <a href="{{ route('register') }}" class="btn-link-register">ثبت نام </a>
-                </div>
             </div>
         </div>
 

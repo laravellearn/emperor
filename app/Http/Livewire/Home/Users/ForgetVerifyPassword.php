@@ -6,9 +6,8 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Home\Token;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
-class VerifyMobile extends Component
+class ForgetVerifyPassword extends Component
 {
     public $user,$token,$code;
 
@@ -30,11 +29,12 @@ class VerifyMobile extends Component
                 $this->user->update([
                     'mobile_verified_at' => now()
                 ]);
-                Auth::loginUsingId($this->user->id);
 
                 //TODO
-                //Role detect
-                return to_route('admin.home');
+                return to_route('change.password',$this->user->id);
+
+                //TODO
+                // return to_route('admin.home');
             } else {
                 //TODO
                 //show button repeat send sms
@@ -66,6 +66,6 @@ class VerifyMobile extends Component
     public function render()
     {
         $user = $this->user;
-        return view('livewire.home.users.verify-mobile', compact('user'))->layout('layouts.auth');
+        return view('livewire.home.users.forget-verify-password',compact('user'))->layout('layouts.auth');
     }
 }
