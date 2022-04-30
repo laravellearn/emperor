@@ -36,37 +36,20 @@ class Login extends Component
                 $code = random_int(1000, 9999);
                 if (isset($user->token->expired_at)) {
                     if ($user->token->expired_at > Carbon::now()) {
-                        Token::create([
-                            'user_id' => $user->id,
-                            'code' => $code,
-                            'type' => 'verify',
-                            'expired_at' => Carbon::now()->addMinutes(3)
-                        ]);
-
-                        //TODO
-                        // User::sendSms($code, $user->mobile);
+                        Token::tokenCreate($user->id, $code, 'verify');
+                        Log::logwrite('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
+                        User::sendSms($code, $user->mobile);
                     }
-                }else
-                {
-                    Token::create([
-                        'user_id' => $user->id,
-                        'code' => $code,
-                        'type' => 'verify',
-                        'expired_at' => Carbon::now()->addMinutes(3)
-                    ]);
-                    //ovvjcd95qay5i8d
-                    //TODO
-                    // User::sendSms($code, $user->mobile);
+                } else {
+                    Token::tokenCreate($user->id, $code, 'verify');
+                    Log::logwrite('sendSms', 'کد برای کاربر پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
+                    User::sendSms($code, $user->mobile);
                 }
-                //TODO
-                // Log::logWritter('sendSms','یک پیامک ارسال شد - '.$user->name);
-
                 return to_route('verify.mobile', $user->id);
-            }
-
-            if (Hash::check($this->password, $user->password)) {
+            } elseif (Hash::check($this->password, $user->password)) {
                 Auth::loginUsingId($user->id);
                 //TODO
+                //Role Detection
                 return to_route('admin.home');
             } else {
                 $this->emit('toast', 'error', 'اطلاعات ورود نادرست است!');
@@ -78,7 +61,6 @@ class Login extends Component
 
     public function render()
     {
-
         return view('livewire.home.users.login')->layout('layouts.auth');
     }
 }

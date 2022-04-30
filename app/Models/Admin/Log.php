@@ -23,8 +23,9 @@ class Log extends Model
 
     public static function logWritter($actionType,$description)
     {
+        $user = \Auth::user()->id ? \Auth::user()->id : 'ناشناس';
         Log::create([
-            'user_id' => \Auth::user()->id,
+            'user_id' => $user,
             'ip' => $_SERVER['REMOTE_ADDR'],
             'actionType' => $actionType,
             'description' => $description

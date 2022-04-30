@@ -59,7 +59,11 @@
                                                         @break
 
                                                         @case('sendSms')
-                                                            <div class="badge badge-info">ارسال پیامک</div>
+                                                            <div class="badge badge-info">ارسال کد تائید</div>
+                                                        @break
+
+                                                        @case('resendSms')
+                                                            <div class="badge badge-info">ارسال کد تائید مجدد</div>
                                                         @break
 
                                                         @default

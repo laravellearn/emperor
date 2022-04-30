@@ -5,7 +5,7 @@ namespace App\Http\Livewire\Home\Users;
 use Livewire\Component;
 use App\Models\User;
 use App\Models\Home\Token;
-use Carbon\Carbon;
+use App\Models\Admin\Log;
 
 class ForgetPassword extends Component
 {
@@ -25,22 +25,15 @@ class ForgetPassword extends Component
     public function ForgetForm()
     {
         $this->validate();
-        $code = random_int(1000,9999);
-        $userExist = User::where('mobile',$this->mobile)->first();
+        $code = random_int(1000, 9999);
+        $userExist = User::where('mobile', $this->mobile)->first();
 
-        if($userExist)
-        {
-            Token::create([
-                'user_id' => $userExist->id,
-                'code' => $code,
-                'type' => 'verify',
-                'expired_at' => Carbon::now()->addMinutes(3)
-            ]);
-            //TODO
-            // User::sendSms($code, $user->mobile);
-
+        if ($userExist) {
+            Token::tokenCreate($userExist->id, $code, 'verify');
+            User::sendSms($code, $userExist->mobile);
+            Log::logwrite('resendSms', 'کد برای کاربر پیامک شد - ' . $userExist->name . 'کد تائید: ' . $code);
             return to_route('verify.forget.password', $userExist->id);
-        }else{
+        } else {
             $this->emit('toast', 'error', 'کاربری با این شماره موبایل ثبت نام نکرده است!');
         }
     }

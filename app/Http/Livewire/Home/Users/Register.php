@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Home\Token;
-use Carbon\Carbon;
+use App\Models\Admin\Log;
 
 class Register extends Component
 {
@@ -31,15 +31,8 @@ class Register extends Component
         $code = random_int(1000, 9999);
         $userExist = User::where('mobile', $this->mobile)->first();
         if ($userExist && $userExist->mobile_verified_at == null) {
-            Token::create([
-                'user_id' => $userExist->id,
-                'code' => $code,
-                'type' => 'verify',
-                'expired_at' => Carbon::now()->addMinutes(3)
-            ]);
-
-            //TODO
-            // User::sendSms($code, $user->mobile);
+            Token::tokenCreate($userExist->id, $code, 'verify');
+            User::sendSms($code, $userExist->mobile);
             return to_route('verify.mobile', $userExist->id);
         } elseif ($userExist && $userExist->mobile_verified_at != null) {
             $this->emit('toast', 'error', 'این کاربر از قبل ثبت نام کرده است!');
@@ -49,15 +42,9 @@ class Register extends Component
                 'mobile' => $this->mobile,
                 'password' => Hash::make($this->password),
             ]);
-            Token::create([
-                'user_id' => $user->id,
-                'code' => $code,
-                'type' => 'verify',
-                'expired_at' => Carbon::now()->addMinutes(3)
-            ]);
-            //TODO
-            // User::sendSms($code, $user->mobile);
-
+            Token::tokenCreate($user->id, $code, 'verify');
+            User::sendSms($code, $user->mobile);
+            Log::logwrite('create', 'کاربر جدید در سایت ثبت نام کرد - ' . $user->name );
             return to_route('verify.mobile', $user->id);
         }
     }

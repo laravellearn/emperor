@@ -46,18 +46,21 @@ class User extends Authenticatable
         return $this->belongsToMany(Log::class);
     }
 
-    public static function sendSms($code,$mobile)
+    public static function sendSms($code, $mobile)
     {
-        $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
-        $user = "";
-        $pass = "";
-        $fromNum = "+983000505";
-        $toNum = $mobile;
-        $pattern_code = "ovvjcd95qay5i8d";
-        $input_data = array('code' => $code);
+        $user = '';
+        $pass = '';
+        if ($user != null && $pass != null) {
+            $client = new SoapClient("http://ippanel.com/class/sms/wsdlservice/server.php?wsdl");
+            $user = $user;
+            $pass = $pass;
+            $fromNum = "+983000505";
+            $toNum = $mobile;
+            $pattern_code = "ovvjcd95qay5i8d";
+            $input_data = array('code' => $code);
 
-        return $client->sendPatternSms($fromNum,$toNum,$user,$pass,$pattern_code,$input_data);
-
+            return $client->sendPatternSms($fromNum, $toNum, $user, $pass, $pattern_code, $input_data);
+        }
     }
 
     public function tokens()

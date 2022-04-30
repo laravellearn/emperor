@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Home\Token;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Admin\Log;
 
 class VerifyMobile extends Component
 {
@@ -30,6 +31,7 @@ class VerifyMobile extends Component
                 $this->user->update([
                     'mobile_verified_at' => now()
                 ]);
+
                 Auth::loginUsingId($this->user->id);
 
                 //TODO
@@ -49,17 +51,9 @@ class VerifyMobile extends Component
     {
         $user = User::find($id);
         $code = random_int(1000, 9999);
-        Token::create([
-            'user_id' => $user->id,
-            'code' => $code,
-            'type' => 'resendSms',
-            'expired_at' => Carbon::now()->addMinutes(3)
-        ]);
-        //TODO
-        // User::sendSms($code, $user->mobile);
-        //TODO
-        // Log::logWritter('sendSms','یک پیامک ارسال شد - '.$user->name);
-
+        Token::tokenCreate($user->id, $code, 'verify');
+        User::sendSms($code, $user->mobile);
+        Log::logwrite('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
         return $this->redirect(request()->header('Referer'));
     }
 

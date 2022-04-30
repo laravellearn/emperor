@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('emperor.users');
             $table->string('ip');
-            $table->enum('actionType',['delete','create','update','restore','sendSms']);
+            $table->enum('actionType',['delete','create','update','restore','sendSms','resendSms']);
             $table->text('description');
             $table->timestamps();
         });

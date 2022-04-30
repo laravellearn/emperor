@@ -6,10 +6,11 @@ use Livewire\Component;
 use App\Models\User;
 use App\Models\Home\Token;
 use Carbon\Carbon;
+use App\Models\Admin\Log;
 
 class ForgetVerifyPassword extends Component
 {
-    public $user,$token,$code;
+    public $user, $token, $code;
 
     protected $rules = [
         'code'    => 'required',
@@ -29,9 +30,10 @@ class ForgetVerifyPassword extends Component
                 $this->user->update([
                     'mobile_verified_at' => now()
                 ]);
+                Log::logwrite('update', 'موبایل کاربر تائید شد - ' . $this->user->name );
 
                 //TODO
-                return to_route('change.password',$this->user->id);
+                return to_route('change.password', $this->user->id);
 
                 //TODO
                 // return to_route('admin.home');
@@ -49,23 +51,15 @@ class ForgetVerifyPassword extends Component
     {
         $user = User::find($id);
         $code = random_int(1000, 9999);
-        Token::create([
-            'user_id' => $user->id,
-            'code' => $code,
-            'type' => 'resendSms',
-            'expired_at' => Carbon::now()->addMinutes(3)
-        ]);
-        //TODO
-        // User::sendSms($code, $user->mobile);
-        //TODO
-        // Log::logWritter('sendSms','یک پیامک ارسال شد - '.$user->name);
-
+        Token::tokenCreate($user->id, $code, 'resendSmsVerify');
+        User::sendSms($code, $user->mobile);
+        Log::logwrite('resendSms', 'کد برای کاربر مجدد پیامک شد - ' . $user->name . 'کد تائید: ' . $code);
         return $this->redirect(request()->header('Referer'));
     }
 
     public function render()
     {
         $user = $this->user;
-        return view('livewire.home.users.forget-verify-password',compact('user'))->layout('layouts.auth');
+        return view('livewire.home.users.forget-verify-password', compact('user'))->layout('layouts.auth');
     }
 }
