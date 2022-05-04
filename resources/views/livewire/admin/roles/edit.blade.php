@@ -1,4 +1,4 @@
-@section('title', 'نقش ها')
+@section('title', 'ویرایش نقش کاربری')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/default-assets/select.bootstrap4.css') }}">

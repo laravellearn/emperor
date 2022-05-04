@@ -48,9 +48,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست سطح دسترسی ها</h4>
-                                <button type="button" class="btn btn-danger mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
-                                    زباله</button>
+                                <a href="{{ route('admin.permissions.trash') }}" type="button" class="btn btn-danger mb-2 mr-2"
+                                    style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i>  سطل زباله
+                                    <span class="badge badge-danger">
+                                        {{ \App\Models\Admin\Permissions\Permission::onlyTrashed()->count() }}
+                                    </span>
+                                    </a>
                                 <button type="button" class="btn btn-primary mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
                                     اکسل</button>
@@ -82,7 +85,7 @@
                                                         @endforeach
                                                     </td>
                                                     <td>
-                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                        <a href="{{ route('admin.permissions.edit',$permission->id) }}" class="action-icon"> <i
                                                                 class="zmdi zmdi-edit zmdi-custom"></i></a>
                                                         <button wire:click="deleteId({{ $permission->id }})"
                                                             data-toggle="modal" data-target="#exampleModal"

@@ -24,7 +24,8 @@ class LogoTrash extends Component
 
     public function render()
     {
-        $logos = $this->readyToLoad ? Footerlogo::where('title', 'LIKE', '%' . $this->search . '%')->onlyTrashed()->latest()->paginate(10) : [];
+        $logos = $this->readyToLoad ? Footerlogo::where('title', 'LIKE', '%' . $this->search . '%')
+        ->onlyTrashed()->latest()->paginate(10) : [];
         return view('livewire.admin.settings.footer.logo-trash',compact('logos'));
     }
 
