@@ -35,6 +35,8 @@ Route::get('/logs', App\Http\Livewire\Admin\Logs\Index::class)->name('admin.logs
 
 //---------------------------------------Permissions---------------------------------------//
 Route::get('/permissions', App\Http\Livewire\Admin\Permissions\Index::class)->name('admin.permissions');
+Route::get('/permissions/edit/{permission}', App\Http\Livewire\Admin\Permissions\Edit::class)->name('admin.permissions.edit');
 
 //---------------------------------------Roles---------------------------------------//
 Route::get('/roles', App\Http\Livewire\Admin\Roles\Index::class)->name('admin.roles');
+Route::get('/roles/edit/{role}', App\Http\Livewire\Admin\Roles\Edit::class)->name('admin.roles.edit');

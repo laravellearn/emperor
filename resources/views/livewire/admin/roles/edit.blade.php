@@ -11,7 +11,7 @@
                 <div class="row">
                     <div class="col-xl-4 box-margin height-card">
                         <div class="card card-body">
-                            <h4 class="card-title">افزودن نقش</h4>
+                            <h4 class="card-title">ویرایش نقش</h4>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
@@ -29,9 +29,9 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail12">سطح دسترسی ها:</label>
                                             <select class="js-example-basic-single form-control" multiple="multiple"
-                                                wire:model.lazy="permissions" style="width: 100%;">
+                                                wire:model="permissions" style="width: 100%;">
                                                 @foreach (\App\Models\Admin\Permissions\Permission::all() as $permission)
-                                                    <option value="{{ $permission->id }}">{{ $permission->description }}
+                                                    <option value="{{ $permission->id }}" {{ in_array($permission->id,$role->permissions()->pluck('id')->toArray()) ? 'selected' : '' }}>{{ $permission->description }}
                                                     </option>
                                                 @endforeach
                                             </select>
@@ -54,6 +54,11 @@
                                 <button type="button" class="btn btn-primary mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
                                     اکسل</button>
+                                    <a href="{{ route('admin.roles') }}"
+                                    class="btn btn-success mb-2 mr-2"
+                                    style="float:left;margin-top:-37px;"><i
+                                        class="fa fa-plus-square"></i> افزودن</a>
+
                                 <hr>
                                 <input wire:model="search" type="search" class="form-control mb-2 w-50 float-left"
                                     placeholder="جستجو...">
