@@ -79,6 +79,18 @@
                                                             <div class="badge badge-info">ارسال کد تائید مجدد</div>
                                                         @break
 
+                                                        @case('verifyCode')
+                                                            <div class="badge badge-warning">تائید موبایل</div>
+                                                        @break
+
+                                                        @case('login')
+                                                            <div class="badge" style="background-color:orange;color:white">ورود به سایت</div>
+                                                        @break
+
+                                                        @case('logout')
+                                                            <div class="badge" style="background-color:orange;color:white">خروج از سایت</div>
+                                                        @break
+
                                                         @default
                                                     @endswitch
                                                     {{-- <div class="badge badge-warning">دیگر</div> --}}

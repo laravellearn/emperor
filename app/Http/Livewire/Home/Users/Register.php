@@ -33,6 +33,7 @@ class Register extends Component
         if ($userExist && $userExist->mobile_verified_at == null) {
             Token::tokenCreate($userExist->id, $code, 'verify');
             User::sendSms($code, $userExist->mobile);
+            Log::logWritter('sendSms', 'کد برای کاربر پیامک شد - ' . $userExist->name . ' کد تائید: ' . $code);
             return to_route('verify.mobile', $userExist->id);
         } elseif ($userExist && $userExist->mobile_verified_at != null) {
             $this->emit('toast', 'error', 'این کاربر از قبل ثبت نام کرده است!');
@@ -44,7 +45,7 @@ class Register extends Component
             ]);
             Token::tokenCreate($user->id, $code, 'verify');
             User::sendSms($code, $user->mobile);
-            Log::logWritter('create', 'کاربر جدید در سایت ثبت نام کرد - ' . $user->name );
+            Log::logWritter('create', 'کاربر جدید در سایت ثبت نام کرد - ' . $user->name);
             return to_route('verify.mobile', $user->id);
         }
     }

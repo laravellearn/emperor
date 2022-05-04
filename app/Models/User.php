@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Models\Admin\Log;
 use SoapClient;
+use App\Models\Admin\Permissions\Permission;
+use App\Models\Admin\Permissions\Role;
 
 class User extends Authenticatable
 {
@@ -67,4 +69,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Token::class);
     }
+
+    public function permissions()
+    {
+        return $this->belongsToMany(Permission::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
 }

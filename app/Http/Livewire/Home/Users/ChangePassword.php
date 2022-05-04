@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Home\Token;
+use App\Models\Admin\Log;
 
 class ChangePassword extends Component
 {
@@ -18,8 +19,12 @@ class ChangePassword extends Component
 
     public function mount($code)
     {
-        $this->token = Token::where('code',$code)->first();
-        $this->user = User::where('id',$this->token->user_id)->first();
+        $this->token = Token::where('code', $code)->first();
+        if ($this->token) {
+            $this->user = User::where('id', $this->token->user_id)->first();
+        } else {
+            return abort(404);
+        }
     }
 
     public function PasswordChange()
@@ -29,8 +34,8 @@ class ChangePassword extends Component
             'password' => Hash::make($this->password),
         ]);
         Auth::loginUsingId($this->user->id);
+        Log::logWritter('update', 'رمز عبور کاربر تغییر کرد - ' . $this->user->name);
         return to_route('admin.home');
-
     }
 
     public function render()

@@ -48,6 +48,7 @@ class Login extends Component
                 return to_route('verify.mobile', $user->id);
             } elseif (Hash::check($this->password, $user->password)) {
                 Auth::loginUsingId($user->id);
+                Log::logWritter('login', 'کاربر در سایت وارد شد - ' . $user->name);
                 //TODO
                 //Role Detection
                 return to_route('admin.home');

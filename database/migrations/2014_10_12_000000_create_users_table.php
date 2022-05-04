@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('mobile_verified_at')->nullable();
             $table->string('password');
             $table->string('profilePhoto')->default('/home/images/svg/user-profile.svg');
+            $table->enum('typeUser',['user','vendor','admin'])->default('user');
             $table->rememberToken();
             $table->timestamps();
         });

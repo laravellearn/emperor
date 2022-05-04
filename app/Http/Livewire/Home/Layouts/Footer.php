@@ -12,9 +12,9 @@ class Footer extends Component
         $footer = DB::connection('mysql-settings')->table('footers')->get();
         $footer = $footer[0];
         $topLogoFooter = DB::connection('mysql-settings')->table('footer-logos')
-            ->where('isActive', 1)->where('type', 'top')->get();
+            ->where('isActive', 1)->where('type', 'top')->where('deleted_at', null)->get();
         $bottomLogoFooter = DB::connection('mysql-settings')->table('footer-logos')
-            ->where('isActive', 1)->where('type', 'bottom')->get();
+            ->where('isActive', 1)->where('type', 'bottom')->where('deleted_at', null)->get();
 
         $menus1 = DB::connection('mysql-settings')->table('footer-menus')
             ->where('isActive', 1)->where('type', 'widgetLabel1')->get();

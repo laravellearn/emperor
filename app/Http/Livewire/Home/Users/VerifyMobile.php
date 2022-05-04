@@ -33,6 +33,7 @@ class VerifyMobile extends Component
                 ]);
 
                 Auth::loginUsingId($this->user->id);
+                Log::logWritter('verifyCode', 'موبایل کاربر تائید شد - ' . $this->user->name);
 
                 //TODO
                 //Role detect

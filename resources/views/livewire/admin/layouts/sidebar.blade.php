@@ -47,13 +47,6 @@
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="javascript:void(0)"><i class="fa fa-user-secret"></i> <span>سطوح دسترسی</span> <i class="fa fa-angle-left"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="#">نقش ها</a></li>
-                            <li><a href="#">سطح دسترسی</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
                         <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="product-categories.html">دسته بندی</a></li>
@@ -136,6 +129,14 @@
                         </ul>
                     </li> --}}
 
+                    <li class="treeview {{ Request::routeIs(['admin.roles','admin.permissions']) ? 'active' : '' }}">
+                        <a href="javascript:void(0)"><i class="fa fa-user-secret"></i> <span>سطوح دسترسی</span> <i class="fa fa-angle-left"></i></a>
+                        <ul class="treeview-menu">
+                            <li><a href="{{ route('admin.roles') }}" {{ Request::routeIs(['admin.roles']) ? "style=color:#54c6d0" : '' }}>نقش ها</a></li>
+                            <li><a href="{{ route('admin.permissions') }}" {{ Request::routeIs(['admin.permissions']) ? "style=color:#54c6d0" : '' }}>سطح دسترسی</a></li>
+                        </ul>
+                    </li>
+
                     <li class="{{ Request::routeIs(['admin.logs']) ? 'active' : '' }}">
                         <a href="{{ route('admin.logs') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات سیستم</span></a></li>
 
@@ -150,7 +151,7 @@
                     </li>
                     {{-- <li><a href="#"><i class="zmdi zmdi-cloud-done"></i><span>بکاپ گیری</span></a></li> --}}
                 </ul>
-            </nav>,'admin.settings.footer.logo.trash'
+            </nav>
         </div>
     </div>
 </div>
