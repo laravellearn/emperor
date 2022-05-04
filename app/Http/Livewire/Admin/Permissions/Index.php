@@ -67,7 +67,7 @@ class Index extends Component
         $permission->delete();
 
         //Create Log
-        Log::logWritter('delete', 'یک سطح دسترسی حذف شد - ' . $permission->title);
+        Log::logWritter('delete', 'سطح دسترسی حذف شد - ' . $permission->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }

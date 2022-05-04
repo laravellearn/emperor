@@ -47,7 +47,8 @@ class Index extends Component
 
     public function render()
     {
-        $roles = $this->readyToLoad ? Role::where('title', 'LIKE', '%' . $this->search . '%')->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
+        $roles = $this->readyToLoad ? Role::where('title', 'LIKE', '%' . $this->search . '%')
+        ->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
         return view('livewire.admin.roles.index', compact('roles'));
     }
 
@@ -67,7 +68,7 @@ class Index extends Component
         $role->delete();
 
         //Create Log
-        Log::logWritter('delete', 'یک نقش حذف شد - ' . $role->title);
+        Log::logWritter('delete', 'نقش کاربری حذف شد - ' . $role->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
@@ -76,6 +77,6 @@ class Index extends Component
     {
         $this->role->title = null;
         $this->role->description = null;
-        $this->role->permissions = null;
+        $this->permissions = null;
     }
 }

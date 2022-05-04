@@ -24,7 +24,7 @@ class Trash extends Component
 
     public function render()
     {
-        $roles = $this->readyToLoad ? Role::where('title', 'LIKE', '%' . $this->search . '%')->orWhere('description', 'LIKE', '%' . $this->search . '%')
+        $roles = $this->readyToLoad ? Role::where('description', 'LIKE', '%' . $this->search . '%')
         ->onlyTrashed()->latest()->paginate(10) : [];
         return view('livewire.admin.roles.trash', compact('roles'));
     }
@@ -46,9 +46,20 @@ class Trash extends Component
         $role->forceDelete();
 
         //Create Log
-        Log::logWritter('delete', 'یک نقش برای همیشه شد - ' . $role->title);
+        Log::logWritter('delete', 'نقش کاربری برای همیشه حذف شد - ' . $role->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
+    }
+
+    public function restore($id)
+    {
+        $role = Role::withTrashed()->findOrFail($id);
+        $role->restore();
+
+        //Create Log
+        Log::logWritter('restore', 'نقش کاربری بازیابی شد - ' . $role->title);
+
+        $this->emit('toast', 'success', 'رکورد با موفقیت بازیابی شد');
     }
 
 }

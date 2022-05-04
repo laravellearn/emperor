@@ -129,11 +129,11 @@
                         </ul>
                     </li> --}}
 
-                    <li class="treeview {{ Request::routeIs(['admin.roles','admin.permissions','admin.roles.edit','admin.permissions.edit']) ? 'active' : '' }}">
+                    <li class="treeview {{ Request::routeIs(['admin.roles','admin.permissions','admin.roles.edit','admin.permissions.edit','admin.roles.trash','admin.permissions.trash']) ? 'active' : '' }}">
                         <a href="javascript:void(0)"><i class="fa fa-user-secret"></i> <span>سطوح دسترسی</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
-                            <li><a href="{{ route('admin.roles') }}" {{ Request::routeIs(['admin.roles','admin.roles.edit']) ? "style=color:#54c6d0" : '' }}>نقش ها</a></li>
-                            <li><a href="{{ route('admin.permissions') }}" {{ Request::routeIs(['admin.permissions','admin.permissions.edit']) ? "style=color:#54c6d0" : '' }}>سطح دسترسی</a></li>
+                            <li><a href="{{ route('admin.roles') }}" {{ Request::routeIs(['admin.roles','admin.roles.edit','admin.roles.trash']) ? "style=color:#54c6d0" : '' }}>نقش ها</a></li>
+                            <li><a href="{{ route('admin.permissions') }}" {{ Request::routeIs(['admin.permissions','admin.permissions.edit','admin.permissions.trash']) ? "style=color:#54c6d0" : '' }}>سطح دسترسی</a></li>
                         </ul>
                     </li>
 

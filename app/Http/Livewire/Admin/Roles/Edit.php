@@ -28,7 +28,7 @@ class Edit extends Component
         $this->role->update($this->validate());
         $this->role->permissions()->sync($this->permissions);
         //Create Log
-        Log::logWritter('create', 'نقش ویرایش شد - ' . $this->role->title);
+        Log::logWritter('update', 'نقش کاربری ویرایش شد - ' . $this->role->title);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ویرایش شد');
     }
@@ -38,7 +38,7 @@ class Edit extends Component
         $role = $this->role;
         $roles = $this->readyToLoad ? Role::where('title', 'LIKE', '%' . $this->search . '%')->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
 
-        return view('livewire.admin.roles.edit',compact('role','roles'));
+        return view('livewire.admin.roles.edit', compact('role', 'roles'));
     }
 
     public function loadRole()
@@ -57,9 +57,8 @@ class Edit extends Component
         $role->delete();
 
         //Create Log
-        Log::logWritter('delete', 'یک نقش حذف شد - ' . $role->title);
+        Log::logWritter('delete', 'نقش کاربری حذف شد - ' . $role->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
-
 }

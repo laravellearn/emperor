@@ -16,6 +16,7 @@
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form wire:submit.prevent='RoleForm'>
+                                        @include('errors.error')
                                         <div class="form-group">
                                             <label for="exampleInputEmail111">عنوان نقش(لاتین):</label>
                                             <input type="text" wire:model.lazy='role.title' class="form-control"
@@ -28,13 +29,16 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail12">سطح دسترسی ها:</label>
-                                            <select class="js-example-basic-single form-control" multiple="multiple"
-                                                wire:model.lazy="permissions" style="width: 100%;">
-                                                @foreach (\App\Models\Admin\Permissions\Permission::all() as $permission)
-                                                    <option value="{{ $permission->id }}">{{ $permission->description }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <div wire:ignore>
+                                                <select class="form-control" multiple="multiple"
+                                                    wire:model.lazy="permissions" id="permissions" style="width: 100%;">
+                                                    @foreach (\App\Models\Admin\Permissions\Permission::all() as $permission)
+                                                        <option value="{{ $permission->id }}">
+                                                            {{ $permission->description }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                         <button type="submit" class="btn btn-outline-success mb-2 mr-2"
                                             style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
@@ -48,8 +52,9 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست نقش ها</h4>
-                                <a href="{{ route('admin.roles.trash') }}" type="button" class="btn btn-danger mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-trash"></i> سطل زباله <span class="badge badge-danger">
+                                <a href="{{ route('admin.roles.trash') }}" type="button"
+                                    class="btn btn-danger mb-2 mr-2" style="float:left;margin-top:-37px;"><i
+                                        class="fa fa-trash"></i> سطل زباله <span class="badge badge-danger">
                                         {{ \App\Models\Admin\Permissions\Role::onlyTrashed()->count() }}
                                     </span></a>
                                 <button type="button" class="btn btn-primary mb-2 mr-2"
@@ -83,7 +88,8 @@
                                                         @endforeach
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.roles.edit',$role->id) }}" class="action-icon"> <i
+                                                        <a href="{{ route('admin.roles.edit', $role->id) }}"
+                                                            class="action-icon"> <i
                                                                 class="zmdi zmdi-edit zmdi-custom"></i></a>
                                                         <button wire:click="deleteId({{ $role->id }})"
                                                             data-toggle="modal" data-target="#exampleModal"
@@ -93,6 +99,7 @@
                                                 </tr>
                                             @endforeach
                                         </tbody>
+                                        {{ $roles->links() }}
                                     @else
                                         <div class="alert alert-warning">
                                             در حال بارگزاری اطلاعات از پایگاه داده ....
@@ -110,12 +117,18 @@
         </div>
     </div>
     @include('livewire.admin.include.modal')
-
-    <script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}" defer></script>
-
-    <script>
-        $(document).ready(function() {
-            $('.js-example-basic-single').select2();
-        });
-    </script>
+    @section('scripts')
+        <script>
+            $(document).ready(function() {
+                $('#permissions').select2();
+                $('#permissions').on('change', function(e) {
+                    let data = $(this).val();
+                    @this.set('permissions', data);
+                });
+                window.livewire.on('PermissionStore', () => {
+                    $('#permissions').select2();
+                });
+            });
+        </script>
+    @endsection
 </div>

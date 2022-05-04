@@ -39,13 +39,14 @@
                                                         @endforeach
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.roles.edit', $role->id) }}"
-                                                            class="action-icon"> <i
-                                                                class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                        <button wire:click="restore({{ $role->id }})"
+                                                            class="action-icon">
+                                                            <i class="zmdi zmdi-replay zmdi-custom"></i></button>
                                                         <button wire:click="deleteId({{ $role->id }})"
+                                                            wire:click="deleteId({{ $role->id }})"
                                                             data-toggle="modal" data-target="#exampleModal"
                                                             class="action-icon"> <i
-                                                                class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                                class="zmdi zmdi-delete zmdi-custom"></i></>
                                                     </td>
                                                 </tr>
                                             @endforeach

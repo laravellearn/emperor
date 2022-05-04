@@ -10,7 +10,6 @@ use App\Models\Admin\Log;
 class Trash extends Component
 {
 
-
     public Permission $permission;
     public $readyToLoad = false;
     public $search;
@@ -47,7 +46,7 @@ class Trash extends Component
         $permission->forceDelete();
 
         //Create Log
-        Log::logWritter('delete', 'یک دسترسی برای همیشه شد - ' . $permission->title);
+        Log::logWritter('delete', 'سطح دسترسی برای همیشه حذف شد - ' . $permission->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
@@ -59,7 +58,7 @@ class Trash extends Component
         $permission->restore();
 
         //Create Log
-        Log::logWritter('restore', 'لوگوی فوتر بازیابی شد - ' . $permission->title);
+        Log::logWritter('restore', 'سطح دسترسی بازیابی شد - ' . $permission->title);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت بازیابی شد');
     }
