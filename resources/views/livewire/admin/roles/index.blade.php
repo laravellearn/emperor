@@ -48,9 +48,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست نقش ها</h4>
-                                <button type="button" class="btn btn-danger mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-refresh"></i> سطل
-                                    زباله</button>
+                                <a href="{{ route('admin.roles.trash') }}" type="button" class="btn btn-danger mb-2 mr-2"
+                                    style="float:left;margin-top:-37px;"><i class="fa fa-trash"></i> سطل زباله <span class="badge badge-danger">
+                                        {{ \App\Models\Admin\Permissions\Role::onlyTrashed()->count() }}
+                                    </span></a>
                                 <button type="button" class="btn btn-primary mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
                                     اکسل</button>
