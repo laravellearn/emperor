@@ -32,6 +32,7 @@ return new class extends Migration
             $table->foreign('permission_id')->references('id')->on('emperor.permissions');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('emperor.users');
+            $table->primary(['permission_id','user_id']);
         });
 
         Schema::create('role_user', function (Blueprint $table) {
@@ -39,6 +40,7 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('emperor.roles');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('emperor.users');
+            $table->primary(['role_id','user_id']);
         });
 
         Schema::create('permission_role', function (Blueprint $table) {
@@ -46,6 +48,7 @@ return new class extends Migration
             $table->foreign('role_id')->references('id')->on('emperor.roles');
             $table->unsignedBigInteger('permission_id')->nullable();
             $table->foreign('permission_id')->references('id')->on('emperor.permissions');
+            $table->primary(['role_id','permission_id']);
         });
     }
 

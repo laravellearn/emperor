@@ -13,20 +13,25 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form>
+                                    <form wire:submit.prevent='RoleForm'>
                                         <div class="form-group">
                                             <label for="exampleInputEmail111">عنوان نقش(لاتین):</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail111">
+                                            <input type="text" wire:model.defer='title' class="form-control"
+                                                id="exampleInputEmail111">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail12">توضیحات نقش(فارسی):</label>
-                                            <input type="text" class="form-control" id="exampleInputEmail111">
+                                            <input type="text" wire:model='description' class="form-control"
+                                                id="exampleInputEmail111">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail12">سطح دسترسی ها:</label>
-                                            <select class="js-example-basic-single form-control" multiple="multiple"
-                                                name="" style="width: 100%;">
-                                                <option value="AL">Alabama</option>
+                                            <select class="js-example-basic-single form-control"
+                                                wire:model='permissions[]' multiple="multiple" style="width: 100%;">
+                                                @foreach ($permissions as $permission)
+                                                    <option value="{{ $permission->id }}">{{ $permission->title }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <button type="submit" class="btn btn-outline-success mb-2 mr-2"
@@ -52,7 +57,7 @@
                                     placeholder="جستجو...">
 
                                 <table id="datatable-buttons" class="table table-striped dt-responsive nowrap"
-                                    style="width:104%">
+                                    style="width:104%" wire:init='loadRole'>
                                     <thead>
                                         <tr>
                                             <th>عنوان نقش</th>
@@ -62,19 +67,32 @@
                                         </tr>
                                     </thead>
 
-                                    <tbody>
-                                        <tr>
-                                            <td>نام کاربری</td>
-                                            <td>سیستم</td>
-                                            <td>سطوح دسترسی</td>
-                                            <td>
-                                                <a href="javascript:void(0);" class="action-icon"> <i
-                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                <a href="javascript:void(0);" class="action-icon"> <i
-                                                        class="zmdi zmdi-delete zmdi-custom"></i></a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
+                                    @if ($readyToLoad)
+                                        <tbody>
+                                            @foreach ($roles as $role)
+                                                <tr>
+                                                    <td>{{ $role->title }}</td>
+                                                    <td>{{ $role->description }}</td>
+                                                    <td>
+                                                        @foreach ($role->permissions as $permission)
+                                                            <span
+                                                                style="border: 1px solid #ccc;padding: 0px 2px;border-radius: 3px;">{{ $permission->title }}</span>
+                                                        @endforeach
+                                                    </td>
+                                                    <td>
+                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                                class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                        <a href="javascript:void(0);" class="action-icon"> <i
+                                                                class="zmdi zmdi-delete zmdi-custom"></i></a>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    @else
+                                        <div class="alert alert-warning">
+                                            در حال بارگزاری اطلاعات از پایگاه داده ....
+                                        </div>
+                                    @endif
                                 </table>
 
                             </div> <!-- end card body-->
