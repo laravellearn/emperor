@@ -18,6 +18,8 @@ Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
 
 //---------------------------------------Settings---------------------------------------//
 //Settings Footer ETC
+Route::get('/settings/footer', App\Http\Livewire\Admin\Settings\Footer\Index::class)->name('admin.settings.footer');
+//Settings Footer ETC
 Route::get('/settings/footer/label', App\Http\Livewire\Admin\Settings\Footer\Label::class)->name('admin.settings.footer.label');
 Route::get('/settings/footer/socialmedia', App\Http\Livewire\Admin\Settings\Footer\Social::class)->name('admin.settings.footer.social');
 //Settings Footer LOGO

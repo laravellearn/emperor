@@ -13,18 +13,32 @@
                                             <div class="file-manager clearfix">
                                                 <!-- Title -->
                                                 <ul class="folder-list">
-                                                    <li><a href="{{ route('admin.settings.footer.label') }}"> برچسب ها
-                                                        </a></li>
-                                                    <li><a href="{{ route('admin.settings.footer.social') }}"> شبکه
-                                                            های اجتماعی </a></li>
-                                                    <li class="active"><a
-                                                            href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
-                                                            فوتر </a></li>
-                                                            <li><a
-                                                                href="{{ route('admin.settings.footer.menu') }}"> منوهای
+                                                    @can('setting-footer-label')
+                                                        <li><a href="{{ route('admin.settings.footer.label') }}"> برچسب ها
+                                                            </a></li>
+                                                    @endcan
+                                                    @can('settings-footer-social')
+                                                        <li><a href="{{ route('admin.settings.footer.social') }}"> شبکه
+                                                                های
+                                                                اجتماعی </a></li>
+                                                    @endcan
+                                                    @canany(['settings-footer-logo-create', 'settings-footer-logo-edit',
+                                                        'settings-footer-logo-delete', 'settings-footer-logo-trash',
+                                                        'settings-footer-logo-Restore', 'settings-footer-logo-forceDelete'])
+                                                        <li class="active"><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
+                                                                فوتر
+                                                            </a></li>
+                                                    @endcan
+                                                    @canany(['settings-footer-menu-create', 'settings-footer-menu-edit',
+                                                        'settings-footer-menu-delete'])
+                                                        <li><a href="{{ route('admin.settings.footer.menu') }}"> منوهای
                                                                 فوتر </a></li>
-                                                                <li><a
-                                                                    href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت </a></li>
+                                                    @endcan
+                                                    @can('settings-footer-namad')
+                                                        <li><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای
+                                                                سایت
+                                                            </a></li>
+                                                    @endcan
 
                                                 </ul>
                                                 <div class="clearfix"></div>
@@ -39,7 +53,10 @@
                                                     <div class="">
                                                         <div class="card-body">
                                                             <h4 class="card-title mb-2">لیست لوگو های حذف شده فوتر</h4>
-                                                            <a href="{{ route('admin.settings.footer.logo') }}" class="btn btn-success mb-2 mr-2" style="float:left;margin-top:-37px;"><i class="fa fa-list-alt"></i> لیست لوگوهای فوتر</a>
+                                                            <a href="{{ route('admin.settings.footer.logo') }}"
+                                                                class="btn btn-success mb-2 mr-2"
+                                                                style="float:left;margin-top:-37px;"><i
+                                                                    class="fa fa-list-alt"></i> لیست لوگوهای فوتر</a>
                                                             <hr>
                                                             <input wire:model="search" type="search"
                                                                 class="form-control mb-2 w-50 float-left"
@@ -71,15 +88,19 @@
                                                                                 </td>
                                                                                 <td>
                                                                                     @if ($logo->isActive == 1)
-                                                                                        <span class="badge badge-success">فعال</span>
+                                                                                        <span
+                                                                                            class="badge badge-success">فعال</span>
                                                                                     @else
-                                                                                       <span  class="badge badge-danger">غیرفعال</span>
+                                                                                        <span
+                                                                                            class="badge badge-danger">غیرفعال</span>
                                                                                     @endif
                                                                                 </td>
                                                                                 <td>
-                                                                                    <button wire:click="restore({{ $logo->id }})"
-                                                                                         class="action-icon">
-                                                                                        <i class="zmdi zmdi-replay zmdi-custom"></i></button>
+                                                                                    <button
+                                                                                        wire:click="restore({{ $logo->id }})"
+                                                                                        class="action-icon">
+                                                                                        <i
+                                                                                            class="zmdi zmdi-replay zmdi-custom"></i></button>
                                                                                     <button
                                                                                         wire:click="deleteId({{ $logo->id }})"
                                                                                         data-toggle="modal"
@@ -117,4 +138,3 @@
     </div>
     @include('livewire.admin.include.modal')
 </div>
-

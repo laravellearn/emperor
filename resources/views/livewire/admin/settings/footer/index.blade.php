@@ -1,4 +1,4 @@
-@section('title','نمادهای سایت')
+@section('title', 'تنظیمات فوتر')
 <div>
     <div class="container-fluid">
         <div class="inbox-area">
@@ -32,43 +32,17 @@
                                                             فوتر </a></li>
                                                 @endcan
                                                 @can('settings-footer-namad')
-                                                    <li class="active"><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت
+                                                    <li><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت
                                                         </a></li>
                                                 @endcan
-                                                </ul>
+
+                                            </ul>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="mail-body--area">
-                                    <div class="form-group row">
-                                        <div class="col-lg-2">
-                                            <label class="col-form-label">نمادهای اعتماد:</label>
-                                        </div>
-                                        <div class="col-lg-10">
-                                            <textarea class="form-control" style="text-align:left" wire:model="enamad" type="text"></textarea>
-                                        </div>
-                                    </div>
-                                    <label style="font-weight:bold">اپلیکیشن موبایل:</label>
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <input class="form-control" wire:model="linkApp1" type="text" style="text-align:left" placeholder="لینک اپلیکیشن">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input class="form-control" wire:model="imageApp1" type="text" style="text-align:left" placeholder="تصویر">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="col-lg-6">
-                                            <input class="form-control" wire:model="linkApp2" type="text" style="text-align:left" placeholder="لینک اپلیکیشن">
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <input class="form-control" wire:model="imageApp2" type="text" style="text-align:left" placeholder="تصویر">
-                                        </div>
-                                    </div>
-                                    <button type="submit" wire:click="update()" class="btn btn-outline-success mb-2 mr-2" style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
-                                </div>
+
                             </div>
                         </div>
                     </div>

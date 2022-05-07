@@ -13,17 +13,32 @@
                                             <div class="file-manager clearfix">
                                                 <!-- Title -->
                                                 <ul class="folder-list">
-                                                    <li><a href="{{ route('admin.settings.footer.label') }}"> برچسب ها
-                                                        </a></li>
-                                                    <li><a href="{{ route('admin.settings.footer.social') }}"> شبکه
-                                                            های اجتماعی </a></li>
-                                                    <li><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
-                                                            فوتر </a></li>
-                                                    <li class="active"><a
-                                                            href="{{ route('admin.settings.footer.menu') }}"> منوهای
-                                                            فوتر </a></li>
-                                                    <li><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای
-                                                            سایت </a></li>
+                                                    @can('setting-footer-label')
+                                                        <li><a href="{{ route('admin.settings.footer.label') }}"> برچسب ها
+                                                            </a></li>
+                                                    @endcan
+                                                    @can('settings-footer-social')
+                                                        <li><a href="{{ route('admin.settings.footer.social') }}"> شبکه
+                                                                های
+                                                                اجتماعی </a></li>
+                                                    @endcan
+                                                    @canany(['settings-footer-logo-create', 'settings-footer-logo-edit',
+                                                        'settings-footer-logo-delete', 'settings-footer-logo-trash',
+                                                        'settings-footer-logo-Restore', 'settings-footer-logo-forceDelete'])
+                                                        <li><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
+                                                                فوتر
+                                                            </a></li>
+                                                    @endcan
+                                                    @canany(['settings-footer-menu-create', 'settings-footer-menu-edit',
+                                                        'settings-footer-menu-delete'])
+                                                        <li class="active"><a href="{{ route('admin.settings.footer.menu') }}"> منوهای
+                                                                فوتر </a></li>
+                                                    @endcan
+                                                    @can('settings-footer-namad')
+                                                        <li><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای
+                                                                سایت
+                                                            </a></li>
+                                                    @endcan
 
                                                 </ul>
                                                 <div class="clearfix"></div>

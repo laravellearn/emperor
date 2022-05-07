@@ -80,4 +80,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function hasPermission($permission)
+    {
+        return $this->permissions->contains('title', $permission->title) || $this->hasRole($permission->roles);
+    }
+
+    public function hasRole($roles)
+    {
+        return !!$roles->intersect($this->roles)->all();
+    }
 }
