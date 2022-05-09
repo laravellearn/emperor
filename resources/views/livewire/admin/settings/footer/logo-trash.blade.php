@@ -22,15 +22,13 @@
                                                                 های
                                                                 اجتماعی </a></li>
                                                     @endcan
-                                                    @canany(['settings-footer-logo-create', 'settings-footer-logo-edit',
-                                                        'settings-footer-logo-delete', 'settings-footer-logo-trash',
-                                                        'settings-footer-logo-Restore', 'settings-footer-logo-forceDelete'])
-                                                        <li class="active"><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
+                                                    @can('settings-footer-logo')
+                                                        <li class="active"><a
+                                                                href="{{ route('admin.settings.footer.logo') }}"> لوگوهای
                                                                 فوتر
                                                             </a></li>
                                                     @endcan
-                                                    @canany(['settings-footer-menu-create', 'settings-footer-menu-edit',
-                                                        'settings-footer-menu-delete'])
+                                                    @can('settings-footer-menu')
                                                         <li><a href="{{ route('admin.settings.footer.menu') }}"> منوهای
                                                                 فوتر </a></li>
                                                     @endcan
@@ -96,17 +94,21 @@
                                                                                     @endif
                                                                                 </td>
                                                                                 <td>
-                                                                                    <button
-                                                                                        wire:click="restore({{ $logo->id }})"
-                                                                                        class="action-icon">
-                                                                                        <i
-                                                                                            class="zmdi zmdi-replay zmdi-custom"></i></button>
-                                                                                    <button
-                                                                                        wire:click="deleteId({{ $logo->id }})"
-                                                                                        data-toggle="modal"
-                                                                                        data-target="#exampleModal"
-                                                                                        class="action-icon"> <i
-                                                                                            class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                                                    @can('settings-footer-logo-Restore')
+                                                                                        <button
+                                                                                            wire:click="restore({{ $logo->id }})"
+                                                                                            class="action-icon">
+                                                                                            <i
+                                                                                                class="zmdi zmdi-replay zmdi-custom"></i></button>
+                                                                                    @endcan
+                                                                                    @can('settings-footer-logo-forceDelete')
+                                                                                        <button
+                                                                                            wire:click="deleteId({{ $logo->id }})"
+                                                                                            data-toggle="modal"
+                                                                                            data-target="#exampleModal"
+                                                                                            class="action-icon"> <i
+                                                                                                class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                                                    @endcan
                                                                                 </td>
                                                                             </tr>
                                                                         @endforeach

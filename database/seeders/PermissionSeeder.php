@@ -38,6 +38,12 @@ class PermissionSeeder extends Seeder
             [
                 'created_at' => new \DateTime,
                 'updated_at' => new \DateTime,
+                'title' => "settings-footer-logo",
+                'description' => "لوگوی فوتر سایت",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
                 'title' => "settings-footer-logo-create",
                 'description' => "ایجاد لوگوی فوتر سایت",
             ],
@@ -76,6 +82,12 @@ class PermissionSeeder extends Seeder
             [
                 'created_at' => new \DateTime,
                 'updated_at' => new \DateTime,
+                'title' => "settings-footer-menu",
+                'description' => "منوی فوتر سایت",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
                 'title' => "settings-footer-menu-create",
                 'description' => "ایجاد منوی فوتر سایت",
             ],
@@ -96,7 +108,7 @@ class PermissionSeeder extends Seeder
                 'created_at' => new \DateTime,
                 'updated_at' => new \DateTime,
                 'title' => "settings-footer-namad",
-                'description' => "ویرایش نمادهای سایت",
+                'description' => "ویرایش نمادهای فوتر سایت",
             ],
             /////End Footer Setting
         ]);

@@ -1,4 +1,4 @@
-@section('title','نمادهای سایت')
+@section('title', 'نمادهای سایت')
 <div>
     <div class="container-fluid">
         <div class="inbox-area">
@@ -20,22 +20,21 @@
                                                     <li><a href="{{ route('admin.settings.footer.social') }}"> شبکه های
                                                             اجتماعی </a></li>
                                                 @endcan
-                                                @canany(['settings-footer-logo-create', 'settings-footer-logo-edit',
-                                                    'settings-footer-logo-delete', 'settings-footer-logo-trash',
-                                                    'settings-footer-logo-Restore', 'settings-footer-logo-forceDelete'])
+                                                @can('settings-footer-logo')
                                                     <li><a href="{{ route('admin.settings.footer.logo') }}"> لوگوهای فوتر
                                                         </a></li>
                                                 @endcan
-                                                @canany(['settings-footer-menu-create', 'settings-footer-menu-edit',
-                                                    'settings-footer-menu-delete'])
+                                                @can('settings-footer-menu')
                                                     <li><a href="{{ route('admin.settings.footer.menu') }}"> منوهای
                                                             فوتر </a></li>
                                                 @endcan
                                                 @can('settings-footer-namad')
-                                                    <li class="active"><a href="{{ route('admin.settings.footer.namad') }}"> نمادهای سایت
+                                                    <li class="active"><a
+                                                            href="{{ route('admin.settings.footer.namad') }}"> نمادهای
+                                                            سایت
                                                         </a></li>
                                                 @endcan
-                                                </ul>
+                                            </ul>
                                             <div class="clearfix"></div>
                                         </div>
                                     </div>
@@ -53,21 +52,27 @@
                                     <label style="font-weight:bold">اپلیکیشن موبایل:</label>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <input class="form-control" wire:model="linkApp1" type="text" style="text-align:left" placeholder="لینک اپلیکیشن">
+                                            <input class="form-control" wire:model="linkApp1" type="text"
+                                                style="text-align:left" placeholder="لینک اپلیکیشن">
                                         </div>
                                         <div class="col-lg-6">
-                                            <input class="form-control" wire:model="imageApp1" type="text" style="text-align:left" placeholder="تصویر">
+                                            <input class="form-control" wire:model="imageApp1" type="text"
+                                                style="text-align:left" placeholder="تصویر">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="col-lg-6">
-                                            <input class="form-control" wire:model="linkApp2" type="text" style="text-align:left" placeholder="لینک اپلیکیشن">
+                                            <input class="form-control" wire:model="linkApp2" type="text"
+                                                style="text-align:left" placeholder="لینک اپلیکیشن">
                                         </div>
                                         <div class="col-lg-6">
-                                            <input class="form-control" wire:model="imageApp2" type="text" style="text-align:left" placeholder="تصویر">
+                                            <input class="form-control" wire:model="imageApp2" type="text"
+                                                style="text-align:left" placeholder="تصویر">
                                         </div>
                                     </div>
-                                    <button type="submit" wire:click="update()" class="btn btn-outline-success mb-2 mr-2" style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
+                                    <button type="submit" wire:click="update()"
+                                        class="btn btn-outline-success mb-2 mr-2" style="float:left;"><i
+                                            class="fa fa-save"></i> ذخیره</button>
                                 </div>
                             </div>
                         </div>
