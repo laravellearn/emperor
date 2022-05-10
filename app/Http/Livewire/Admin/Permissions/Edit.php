@@ -6,9 +6,12 @@ use App\Models\Admin\Permissions\Permission;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Edit extends Component
 {
+    use AuthorizesRequests;
+
     public Permission $permission;
     public $readyToLoad = false;
     public $search;
@@ -24,6 +27,8 @@ class Edit extends Component
 
     public function PermissionForm()
     {
+        $this->authorize('permission-edit',Permission::class);
+
         $this->validate();
         $this->permission->update($this->validate());
         $this->permission->roles()->sync($this->roles);
@@ -35,6 +40,8 @@ class Edit extends Component
 
     public function render()
     {
+        $this->authorize('permissions',Permission::class);
+
         $permission = $this->permission;
         $permissions = $this->readyToLoad ? Permission::where('title', 'LIKE', '%' . $this->search . '%')->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
 
@@ -53,6 +60,8 @@ class Edit extends Component
 
     public function delete()
     {
+        $this->authorize('permission-edit',Permission::class);
+
         $permission = Permission::find($this->deleteId);
         $permission->delete();
 

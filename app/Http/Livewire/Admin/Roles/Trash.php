@@ -6,9 +6,11 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Admin\Log;
 use App\Models\Admin\Permissions\Role;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Trash extends Component
 {
+    use AuthorizesRequests;
 
     public Role $role;
     public $readyToLoad = false;
@@ -24,6 +26,8 @@ class Trash extends Component
 
     public function render()
     {
+        $this->authorize('role-trash',Role::class);
+
         $roles = $this->readyToLoad ? Role::where('description', 'LIKE', '%' . $this->search . '%')
         ->onlyTrashed()->latest()->paginate(10) : [];
         return view('livewire.admin.roles.trash', compact('roles'));
@@ -41,6 +45,8 @@ class Trash extends Component
 
     public function delete()
     {
+        $this->authorize('role-forceDelete',Role::class);
+
         $role = Role::withTrashed()->findOrFail($this->deleteId);
         $role->permissions()->detach();
         $role->forceDelete();
@@ -53,6 +59,8 @@ class Trash extends Component
 
     public function restore($id)
     {
+        $this->authorize('role-restore',Role::class);
+
         $role = Role::withTrashed()->findOrFail($id);
         $role->restore();
 

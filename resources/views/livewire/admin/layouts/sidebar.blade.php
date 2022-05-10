@@ -133,24 +133,33 @@
                         </ul>
                     </li> --}}
 
-                    <li
-                        class="treeview {{ Request::routeIs(['admin.roles', 'admin.permissions', 'admin.roles.edit', 'admin.permissions.edit', 'admin.roles.trash', 'admin.permissions.trash']) ? 'active' : '' }}">
-                        <a href="javascript:void(0)"><i class="fa fa-user-secret"></i> <span>سطوح دسترسی</span> <i
-                                class="fa fa-angle-left"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="{{ route('admin.roles') }}"
-                                    {{ Request::routeIs(['admin.roles', 'admin.roles.edit', 'admin.roles.trash']) ? 'style=color:#54c6d0' : '' }}>نقش
-                                    ها</a></li>
-                            <li><a href="{{ route('admin.permissions') }}"
-                                    {{ Request::routeIs(['admin.permissions', 'admin.permissions.edit', 'admin.permissions.trash']) ? 'style=color:#54c6d0' : '' }}>سطح
-                                    دسترسی</a></li>
-                        </ul>
-                    </li>
+                    @canany(['permissions', 'roles'])
+                        <li
+                            class="treeview {{ Request::routeIs(['admin.roles', 'admin.permissions', 'admin.roles.edit', 'admin.permissions.edit', 'admin.roles.trash', 'admin.permissions.trash']) ? 'active' : '' }}">
+                            <a href="javascript:void(0)"><i class="fa fa-user-secret"></i> <span>سطوح دسترسی</span> <i
+                                    class="fa fa-angle-left"></i></a>
+                            <ul class="treeview-menu">
+                                @can('roles')
+                                    <li><a href="{{ route('admin.roles') }}"
+                                            {{ Request::routeIs(['admin.roles', 'admin.roles.edit', 'admin.roles.trash']) ? 'style=color:#54c6d0' : '' }}>نقش
+                                            ها</a></li>
+                                @endcan
+                                @can('permissions')
+                                    <li><a href="{{ route('admin.permissions') }}"
+                                            {{ Request::routeIs(['admin.permissions', 'admin.permissions.edit', 'admin.permissions.trash']) ? 'style=color:#54c6d0' : '' }}>سطح
+                                            دسترسی</a></li>
+                                @endcan
+                            </ul>
+                        </li>
 
-                    <li class="{{ Request::routeIs(['admin.logs']) ? 'active' : '' }}">
-                        <a href="{{ route('admin.logs') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات
-                                سیستم</span></a>
-                    </li>
+                    @endcan
+
+                    @can('logs')
+                        <li class="{{ Request::routeIs(['admin.logs']) ? 'active' : '' }}">
+                            <a href="{{ route('admin.logs') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات
+                                    سیستم</span></a>
+                        </li>
+                    @endcan
 
                     <li
                         class="treeview {{ Request::routeIs(['admin.settings.footer.label', 'admin.settings.footer.social', 'admin.settings.footer.logo', 'admin.settings.footer.logo.update', 'admin.settings.footer.menu', 'admin.settings.footer.menu.update', 'admin.settings.footer.namad', 'admin.settings.footer.logo.trash']) ? 'active' : '' }}">
@@ -160,10 +169,7 @@
                         @endcan
                         <ul class="treeview-menu">
                             @canany(['setting-footer', 'setting-footer-label', 'settings-footer-social',
-                                'settings-footer-logo-create', 'settings-footer-logo-edit', 'settings-footer-logo-delete',
-                                'settings-footer-logo-trash', 'settings-footer-logo-Restore',
-                                'settings-footer-logo-forceDelete', 'settings-footer-menu-create',
-                                'settings-footer-menu-edit', 'settings-footer-menu-delete', 'settings-footer-namad'])
+                                'settings-footer-logo', 'settings-footer-menu', 'settings-footer-namad'])
                                 <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
                                 <li><a {{ Request::routeIs(['admin.settings.footer.label', 'admin.settings.footer.social', 'admin.settings.footer.logo', 'admin.settings.footer.logo.update', 'admin.settings.footer.menu', 'admin.settings.footer.menu.update', 'admin.settings.footer.namad', 'admin.settings.footer.logo.trash']) ? 'style=color:#54c6d0' : '' }}
                                         href="{{ route('admin.settings.footer') }}">تنظیمات فوتر</a></li>

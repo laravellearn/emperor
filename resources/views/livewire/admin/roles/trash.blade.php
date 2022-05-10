@@ -39,14 +39,18 @@
                                                         @endforeach
                                                     </td>
                                                     <td>
-                                                        <button wire:click="restore({{ $role->id }})"
-                                                            class="action-icon">
-                                                            <i class="zmdi zmdi-replay zmdi-custom"></i></button>
-                                                        <button wire:click="deleteId({{ $role->id }})"
-                                                            wire:click="deleteId({{ $role->id }})"
-                                                            data-toggle="modal" data-target="#exampleModal"
-                                                            class="action-icon"> <i
-                                                                class="zmdi zmdi-delete zmdi-custom"></i></>
+                                                        @can('role-restore')
+                                                            <button wire:click="restore({{ $role->id }})"
+                                                                class="action-icon">
+                                                                <i class="zmdi zmdi-replay zmdi-custom"></i></button>
+                                                        @endcan
+                                                        @can('role-forceDelete')
+                                                            <button wire:click="deleteId({{ $role->id }})"
+                                                                wire:click="deleteId({{ $role->id }})"
+                                                                data-toggle="modal" data-target="#exampleModal"
+                                                                class="action-icon"> <i
+                                                                    class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             @endforeach

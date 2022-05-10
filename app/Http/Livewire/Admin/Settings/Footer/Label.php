@@ -6,9 +6,11 @@ use App\Models\Admin\Log;
 use App\Models\Admin\settings\Footer;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Label extends Component
 {
+    use AuthorizesRequests;
 
     public $upLabel,$widgetLabel1,$widgetLabel2,$widgetLabel3,$widgetLabel4,$widgetLabel5,
             $rssLabel,$socialLabel,$supportLabel,$phoneLabel,$addressLabel,$emailLabel,$aboutHeadLabel,
@@ -39,11 +41,14 @@ class Label extends Component
 
     public function render()
     {
+        $this->authorize('setting-footer-label',Footer::class);
         return view('livewire.admin.settings.footer.label');
     }
 
     public function update()
     {
+        $this->authorize('setting-footer-label',Footer::class);
+
         $footer = DB::connection('mysql-settings')->table('footers')->limit(1);
 
         //Validate

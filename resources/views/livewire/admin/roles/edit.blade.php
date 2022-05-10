@@ -54,14 +54,16 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست نقش ها</h4>
-                                <a href="{{ route('admin.roles.trash') }}" type="button"
-                                    class="btn btn-danger mb-2 mr-2" style="float:left;margin-top:-37px;"><i
-                                        class="fa fa-trash"></i> سطل زباله <span class="badge badge-danger">
-                                        {{ \App\Models\Admin\Permissions\Role::onlyTrashed()->count() }}
-                                    </span></a>
-                                <button type="button" class="btn btn-primary mb-2 mr-2"
+                                @can('role-trash')
+                                    <a href="{{ route('admin.roles.trash') }}" type="button"
+                                        class="btn btn-danger mb-2 mr-2" style="float:left;margin-top:-37px;"><i
+                                            class="fa fa-trash"></i> سطل زباله <span class="badge badge-danger">
+                                            {{ \App\Models\Admin\Permissions\Role::onlyTrashed()->count() }}
+                                        </span></a>
+                                @endcan
+                                {{-- <button type="button" class="btn btn-primary mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
-                                    اکسل</button>
+                                    اکسل</button> --}}
                                 <a href="{{ route('admin.roles') }}" class="btn btn-success mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-plus-square"></i> افزودن</a>
 
@@ -93,13 +95,17 @@
                                                         @endforeach
                                                     </td>
                                                     <td>
-                                                        <a href="{{ route('admin.roles.edit', $role->id) }}"
-                                                            class="action-icon"> <i
-                                                                class="zmdi zmdi-edit zmdi-custom"></i></a>
-                                                        <button wire:click="deleteId({{ $role->id }})"
-                                                            data-toggle="modal" data-target="#exampleModal"
-                                                            class="action-icon"> <i
-                                                                class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                        @can('role-edit')
+                                                            <a href="{{ route('admin.roles.edit', $role->id) }}"
+                                                                class="action-icon"> <i
+                                                                    class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                        @endcan
+                                                        @can('role-delete')
+                                                            <button wire:click="deleteId({{ $role->id }})"
+                                                                data-toggle="modal" data-target="#exampleModal"
+                                                                class="action-icon"> <i
+                                                                    class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                        @endcan
                                                     </td>
                                                 </tr>
                                             @endforeach

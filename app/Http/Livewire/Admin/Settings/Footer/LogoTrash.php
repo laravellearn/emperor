@@ -7,9 +7,12 @@ use App\Models\Admin\settings\Footerlogo;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithPagination;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class LogoTrash extends Component
 {
+    use AuthorizesRequests;
+
     public Footerlogo $Footerlogo;
     public $readyToLoad = false;
     public $search;
@@ -24,6 +27,8 @@ class LogoTrash extends Component
 
     public function render()
     {
+        $this->authorize('settings-footer-logo-trash',Footerlogo::class);
+
         $logos = $this->readyToLoad ? Footerlogo::where('title', 'LIKE', '%' . $this->search . '%')
         ->onlyTrashed()->latest()->paginate(10) : [];
         return view('livewire.admin.settings.footer.logo-trash',compact('logos'));
@@ -41,6 +46,8 @@ class LogoTrash extends Component
 
     public function delete()
     {
+        $this->authorize('settings-footer-logo-forceDelete',Footerlogo::class);
+
         $logo = Footerlogo::withTrashed()->findOrFail($this->deleteId);
         Storage::delete($logo->image);
         $logo->forceDelete();
@@ -53,6 +60,8 @@ class LogoTrash extends Component
 
     public function restore($id)
     {
+        $this->authorize('settings-footer-logo-Restore',Footerlogo::class);
+
         $logo = Footerlogo::withTrashed()->findOrFail($id);
         $logo->restore();
 

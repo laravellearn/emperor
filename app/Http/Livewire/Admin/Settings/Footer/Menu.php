@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Admin\Settings\Footer;
 
 use Livewire\Component;
 use App\Models\Admin\settings\Footermenu;
-use App\Models\Admin\settings\Footer;
 use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Menu extends Component
 {
+    use AuthorizesRequests;
 
     public Footermenu $Footermenu;
     public $readyToLoad = false;
@@ -33,6 +34,8 @@ class Menu extends Component
 
     public function MenuForm()
     {
+        $this->authorize('settings-footer-menu-create',Footermenu::class);
+
         $this->validate();
         $menu = $this->Footermenu->query()->create([
             'title'    => $this->Footermenu->title,
@@ -50,6 +53,8 @@ class Menu extends Component
 
     public function render()
     {
+        $this->authorize('settings-footer-menu',Footermenu::class);
+
         $menus = $this->readyToLoad ? Footermenu::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
 
         $footer = DB::connection('mysql-settings')->table('footers')->first();
@@ -70,6 +75,8 @@ class Menu extends Component
 
     public function changeStatus($id)
     {
+        $this->authorize('settings-footer-menu-edit',Footermenu::class);
+
         $menu = Footermenu::find($id);
         if ($menu->isActive == 1) {
             $menu->update([
@@ -94,6 +101,8 @@ class Menu extends Component
 
     public function delete()
     {
+        $this->authorize('settings-footer-menu-delete',Footermenu::class);
+
         $menu = Footermenu::find($this->deleteId);
         $menu->delete();
 

@@ -6,9 +6,11 @@ use App\Models\Admin\Permissions\Role;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Index extends Component
 {
+    use AuthorizesRequests;
 
     public Role $role;
     public $readyToLoad = false;
@@ -30,6 +32,8 @@ class Index extends Component
 
     public function RoleForm()
     {
+        $this->authorize('role-create',Role::class);
+
         $this->validate();
         $role = $this->role->query()->create([
             'title'    => $this->role->title,
@@ -47,6 +51,8 @@ class Index extends Component
 
     public function render()
     {
+        $this->authorize('roles',Role::class);
+
         $roles = $this->readyToLoad ? Role::where('title', 'LIKE', '%' . $this->search . '%')
         ->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
         return view('livewire.admin.roles.index', compact('roles'));
@@ -64,6 +70,8 @@ class Index extends Component
 
     public function delete()
     {
+        $this->authorize('role-delete',Role::class);
+
         $role = Role::find($this->deleteId);
         $role->delete();
 

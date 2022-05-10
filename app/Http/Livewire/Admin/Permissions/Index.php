@@ -6,9 +6,12 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Admin\Log;
 use App\Models\Admin\Permissions\Permission;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Index extends Component
 {
+    use AuthorizesRequests;
+
     public Permission $permission;
     public $readyToLoad = false;
     public $search;
@@ -29,6 +32,8 @@ class Index extends Component
 
     public function PermissionForm()
     {
+        $this->authorize('permission-create',Permission::class);
+
         $this->validate();
         $permission = $this->permission->query()->create([
             'title'    => $this->permission->title,
@@ -46,6 +51,8 @@ class Index extends Component
 
     public function render()
     {
+        $this->authorize('permissions',Permission::class);
+
         $permissions = $this->readyToLoad ? Permission::where('title', 'LIKE', '%' . $this->search . '%')
                 ->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
         return view('livewire.admin.permissions.index', compact('permissions'));
@@ -63,6 +70,8 @@ class Index extends Component
 
     public function delete()
     {
+        $this->authorize('permission-delete',Permission::class);
+
         $permission = Permission::find($this->deleteId);
         $permission->delete();
 

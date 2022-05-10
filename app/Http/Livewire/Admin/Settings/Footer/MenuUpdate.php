@@ -7,9 +7,12 @@ use Livewire\WithPagination;
 use App\Models\Admin\settings\Footermenu;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class MenuUpdate extends Component
 {
+    use AuthorizesRequests;
+
     public Footermenu $Footermenu;
     public $readyToLoad = false;
     public $search;
@@ -27,6 +30,8 @@ class MenuUpdate extends Component
 
     public function MenuForm()
     {
+        $this->authorize('settings-footer-menu-edit',Footermenu::class);
+
         $this->validate();
         $this->Footermenu->update($this->validate());
 
@@ -37,6 +42,8 @@ class MenuUpdate extends Component
 
     public function changeStatus($id)
     {
+        $this->authorize('settings-footer-menu-edit',Footermenu::class);
+
         $menu = Footermenu::find($id);
         if ($menu->isActive == 1) {
             $menu->update([
@@ -61,6 +68,8 @@ class MenuUpdate extends Component
 
     public function render()
     {
+        $this->authorize('settings-footer-menu',Footermenu::class);
+
         $menus = $this->readyToLoad ? Footermenu::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
 
         $footerMenu = $this->Footermenu;
@@ -83,6 +92,8 @@ class MenuUpdate extends Component
 
     public function delete()
     {
+        $this->authorize('settings-footer-menu-delete',Footermenu::class);
+
         $menu = Footermenu::find($this->deleteId);
         $menu->delete();
 

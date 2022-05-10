@@ -6,9 +6,13 @@ use Livewire\Component;
 use App\Models\Admin\settings\Footer;
 use Illuminate\Support\Facades\DB;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+
 
 class Namad extends Component
 {
+    use AuthorizesRequests;
+
     public $linkApp1, $imageApp1, $linkApp2, $imageApp2, $enamad;
 
     public Footer $footer;
@@ -27,11 +31,15 @@ class Namad extends Component
 
     public function render()
     {
+        $this->authorize('settings-footer-namad',Footer::class);
+
         return view('livewire.admin.settings.footer.namad');
     }
 
     public function update()
     {
+        $this->authorize('settings-footer-namad',Footer::class);
+
         $footer = DB::connection('mysql-settings')->table('footers')->limit(1);
 
         //Update

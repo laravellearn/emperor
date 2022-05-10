@@ -7,9 +7,12 @@ use Livewire\WithFileUploads;
 use Livewire\WithPagination;
 use App\Models\Admin\settings\Footerlogo;
 use App\Models\Admin\Log;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class LogoUpdate extends Component
 {
+    use AuthorizesRequests;
+
     use WithFileUploads;
 
     public $image;
@@ -31,6 +34,8 @@ class LogoUpdate extends Component
 
     public function LogoForm()
     {
+        $this->authorize('settings-footer-logo-edit',Footerlogo::class);
+
         $this->validate();
         $this->Footerlogo->update($this->validate());
         if ($this->image) {
@@ -59,6 +64,8 @@ class LogoUpdate extends Component
 
     public function changeStatus($id)
     {
+        $this->authorize('settings-footer-logo-edit',Footerlogo::class);
+
         $logo = Footerlogo::find($id);
         if ($logo->isActive == 1) {
             $logo->update([
@@ -83,6 +90,8 @@ class LogoUpdate extends Component
 
     public function render()
     {
+        $this->authorize('settings-footer-logo',Footerlogo::class);
+
         $logos = $this->readyToLoad ? Footerlogo::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
 
         $footerlogo = $this->Footerlogo;
@@ -97,6 +106,8 @@ class LogoUpdate extends Component
 
     public function delete()
     {
+        $this->authorize('settings-footer-logo-delete',Footerlogo::class);
+
         $logo = Footerlogo::find($this->deleteId);
         $logo->delete();
 

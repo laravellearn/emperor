@@ -9,7 +9,8 @@
                             <div class="card-body">
                                 <h4 class="card-title mb-2">لیست دسترسی های حذف شده</h4>
                                 <a href="{{ route('admin.permissions') }}" class="btn btn-success mb-2 mr-2"
-                                    style="float:left;margin-top:-37px;"><i class="fa fa-list-alt"></i> لیست سطوح دسترسی ها</a>
+                                    style="float:left;margin-top:-37px;"><i class="fa fa-list-alt"></i> لیست سطوح دسترسی
+                                    ها</a>
                                 <hr>
                                 <input wire:model="search" type="search" class="form-control mb-2 w-50 float-left"
                                     placeholder="جستجو...">
@@ -39,12 +40,18 @@
                                                         @endforeach
                                                     </td>
                                                     <td>
-                                                        <button wire:click="restore({{ $permission->id }})"
-                                                            class="action-icon">
-                                                           <i class="zmdi zmdi-replay zmdi-custom"></i></button>                                                        <button wire:click="deleteId({{ $permission->id }})"
-                                                            data-toggle="modal" data-target="#exampleModal"
-                                                            class="action-icon"> <i
-                                                                class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                        @can('permission-restore')
+                                                            <button wire:click="restore({{ $permission->id }})"
+                                                                class="action-icon">
+                                                                <i class="zmdi zmdi-replay zmdi-custom"></i></button>
+                                                        @endcan
+                                                        @can('permission-forceDelete')
+                                                            <button wire:click="deleteId({{ $permission->id }})"
+                                                                data-toggle="modal" data-target="#exampleModal"
+                                                                class="action-icon"> <i
+                                                                    class="zmdi zmdi-delete zmdi-custom"></i></button>
+                                                        @endcan
+
                                                     </td>
                                                 </tr>
                                             @endforeach

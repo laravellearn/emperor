@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Admin\Settings\Footer;
 use App\Models\Admin\Log;
 use Livewire\Component;
 use App\Models\Admin\settings\Footer;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\DB;
 
 class Social extends Component
 {
+    use AuthorizesRequests;
+
     public $address,$phone,$email,$socialIcon1,$socialLink1,$socialIcon2,$socialLink2,$socialIcon3,$socialLink3,
     $socialIcon4,$socialLink4,$socialIcon5,$socialLink5,$socialIcon6,$socialLink6;
 
@@ -39,11 +41,15 @@ class Social extends Component
 
     public function render()
     {
+        $this->authorize('settings-footer-social',Footer::class);
+
         return view('livewire.admin.settings.footer.social');
     }
 
     public function update()
     {
+        $this->authorize('settings-footer-social',Footer::class);
+
         $footer = DB::connection('mysql-settings')->table('footers')->limit(1);
 
         //Update
