@@ -22,7 +22,8 @@ class UserSeeder extends Seeder
             'email_verified_at' => new \DateTime,
             'mobile' => "09210034734",
             'mobile_verified_at' => new \DateTime,
-            'password' => Hash::make("123456789")
+            'password' => Hash::make("123456789"),
+            'typeUser' => 'admin'
         ]);
     }
 }

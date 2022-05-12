@@ -47,5 +47,6 @@ Route::get('/roles/trashed', App\Http\Livewire\Admin\Roles\Trash::class)->name('
 
 //---------------------------------------Users---------------------------------------//
 Route::get('/users', App\Http\Livewire\Admin\Users\Index::class)->name('admin.users');
-// Route::get('/users/edit/{role}', App\Http\Livewire\Admin\Users\Edit::class)->name('admin.roles.edit');
-// Route::get('/users/trashed', App\Http\Livewire\Admin\Users\Trash::class)->name('admin.roles.trash');
+Route::get('/users/edit/{role}', App\Http\Livewire\Admin\Users\Edit::class)->name('admin.users.edit');
+Route::get('/users/trashed', App\Http\Livewire\Admin\Users\Trash::class)->name('admin.users.trash');
+Route::get('/users/create', App\Http\Livewire\Admin\Users\Create::class)->name('admin.users.create');

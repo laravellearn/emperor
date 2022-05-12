@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('profilePhoto')->default('/home/images/svg/user-profile.svg');
             $table->enum('typeUser',['user','vendor','admin'])->default('user');
             $table->boolean('isActive')->default(1);
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });

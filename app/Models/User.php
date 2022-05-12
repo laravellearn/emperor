@@ -9,10 +9,11 @@ use SoapClient;
 use App\Models\Admin\Permissions\Permission;
 use App\Models\Admin\Permissions\Role;
 use Hekmatinasser\Verta\Verta;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     protected $connection = "mysql";
 
