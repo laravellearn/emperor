@@ -8,6 +8,7 @@ use App\Models\Admin\Log;
 use SoapClient;
 use App\Models\Admin\Permissions\Permission;
 use App\Models\Admin\Permissions\Role;
+use Hekmatinasser\Verta\Verta;
 
 class User extends Authenticatable
 {
@@ -89,4 +90,19 @@ class User extends Authenticatable
     {
         return !!$roles->intersect($this->roles)->all();
     }
+
+    public function getCreatedAtAttribute($created_at)
+    {
+        $createDate = new Verta($created_at);
+        $createDate = $createDate->format('H:i:s - Y/m/d');
+        return $createDate;
+    }
+
+    public function getUpdatedAtAttribute($updated_at)
+    {
+        $updateDate = new Verta($updated_at);
+        $updateDate = $updateDate->format('H:i:s - Y/m/d');
+        return $updateDate;
+    }
+
 }

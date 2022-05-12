@@ -125,13 +125,13 @@ class PermissionSeeder extends Seeder
                 'created_at' => new \DateTime,
                 'updated_at' => new \DateTime,
                 'title' => "roles",
-                'description' => "نقش ها",
+                'description' => "لیست نقش ها",
             ],
             [
                 'created_at' => new \DateTime,
                 'updated_at' => new \DateTime,
                 'title' => "permissions",
-                'description' => "دسترسی ها",
+                'description' => "لیست دسترسی ها",
             ],
             [
                 'created_at' => new \DateTime,
@@ -206,6 +206,76 @@ class PermissionSeeder extends Seeder
                 'description' => "بازیابی دسترسی ها",
             ],
             //End Permissions
+
+            //users
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "users",
+                'description' => "مشاهده لیست کاربران",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-view",
+                'description' => "مشاهده اطلاعات کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-login",
+                'description' => "ورود به پنل کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-permission",
+                'description' => "سطح دسترسی کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-basket",
+                'description' => "تاریخچه خرید کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-edit",
+                'description' => "ویرایش کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-delete",
+                'description' => "حذف موقت کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-trash",
+                'description' => "سطل زباله کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-forceDelete",
+                'description' => "حذف کامل کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-restore",
+                'description' => "بازیابی کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-create",
+                'description' => "ایجاد کاربر",
+            ],
+
+            //End Users
 
         ]);
     }
