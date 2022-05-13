@@ -106,13 +106,16 @@
                                                                     class="fa fa-eye" style="color:#234124;"></i></a>
                                                         @endcan
                                                         @can('user-login')
-                                                            <a href="" style="font-size:20px;" title="ورود به پنل کاربر"><i
-                                                                    class="fa fa-sign-in" style="color:green;"></i></a>
+                                                            <button wire:click="loginForce({{ $user->id }})"
+                                                                class="action-icon" style="font-size:20px;"
+                                                                title="ورود به پنل کاربر"><i
+                                                                    class="fa fa-sign-in"></i></button>
                                                         @endcan
                                                         @can('user-permission')
-                                                            <a href="" style="font-size:20px;" title="سطح دسترسی کاربر"><i
-                                                                    class="fa fa-user-secret"
-                                                                    style="color:darkblue;"></i></a>
+                                                        <a href="{{ route('admin.users.permission', $user->id) }}"
+                                                            style="font-size:20px;" class="action-icon"
+                                                            title="سطح دسترسی کاربر"><i
+                                                                class="fa fa-user-secret"></i></a>
                                                         @endcan
                                                         @can('user-basket')
                                                             <a href="" style="font-size:20px;" title="خرید های کاربر"><i
@@ -120,8 +123,9 @@
                                                                     style="color:rgb(115, 194, 108);"></i></a>
                                                         @endcan
                                                         @can('user-edit')
-                                                            <a href="" style="font-size:20px;"><i class="fa fa-edit"
-                                                                    style="color:#04a9f5;"></i></a>
+                                                            <a href=""
+                                                                style="font-size:20px;" class="action-icon"><i
+                                                                    class="fa fa-edit"></i></a>
                                                         @endcan
                                                         @can('user-delete')
                                                             <button wire:click="deleteId({{ $user->id }})"

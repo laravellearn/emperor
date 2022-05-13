@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 
 class Index extends Component
 {
@@ -78,6 +79,13 @@ class Index extends Component
         Log::logWritter('update','وضعیت کاربر تغییر کرد - '.$user->name);
 
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
+    }
+
+    public function loginForce($id)
+    {
+        Auth::logout();
+        Auth::loginUsingId($id);
+        return to_route('home');
     }
 
 }
