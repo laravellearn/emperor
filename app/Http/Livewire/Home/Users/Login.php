@@ -31,7 +31,7 @@ class Login extends Component
         $this->validate();
         $user = User::where('mobile', $this->mobile)->first();
 
-        if (isset($user)) {
+        if (isset($user) && $user->isActive==1) {
             if ($user->mobile_verified_at == null) {
                 $code = random_int(1000, 9999);
                 if (isset($user->token->expired_at)) {
@@ -55,6 +55,8 @@ class Login extends Component
             } else {
                 $this->emit('toast', 'error', 'اطلاعات ورود نادرست است!');
             }
+        }elseif($user->isActive==0){
+            $this->emit('toast', 'error', 'کاربری شما غیرفعال است!');
         } else {
             $this->emit('toast', 'error', 'شما در سایت ثبت نام نکرده اید!');
         }

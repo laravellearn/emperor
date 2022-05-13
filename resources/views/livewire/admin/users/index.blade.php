@@ -64,6 +64,14 @@
                                                                 کاربر عادی
                                                             @break
 
+                                                            @case('admin')
+                                                                مدیر
+                                                            @break
+
+                                                            @case('vendor')
+                                                                فروشنده
+                                                            @break
+
                                                             @default
                                                                 دیگر
                                                         @endswitch
@@ -116,8 +124,10 @@
                                                                     style="color:#04a9f5;"></i></a>
                                                         @endcan
                                                         @can('user-delete')
-                                                            <a href="" style="font-size:20px;"><i class="fa fa-trash"
-                                                                    style="color:#dc3545;"></i></a>
+                                                            <button wire:click="deleteId({{ $user->id }})"
+                                                                style="font-size:20px;" data-toggle="modal"
+                                                                data-target="#exampleModal" class="action-icon"><i
+                                                                    class="fa fa-trash"></i></button>
                                                         @endcan
                                                     </td>
                                                 </tr>
@@ -132,6 +142,7 @@
                                     @endif
 
                                 </table>
+                                @include('livewire.admin.include.modal')
 
                             </div> <!-- end card body-->
                         </div> <!-- end card -->

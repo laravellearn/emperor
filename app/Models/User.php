@@ -23,7 +23,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'mobile', 'email', 'password', 'mobile_verified_at'
+        'name', 'mobile', 'email', 'password', 'mobile_verified_at','isActive'
     ];
 
     /**
@@ -104,6 +104,13 @@ class User extends Authenticatable
         $updateDate = new Verta($updated_at);
         $updateDate = $updateDate->format('H:i:s - Y/m/d');
         return $updateDate;
+    }
+
+    public function getDeletedAtAttribute($udelete_at)
+    {
+        $deleteDate = new Verta($udelete_at);
+        $deleteDate = $deleteDate->format('H:i:s - Y/m/d');
+        return $deleteDate;
     }
 
 }
