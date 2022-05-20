@@ -39,6 +39,10 @@
                                                     @if ($log->user_id == null)
                                                         -
                                                     @else
+                                                        @foreach ($log->user->roles as $role)
+                                                            <span
+                                                                style="border: 1px solid #ccc;padding: 0px 2px;border-radius: 3px;">{{ $role->description }}</span>
+                                                        @endforeach
                                                     @endif
 
                                                 </td>
@@ -84,11 +88,13 @@
                                                         @break
 
                                                         @case('login')
-                                                            <div class="badge" style="background-color:orange;color:white">ورود به سایت</div>
+                                                            <div class="badge"
+                                                                style="background-color:orange;color:white">ورود به سایت</div>
                                                         @break
 
                                                         @case('logout')
-                                                            <div class="badge" style="background-color:orange;color:white">خروج از سایت</div>
+                                                            <div class="badge"
+                                                                style="background-color:orange;color:white">خروج از سایت</div>
                                                         @break
 
                                                         @default

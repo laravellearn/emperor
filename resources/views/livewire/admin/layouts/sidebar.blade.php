@@ -127,7 +127,7 @@
                     </li> --}}
 
                     @canany(['users'])
-                        <li class="treeview {{ Request::routeIs(['admin.users']) ? 'active' : '' }}">
+                        <li class="treeview {{ Request::routeIs(['admin.users', 'admin.users.create']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>کاربران</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
@@ -135,7 +135,10 @@
                                     <li><a {{ Request::routeIs(['admin.users']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.users') }}">لیست کاربران</a></li>
                                 @endcan
-                                <li><a href="#">افزودن کاربر</a></li>
+                                @can('user-create')
+                                    <li><a {{ Request::routeIs(['admin.users.create']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.users.create') }}">افزودن کاربر</a></li>
+                                @endcan
                             </ul>
                         </li>
                     @endcan

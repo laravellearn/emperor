@@ -31,9 +31,9 @@ class Index extends Component
         $this->authorize('users',User::class);
 
         $users = $this->readyToLoad ? User::where('name', 'LIKE', '%' . $this->search . '%')
-            ->where('mobile', 'LIKE', '%' . $this->search . '%')
-            ->where('email', 'LIKE', '%' . $this->search . '%')
-            ->where('typeUser', 'LIKE', '%' . $this->search . '%')->latest()->paginate(10) : [];
+            ->orWhere('mobile', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('email', 'LIKE', '%' . $this->search . '%')
+            ->orWhere('typeUser', 'LIKE', '%' . $this->search . '%')->latest()->paginate(10) : [];
         return view('livewire.admin.users.index',compact('users'));
     }
 
@@ -55,7 +55,7 @@ class Index extends Component
         $user->delete();
 
         //Create Log
-        Log::logWritter('delete', 'کاربر حذف شد - ' . $user->title);
+        Log::logWritter('delete', 'کاربر حذف شد - ' . $user->name);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }

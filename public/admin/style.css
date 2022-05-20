@@ -1742,7 +1742,9 @@ div.tagsinput span.tag a {
   line-height: 1;
   position: relative;
   z-index: 1; }
-
+.btn{
+    font-weight:bold;
+}
 .right-side-navbar .nav-item.dropdown .btn .ti-search {
   font-size: 16px; }
 
