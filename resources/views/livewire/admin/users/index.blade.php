@@ -143,7 +143,7 @@
                                                                     style="color:rgb(115, 194, 108);"></i></a>
                                                         @endcan
                                                         @can('user-edit')
-                                                            <a href="" style="font-size:20px;" class="action-icon"><i
+                                                            <a href="{{ route('admin.users.edit',$user) }}" style="font-size:20px;" class="action-icon"><i
                                                                     class="fa fa-edit"></i></a>
                                                         @endcan
                                                         @can('user-delete')

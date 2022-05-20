@@ -1,4 +1,4 @@
-@section('title', 'کاربران')
+@section('title', 'اطلاعات کاربر')
 <div>
     <div class="main-content">
         <div class="data-table-area">
