@@ -12,43 +12,50 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Permission extends Component
 {
     use AuthorizesRequests;
-
-    public Roles $role;
-    public Permissions $permission;
+    public $user;
     public $readyToLoad = false;
+    public $roles;
+    public $permissions;
 
     protected $rules = [
-        'role.roles'    => 'required',
-        'permission.permissions'     => 'required',
+        'roles'    => 'nullable',
+        'permissions'     => 'nullable',
     ];
 
-    public function PermissionForm()
+    public function mount()
     {
-        $this->authorize('user-Permission',User::class);
+    }
+
+    public function UserPermissionForm()
+    {
+        $this->authorize('user-permission', User::class);
 
         $this->validate();
-        $this->user->update($this->validate());
-        $this->user->permissions()->sync($this->permissions);
-        $this->user->roles()->sync($this->roles);
+        $user = User::findOrFail($this->user);
+
+        //TODO select2
+        $user->permissions()->sync($this->permissions);
+        $user->roles()->sync($this->roles);
         //Create Log
-        Log::logWritter('update', 'سطح دسترسی کاربر ویرایش شد - ' . $this->user->name);
+        Log::logWritter('update', 'سطح دسترسی کاربر ویرایش شد - ' . $user->name);
 
         $this->emit('toast', 'success', 'با موفقیت ویرایش شد');
     }
 
     public function render()
     {
-        $this->authorize('user-permissions',User::class);
+        $this->authorize('user-permission', User::class);
 
-        $role = $this->role;
-        $roles = $this->readyToLoad ? Role::where('title', 'LIKE', '%' . $this->search . '%')->orWhere('description', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
+        // $role = $this->role;
+        // $permission = $this->permission;
+        $user = $this->user;
+        $user = User::findOrFail($user);
+        $userRole = $user->roles()->pluck('id')->toArray();
+        $userPermission = $user->permissions()->pluck('id')->toArray();
 
-        return view('livewire.admin.users.permission', compact('role', 'roles'));
+        $roles = Roles::all();
+        $permissions = Permissions::all();
+
+        return view('livewire.admin.users.permission', compact('userRole', 'roles', 'userPermission', 'permissions', 'user'));
     }
-
-    public function loadRole()
-    {
-        $this->readyToLoad = true;
-    }
-
 }

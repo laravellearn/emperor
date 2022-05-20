@@ -217,12 +217,6 @@ class PermissionSeeder extends Seeder
             [
                 'created_at' => new \DateTime,
                 'updated_at' => new \DateTime,
-                'title' => "user-view",
-                'description' => "مشاهده اطلاعات کاربر",
-            ],
-            [
-                'created_at' => new \DateTime,
-                'updated_at' => new \DateTime,
                 'title' => "user-login",
                 'description' => "ورود به پنل کاربر",
             ],
@@ -273,6 +267,12 @@ class PermissionSeeder extends Seeder
                 'updated_at' => new \DateTime,
                 'title' => "user-create",
                 'description' => "ایجاد کاربر",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "user-info",
+                'description' => "نمایش اطلاعات کاربر",
             ],
 
             //End Users

@@ -81,6 +81,48 @@ class Index extends Component
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
 
+    public function changeStatusMobile($id)
+    {
+        $this->authorize('user-edit',User::class);
+
+        $user = User::find($id);
+        if ($user->mobile_verified_at != NULL) {
+            $user->update([
+                'mobile_verified_at' => NULL
+            ]);
+        } else {
+            $user->update([
+                'mobile_verified_at' => now()
+            ]);
+        }
+
+        //Create Log
+        Log::logWritter('update','وضعیت موبایل کاربر تغییر کرد - '.$user->name);
+
+        $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
+    }
+
+    public function changeStatusEmail($id)
+    {
+        $this->authorize('user-edit',User::class);
+
+        $user = User::find($id);
+        if ($user->email_verified_at != NULL) {
+            $user->update([
+                'email_verified_at' => NULL
+            ]);
+        } else {
+            $user->update([
+                'email_verified_at' => now()
+            ]);
+        }
+
+        //Create Log
+        Log::logWritter('update','وضعیت موبایل کاربر تغییر کرد - '.$user->name);
+
+        $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
+    }
+
     public function loginForce($id)
     {
         Auth::logout();

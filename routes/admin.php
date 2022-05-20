@@ -51,3 +51,4 @@ Route::get('/users/edit/{role}', App\Http\Livewire\Admin\Users\Edit::class)->nam
 Route::get('/users/trashed', App\Http\Livewire\Admin\Users\Trash::class)->name('admin.users.trash');
 Route::get('/users/create', App\Http\Livewire\Admin\Users\Create::class)->name('admin.users.create');
 Route::get('/users/permission/{user}', App\Http\Livewire\Admin\Users\Permission::class)->name('admin.users.permission');
+Route::get('/users/info/{user}', App\Http\Livewire\Admin\Users\Info::class)->name('admin.users.info');

@@ -35,7 +35,7 @@
                                             <th>پست الکترونیکی</th>
                                             <th>موبایل</th>
                                             <th>نوع کاربر</th>
-                                            <th>وضعیت</th>
+                                            <th>وضعیت کاربر</th>
                                             <th>تاریخ ایجاد</th>
                                             <th>عملیات</th>
                                         </tr>
@@ -87,6 +87,24 @@
                                                                     style="cursor:pointer"><span
                                                                         class="badge badge-danger">غیرفعال</span></a>
                                                             @endif
+                                                            @if ($user->mobile_verified_at != null)
+                                                                <a wire:click="changeStatusMobile({{ $user->id }})"
+                                                                    style="cursor:pointer"><span
+                                                                        class="badge badge-success">تائید موبایل</span></a>
+                                                            @else
+                                                                <a wire:click="changeStatusMobile({{ $user->id }})"
+                                                                    style="cursor:pointer"><span
+                                                                        class="badge badge-danger">تائید موبایل</span></a>
+                                                            @endif
+                                                            @if ($user->email_verified_at != null)
+                                                                <a wire:click="changeStatusEmail({{ $user->id }})"
+                                                                    style="cursor:pointer"><span
+                                                                        class="badge badge-success">تائید ایمیل</span></a>
+                                                            @else
+                                                                <a wire:click="changeStatusEmail({{ $user->id }})"
+                                                                    style="cursor:pointer"><span
+                                                                        class="badge badge-danger">تائید ایمیل</span></a>
+                                                            @endif
                                                         @endcan
                                                         @cannot('user-edit')
                                                             @if ($user->isActive == 1)
@@ -101,9 +119,11 @@
                                                     </td>
                                                     <td>{{ $user->created_at }}</td>
                                                     <td>
-                                                        @can('user-view')
-                                                            <a href="" style="font-size:20px;" title="اطلاعات کاربر"><i
-                                                                    class="fa fa-eye" style="color:#234124;"></i></a>
+                                                        @can('user-info')
+                                                            <a href="{{ route('admin.users.info', $user->id) }}"
+                                                                class="action-icon" style="font-size:20px;"
+                                                                title="نمایش اطلاعات کاربر"><i
+                                                                    class="fa fa-eye"></i></a>
                                                         @endcan
                                                         @can('user-login')
                                                             <button wire:click="loginForce({{ $user->id }})"
@@ -112,10 +132,10 @@
                                                                     class="fa fa-sign-in"></i></button>
                                                         @endcan
                                                         @can('user-permission')
-                                                        <a href="{{ route('admin.users.permission', $user->id) }}"
-                                                            style="font-size:20px;" class="action-icon"
-                                                            title="سطح دسترسی کاربر"><i
-                                                                class="fa fa-user-secret"></i></a>
+                                                            <a href="{{ route('admin.users.permission', $user->id) }}"
+                                                                style="font-size:20px;" class="action-icon"
+                                                                title="سطح دسترسی کاربر"><i
+                                                                    class="fa fa-user-secret"></i></a>
                                                         @endcan
                                                         @can('user-basket')
                                                             <a href="" style="font-size:20px;" title="خرید های کاربر"><i
@@ -123,8 +143,7 @@
                                                                     style="color:rgb(115, 194, 108);"></i></a>
                                                         @endcan
                                                         @can('user-edit')
-                                                            <a href=""
-                                                                style="font-size:20px;" class="action-icon"><i
+                                                            <a href="" style="font-size:20px;" class="action-icon"><i
                                                                     class="fa fa-edit"></i></a>
                                                         @endcan
                                                         @can('user-delete')

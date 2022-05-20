@@ -27,11 +27,11 @@
                                                 <label for="exampleInputEmail12">نقش ها:</label>
                                                 <div wire:ignore>
                                                     <select class="js-example-basic-single form-control"
-                                                        multiple="multiple" wire:model.lazy="roles" id="roles"
+                                                        multiple="multiple" wire:model="roles" id="roles"
                                                         style="width: 100%;">
                                                         @foreach (\App\Models\Admin\Permissions\Role::all() as $role)
                                                             <option value="{{ $role->id }}"
-                                                                {{ in_array($role->id,$user->roles()->pluck('id')->toArray())? 'selected': '' }}>
+                                                                {{ in_array($role->id,$userRole) ? 'selected': '' }}>
                                                                 {{ $role->description }}
                                                             </option>
                                                         @endforeach
@@ -43,11 +43,11 @@
                                                 <label for="exampleInputEmail12">سطح دسترسی:</label>
                                                 <div wire:ignore>
                                                     <select class="js-example-basic-single form-control"
-                                                        multiple="multiple" wire:model.lazy="permissions"
+                                                        multiple="multiple" wire:model="permissions"
                                                         id="permissions" style="width: 100%;">
                                                         @foreach (\App\Models\Admin\Permissions\Permission::all() as $permission)
                                                             <option value="{{ $permission->id }}"
-                                                                {{ in_array($permission->id,$user->permissions()->pluck('id')->toArray())? 'selected': '' }}>
+                                                                {{ in_array($permission->id, $userPermission) ? 'selected' : '' }}>
                                                                 {{ $permission->description }}
                                                             </option>
                                                         @endforeach
@@ -92,6 +92,7 @@
                     $('#permissions').select2();
                 });
             });
+
         </script>
     @endsection
 </div>
