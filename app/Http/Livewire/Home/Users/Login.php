@@ -51,7 +51,17 @@ class Login extends Component
                 Log::logWritter('login', 'کاربر در سایت وارد شد - ' . $user->name);
                 //TODO
                 //Role Detection
-                return to_route('admin.home');
+                if($user->typeUser=="admin")
+                {
+                    return to_route('admin.home');
+                }elseif($user->typeUser=="user")
+                {
+                    return to_route('user.profile');
+                }elseif($user->typeUser=="vendor"){
+                    return "";
+                }else{
+                    $this->emit('toast', 'error', 'نوع کاربری شما در سایت تعریف نگردیده است!');
+                }
             } else {
                 $this->emit('toast', 'error', 'اطلاعات ورود نادرست است!');
             }

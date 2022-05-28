@@ -18,11 +18,14 @@ Route::get('/', App\Http\Livewire\Home\Home\Index::class)->name('home');
 //---------------------------------------Authentication---------------------------------------//
 Route::get('/register', App\Http\Livewire\Home\Users\Register::class)->name('register');
 Route::get('/login', App\Http\Livewire\Home\Users\Login::class)->name('login');
-Route::post('/logout', [App\Http\Controllers\HomeController::class,'logout'])->name('logout');
+Route::post('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
 Route::get('/verify-mobile/{id}', App\Http\Livewire\Home\Users\VerifyMobile::class)->name('verify.mobile');
 Route::get('/forget-password', App\Http\Livewire\Home\Users\ForgetPassword::class)->name('forget-password');
 Route::get('/verify-mobile-forget/{id}', App\Http\Livewire\Home\Users\ForgetVerifyPassword::class)->name('verify.forget.password');
 Route::get('/change-password/{code}', App\Http\Livewire\Home\Users\ChangePassword::class)->name('change.password');
 
-
+//---------------------------------------Profile For Users---------------------------------------//
+Route::group(['namespace' => 'App\Http\Livewire\Home\Profile', 'prefix' => 'user/profile', 'middleware' => 'auth'], function () {
+    Route::get('/', Index::class)->name('user.profile');
+});
 // \Auth::routes();
