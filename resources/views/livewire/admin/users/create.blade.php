@@ -79,14 +79,14 @@
                                         </div>
                                         <div class="col-2">
                                             <div class="checkbox checkbox-primary d-inline">
-                                                <input type="checkbox" wire:model="user.isActive" id="checkbox-p-1">
+                                                <input type="checkbox" wire:model="isActive" id="checkbox-p-1">
                                                 <label for="checkbox-p-1" class="cr">فعال</label>
                                             </div>
 
                                         </div>
                                         <div class="col-2">
                                             <div class="checkbox checkbox-primary d-inline">
-                                                <input type="checkbox" wire:model="user.mobile_verified_at"
+                                                <input type="checkbox" wire:model="mobile_verified_at"
                                                     id="checkbox-p-2">
                                                 <label for="checkbox-p-2" class="cr">تائید موبایل</label>
                                             </div>
@@ -94,7 +94,7 @@
                                         </div>
                                         <div class="col-2">
                                             <div class="checkbox checkbox-primary d-inline">
-                                                <input type="checkbox" wire:model="user.email_verified_at"
+                                                <input type="checkbox" wire:model="email_verified_at"
                                                     id="checkbox-p-3">
                                                 <label for="checkbox-p-3" class="cr">تائید ایمیل</label>
                                             </div>

@@ -15,7 +15,7 @@ class Create extends Component
     use WithFileUploads;
     public User $user;
     public $profilePhoto;
-    public $password;
+    public $password,$isActive,$email_verified_at,$mobile_verified_at;
 
     public function mount()
     {
@@ -27,9 +27,6 @@ class Create extends Component
         'user.mobile'     => 'required',
         'user.email'     => 'nullable|email',
         'user.typeUser'     => 'required',
-        'user.isActive'     => 'nullable',
-        'user.mobile_verified_at'     => 'nullable',
-        'user.email_verified_at'     => 'nullable',
     ];
 
     public function UserForm()
@@ -50,17 +47,17 @@ class Create extends Component
             ]);
         }
 
-        if ($this->user->isActive) {
+        if ($this->isActive) {
             $user->update([
                 'isActive' => 1
             ]);
         }
-        if ($this->user->mobile_verified_at) {
+        if ($this->mobile_verified_at) {
             $user->update([
                 'mobile_verified_at' => now()
             ]);
         }
-        if ($this->user->email_verified_at) {
+        if ($this->email_verified_at) {
             $user->update([
                 'email_verified_at' => now()
             ]);

@@ -36,7 +36,7 @@ class Edit extends Component
         //update Password
         if($this->password != NULL){
             $this->user->update([
-                'password' => Hash::make($this->password)
+                'password' => Hash::make($this->password),
             ]);
         }
         if ($this->profilePhoto) {
