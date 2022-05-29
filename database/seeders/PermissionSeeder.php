@@ -277,6 +277,51 @@ class PermissionSeeder extends Seeder
 
             //End Users
 
+            //Product Categories
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories",
+                'description' => "دسته بندی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories-create",
+                'description' => "افزودن دسته بندی برای محصول",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories-trash",
+                'description' => "سطل زباله دسته بندی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories-edit",
+                'description' => "ویرایش دسته بندی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories-delete",
+                'description' => "حذف موقت دسته بندی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories-forceDelete",
+                'description' => "حذف کامل دسته بندی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-categories-restore",
+                'description' => "بازیابی دسته بندی محصولات",
+            ],
+
+            //End Product Categories
         ]);
     }
 }

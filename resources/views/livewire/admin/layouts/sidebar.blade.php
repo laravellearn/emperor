@@ -44,20 +44,6 @@
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i class="fa fa-angle-left"></i></a>
-                        <ul class="treeview-menu">
-                            <li><a href="product-categories.html">دسته بندی</a></li>
-                            <li><a href="product-tags.html">برچسب</a></li>
-                            <li><a href="products.html">لیست محصولات</a></li>
-                            <li><a href="#">برندها</a></li>
-                            <li><a href="#">رنگ ها</a></li>
-                            <li><a href="#">گارانتی ها</a></li>
-                            <li><a href="#">تنوع قیمت</a></li>
-                            <li><a href="#">مشخصات محصولات-مقادیر</a></li>
-                            <li><a href="#">پیشنهادات شگفت انگیز</a></li>
-                        </ul>
-                    </li>
-                    <li class="treeview">
                         <a href="javascript:void(0)"><i class="zmdi zmdi-file-text"></i> <span>جزییات فروشگاه</span> <i class="fa fa-angle-left"></i></a>
                         <ul class="treeview-menu">
                             <li><a href="#">آدرس ها</a></li>
@@ -126,8 +112,31 @@
                         </ul>
                     </li> --}}
 
+                    @canany(['products', 'product-categories'])
+                        <li class="treeview {{ Request::routeIs(['admin.product.categories']) ? 'active' : '' }}">
+                            <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i
+                                    class="fa fa-angle-left"></i></a>
+                            <ul class="treeview-menu">
+                                @can('product-categories')
+                                    <li><a {{ Request::routeIs(['admin.product.categories']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.categories') }}">دسته بندی</a></li>
+                                @endcan
+                                {{-- <li><a href="product-tags.html">برچسب</a></li>
+                                <li><a href="products.html">لیست محصولات</a></li>
+                                <li><a href="#">برندها</a></li>
+                                <li><a href="#">رنگ ها</a></li>
+                                <li><a href="#">گارانتی ها</a></li>
+                                <li><a href="#">تنوع قیمت</a></li>
+                                <li><a href="#">مشخصات محصولات-مقادیر</a></li>
+                                <li><a href="#">پیشنهادات شگفت انگیز</a></li> --}}
+                            </ul>
+                        </li>
+                    @endcan
+
+
                     @canany(['users'])
-                        <li class="treeview {{ Request::routeIs(['admin.users', 'admin.users.create']) ? 'active' : '' }}">
+                        <li
+                            class="treeview {{ Request::routeIs(['admin.users', 'admin.users.create']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>کاربران</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
