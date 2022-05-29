@@ -5,7 +5,7 @@
                 <div class="col-lg-8 col-md-8 col-xs-12 pull-right">
                     <div class="header-right">
                         <div class="logo">
-                            <a href="#"><img src="{{ asset('home/images/logo.png') }}" alt="logo"></a>
+                            <a href="{{ route('home') }}"><img src="{{ asset('home/images/logo.png') }}" alt="logo"></a>
                         </div>
 
                         <div class="col-lg-8 col-md-12 col-xs-12 pull-right">
@@ -197,40 +197,53 @@
                                 <span class="mdi mdi-account"></span>
                                 پروفایل من
                                 <div class="dropdown-menu-login">
-                                    <div class="header-profile-dropdown-account">
-                                        <div class="header-profile-dropdown-user">
-                                            <div class="header-profile-dropdown-user-img">
-                                                <img src="{{ $user->profilePhoto }}" alt="profile">
-                                            </div>
-                                            <div class="header-profile-dropdown-user-info">
-                                                <p class="header-profile-dropdown-user-name">{{ $user->name }}
-                                                    <span class="header-profile-dropdown-user-profile-link">مشاهده حساب
-                                                        کاربری</span>
-                                                </p>
-                                            </div>
-                                            <div class="header-profile-dropdown-account">
-                                                <div class="header-profile-dropdown-account-item">
-                                                    <span class="header-profile-dropdown-account-item-title">کیف
-                                                        پول</span>
-                                                    <div class="header-profile-dropdown-account-item-amount">
-                                                        <span class="header-profile-dropdown-account-item-amount-number">۰
-                                                        </span>
-                                                        تومان
-                                                    </div>
+                                    <a href="{{ route('user.profile') }}">
+                                        <div class="header-profile-dropdown-account">
+                                            <div class="header-profile-dropdown-user">
+                                                <div class="header-profile-dropdown-user-img">
+                                                    <img src="{{ $user->profilePhoto }}" alt="profile">
                                                 </div>
-                                                <div class="header-profile-dropdown-account-item">
-                                                    <span
-                                                        class="header-profile-dropdown-account-item-title">دیجی‌کلاب</span>
-                                                    <div class="header-profile-dropdown-account-item-amount">
-                                                        <span class="header-profile-dropdown-account-item-amount-number">۰
-                                                        </span>
-                                                        تومان
+                                                <div class="header-profile-dropdown-user-info">
+                                                    <p class="header-profile-dropdown-user-name">{{ $user->name }}
+                                                        <span class="header-profile-dropdown-user-profile-link">مشاهده حساب
+                                                            کاربری</span>
+                                                    </p>
+                                                </div>
+                                                <div class="header-profile-dropdown-account">
+                                                    <div class="header-profile-dropdown-account-item">
+                                                        <span class="header-profile-dropdown-account-item-title">کیف
+                                                            پول</span>
+                                                        <div class="header-profile-dropdown-account-item-amount">
+                                                            <span
+                                                                class="header-profile-dropdown-account-item-amount-number">۰
+                                                            </span>
+                                                            تومان
+                                                        </div>
+                                                    </div>
+                                                    <div class="header-profile-dropdown-account-item">
+                                                        <span
+                                                            class="header-profile-dropdown-account-item-title">دیجی‌کلاب</span>
+                                                        <div class="header-profile-dropdown-account-item-amount">
+                                                            <span
+                                                                class="header-profile-dropdown-account-item-amount-number">۰
+                                                            </span>
+                                                            تومان
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </a>
                                     <div class="header-profile-dropdown-actions">
+                                        @if ($user->typeUser == 'admin')
+                                            <a href="{{ route('admin.home') }}">
+                                                <div class="header-profile-dropdown-action-container">
+                                                    <span class="header-profile-dropdown-action-link">
+                                                        پنل مدیریت
+                                                    </span>
+                                                </div>
+                                            </a>
+                                        @endif
                                         <div class="header-profile-dropdown-action-container">
                                             <span class="header-profile-dropdown-action-link">سفارش‌های من</span>
                                         </div>
@@ -239,15 +252,16 @@
                                         </div>
                                         <div class="header-profile-dropdown-action-container">
                                             <a wire:click="logout({{ $user->id }})">
-                                            <span class="header-profile-dropdown-action-link">خروج از حساب
-                                                کاربری</span>
+                                                <span class="header-profile-dropdown-action-link">خروج از حساب
+                                                    کاربری</span>
                                             </a>
                                         </div>
                                     </div>
                                 </div>
                             @endauth
                             @guest
-                                <a href="{{ route('login') }}" style="color:#3f3f3f"><span class="mdi mdi-account"></span> ورود </a>
+                                <a href="{{ route('login') }}" style="color:#3f3f3f"><span
+                                        class="mdi mdi-account"></span> ورود </a>
                             @endguest
                         </div>
 
