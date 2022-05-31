@@ -7,10 +7,12 @@ use Livewire\WithPagination;
 use App\Models\Admin\Log;
 use App\Models\Admin\products\Category;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Livewire\WithFileUploads;
 
 class Index extends Component
 {
     use AuthorizesRequests;
+    use WithFileUploads;
 
     public Category $category;
     public $image;
@@ -30,7 +32,7 @@ class Index extends Component
         'category.description'     => 'nullable',
         'category.icon'    => 'nullable',
         'category.image'     => 'nullable',
-        'category.slug'    => 'required|unique',
+        'category.parent_id'     => 'nullable',
         'category.metaTitle'     => 'required|max:60',
         'category.metaDescription'    => 'required|max:160',
     ];
@@ -44,9 +46,11 @@ class Index extends Component
             'title'    => $this->category->title,
             'description'     => $this->category->description,
             'icon'    => $this->category->icon,
-            'slug'    => $this->category->slug,
+            'slug'    => str_replace(' ','-',$this->category->title),
             'metaTitle'     => $this->category->metaTitle,
             'metaDescription'    => $this->category->metaDescription,
+            'level' => '1',
+            'parent_id' => $this->category->parent_id,
         ]);
         if ($this->image) {
             $category->update([
@@ -113,5 +117,6 @@ class Index extends Component
         $this->category->slug = null;
         $this->category->metaTitle = null;
         $this->category->metaDescription = null;
+        $this->image = null;
     }
 }

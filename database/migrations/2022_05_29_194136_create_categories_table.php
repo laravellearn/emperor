@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('parent_id')->nullable();
             $table->foreign('parent_id')->references('id')->on('emperor_products.categories');
+            $table->enum('level',['1','2','3']);
             $table->string('title');
             $table->string('slug');
             $table->string('description');

@@ -1,4 +1,10 @@
 @section('title', 'دسته بندی های محصولات')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/default-assets/select.bootstrap4.css') }}">
+
+@endsection
+
 <div>
     <div class="main-content">
         <div class="data-table-area">
@@ -9,71 +15,267 @@
                             <div class="card card-body">
                                 <h4 class="card-title">افزودن دسته بندی برای محصولات</h4>
                                 <hr>
+
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">
-                                        <form wire:submit.prevent='CategoriesProductForm'>
-                                            @include('errors.error')
+                                        <div
+                                            class="card-header bg-transparent user-area d-flex align-items-center justify-content-between">
+                                            <!-- Nav Tabs -->
 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail111">عنوان دسته بندی:</label>
-                                                <input type="text" wire:model.lazy='category.title' class="form-control"
-                                                    id="exampleInputEmail111">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail12">عنوان دسته بندی(لاتین):</label>
-                                                <input type="text" wire:model.lazy='category.slug' class="form-control"
-                                                    id="exampleInputEmail111" style="text-align:left">
-                                            </div>
+                                            <ul class="nav total-earnings nav-tabs mb-0" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="nav-link active" id="level1-tab" data-toggle="tab"
+                                                        href="#level1" role="tab" aria-controls="level1"
+                                                        aria-selected="false">سطح یک</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link mr-0" id="level2-tab" data-toggle="tab"
+                                                        href="#level2" role="tab" aria-controls="level2"
+                                                        aria-selected="false">سطح دو</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link mr-5" id="level3-tab" data-toggle="tab"
+                                                        href="#level3" role="tab" aria-controls="level3"
+                                                        aria-selected="true">سطح سه</a>
+                                                </li>
+                                            </ul>
+                                        </div>
 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail12">کد آیکون:</label>
-                                                <input type="text" wire:model.lazy='category.icon' class="form-control"
-                                                    id="exampleInputEmail111">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail12">توضیحات:</label>
-                                                <textarea wire:model.lazy='description' class="form-control" id="exampleInputEmail111"></textarea>
-                                            </div>
+                                        <div class="card-body">
+                                            <div class="tab-content" id="userList2">
+                                                <div class="tab-pane fade  active show" id="level1" role="tabpanel"
+                                                    aria-labelledby="level1-tab">
+                                                    <!-- سطح یک -->
+                                                    <form wire:submit.prevent='CategoriesProductForm'>
+                                                        @include('errors.error')
 
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail12">عنوان متا:</label>
-                                                <input type="text" wire:model.lazy='category.metaTitle'
-                                                    class="form-control" id="meta-title">
-                                                <div id="counter1" style="font-size:12px"></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail12">توضیحات متا:</label>
-                                                <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
-                                                <div id="counter2" style="font-size:12px"></div>
-                                            </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail111">عنوان دسته بندی:</label>
+                                                            <input type="text" wire:model.lazy='category.title'
+                                                                class="form-control" id="exampleInputEmail111">
+                                                        </div>
 
-                                            <div class="input-group cust-file-button mb-3">
-                                                <div class="custom-file">
-                                                    <input type="file" wire:model="image"
-                                                        class="custom-file-input form-control" id="inputGroupFile03">
-                                                    <label class="custom-file-label" for="inputGroupFile03">تصویر
-                                                        دسته بندی</label>
-                                                    <span class="text-info" wire:target='image' wire:loading>درحال
-                                                        بارگزاری...</span>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">کد آیکون:</label>
+                                                            <input type="text" wire:model.lazy='category.icon'
+                                                                class="form-control" id="exampleInputEmail111">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">توضیحات:</label>
+                                                            <textarea wire:model.lazy='category.description' class="form-control" id="exampleInputEmail111"></textarea>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">عنوان متا:</label>
+                                                            <input type="text" wire:model.lazy='category.metaTitle'
+                                                                class="form-control" id="meta-title">
+                                                            <div id="counter1" style="font-size:12px"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">توضیحات متا:</label>
+                                                            <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
+                                                            <div id="counter2" style="font-size:12px"></div>
+                                                        </div>
+
+                                                        <div class="input-group cust-file-button mb-3">
+                                                            <div class="custom-file">
+                                                                <input type="file" wire:model="image"
+                                                                    class="custom-file-input form-control"
+                                                                    id="inputGroupFile03">
+                                                                <label class="custom-file-label"
+                                                                    for="inputGroupFile03">تصویر
+                                                                    دسته بندی</label>
+                                                                <span class="text-info" wire:target='image'
+                                                                    wire:loading>درحال
+                                                                    بارگزاری...</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div wire:ignore id="progressbar" class="progress mb-0 mt-1 mb-1"
+                                                            style="display: none">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                                aria-valuemax="100">0٪
+                                                            </div>
+                                                        </div>
+
+                                                        @if ($image)
+                                                            <img class="form-control mt-3 mb-3"
+                                                                src="{{ $image->temporaryUrl() }}" alt="">
+                                                        @endif
+
+
+                                                        <button type="submit" class="btn btn-outline-success mb-2 mr-2"
+                                                            style="float:left;"><i class="fa fa-save"></i>
+                                                            ذخیره</button>
+                                                    </form>
                                                 </div>
-                                            </div>
 
-                                            <div wire:ignore id="progressbar" class="progress mb-0 mt-1 mb-1"
-                                                style="display: none">
-                                                <div class="progress-bar" role="progressbar" style="width: 0%;"
-                                                    aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0٪
+                                                <div class="tab-pane fade" id="level2" role="tabpanel"
+                                                    aria-labelledby="level2-tab">
+                                                    <!-- سطح دو -->
+                                                    <form wire:submit.prevent='CategoriesProductForm'>
+                                                        @include('errors.error')
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">دسته بندی مادر:</label>
+                                                            <div wire:ignore>
+                                                                <select class="js-example-basic-single form-control"
+                                                                    wire:model.lazy="parent_id" required
+                                                                    id="parent_id" style="width: 100%;">
+                                                                    @foreach (\App\Models\Admin\products\Category::where('level', 1)->where('isActive', 1)->get()
+                                                                            as $category)
+                                                                        <option value="{{ $category->id }}">
+                                                                            {{ $category->title }}
+                                                                        </option>
+                                                                    @endforeach
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail111">عنوان دسته بندی:</label>
+                                                            <input type="text" wire:model.lazy='category.title'
+                                                                class="form-control" id="exampleInputEmail111">
+                                                        </div>
+
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">توضیحات:</label>
+                                                            <textarea wire:model.lazy='category.description' class="form-control" id="exampleInputEmail111"></textarea>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">عنوان متا:</label>
+                                                            <input type="text" wire:model.lazy='category.metaTitle'
+                                                                class="form-control" id="meta-title">
+                                                            <div id="counter1" style="font-size:12px"></div>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="exampleInputEmail12">توضیحات متا:</label>
+                                                            <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
+                                                            <div id="counter2" style="font-size:12px"></div>
+                                                        </div>
+
+                                                        <div class="input-group cust-file-button mb-3">
+                                                            <div class="custom-file">
+                                                                <input type="file" wire:model="image"
+                                                                    class="custom-file-input form-control"
+                                                                    id="inputGroupFile03">
+                                                                <label class="custom-file-label"
+                                                                    for="inputGroupFile03">تصویر
+                                                                    دسته بندی</label>
+                                                                <span class="text-info" wire:target='image'
+                                                                    wire:loading>درحال
+                                                                    بارگزاری...</span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div wire:ignore id="progressbar" class="progress mb-0 mt-1 mb-1"
+                                                            style="display: none">
+                                                            <div class="progress-bar" role="progressbar"
+                                                                style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                                aria-valuemax="100">0٪
+                                                            </div>
+                                                        </div>
+
+                                                        @if ($image)
+                                                            <img class="form-control mt-3 mb-3"
+                                                                src="{{ $image->temporaryUrl() }}" alt="">
+                                                        @endif
+
+
+                                                        <button type="submit" class="btn btn-outline-success mb-2 mr-2"
+                                                            style="float:left;"><i class="fa fa-save"></i>
+                                                            ذخیره</button>
+                                                    </form>
+
                                                 </div>
+                                                <div class="tab-pane fade" id="level3" role="tabpanel"
+                                                aria-labelledby="level3-tab">
+                                                <!-- سطح سه -->
+                                                <form wire:submit.prevent='CategoriesProductForm'>
+                                                    @include('errors.error')
+
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail12">دسته بندی مادر:</label>
+                                                        <div wire:ignore>
+                                                            <select class="js-example-basic-single form-control"
+                                                                wire:model.lazy="parent_id" required
+                                                                id="parent_id2" style="width: 100%;">
+                                                                @foreach (\App\Models\Admin\products\Category::where('level', 2)->where('isActive', 1)->get()
+                                                                        as $category)
+                                                                    <option value="{{ $category->id }}">
+                                                                        {{ $category->title }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail111">عنوان دسته بندی:</label>
+                                                        <input type="text" wire:model.lazy='category.title'
+                                                            class="form-control" id="exampleInputEmail111">
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail12">توضیحات:</label>
+                                                        <textarea wire:model.lazy='category.description' class="form-control" id="exampleInputEmail111"></textarea>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail12">عنوان متا:</label>
+                                                        <input type="text" wire:model.lazy='category.metaTitle'
+                                                            class="form-control" id="meta-title">
+                                                        <div id="counter1" style="font-size:12px"></div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="exampleInputEmail12">توضیحات متا:</label>
+                                                        <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
+                                                        <div id="counter2" style="font-size:12px"></div>
+                                                    </div>
+
+                                                    <div class="input-group cust-file-button mb-3">
+                                                        <div class="custom-file">
+                                                            <input type="file" wire:model="image"
+                                                                class="custom-file-input form-control"
+                                                                id="inputGroupFile03">
+                                                            <label class="custom-file-label"
+                                                                for="inputGroupFile03">تصویر
+                                                                دسته بندی</label>
+                                                            <span class="text-info" wire:target='image'
+                                                                wire:loading>درحال
+                                                                بارگزاری...</span>
+                                                        </div>
+                                                    </div>
+
+                                                    <div wire:ignore id="progressbar" class="progress mb-0 mt-1 mb-1"
+                                                        style="display: none">
+                                                        <div class="progress-bar" role="progressbar"
+                                                            style="width: 0%;" aria-valuenow="0" aria-valuemin="0"
+                                                            aria-valuemax="100">0٪
+                                                        </div>
+                                                    </div>
+
+                                                    @if ($image)
+                                                        <img class="form-control mt-3 mb-3"
+                                                            src="{{ $image->temporaryUrl() }}" alt="">
+                                                    @endif
+
+
+                                                    <button type="submit" class="btn btn-outline-success mb-2 mr-2"
+                                                        style="float:left;"><i class="fa fa-save"></i>
+                                                        ذخیره</button>
+                                                </form>
+
                                             </div>
-
-                                            @if ($image)
-                                                <img class="form-control mt-3 mb-3" src="{{ $image->temporaryUrl() }}"
-                                                    alt="">
-                                            @endif
+                                            </div>
+                                        </div>
 
 
-                                            <button type="submit" class="btn btn-outline-success mb-2 mr-2"
-                                                style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
-                                        </form>
+
+
+
                                     </div>
                                 </div>
                             </div>
@@ -201,5 +403,27 @@
 
                 });
             </script>
+                    <script>
+                        $(document).ready(function() {
+                            $('#parent_id').select2();
+                            $('#parent_id').on('change', function(e) {
+                                let data = $(this).val();
+                                @this.set('parent_id', data);
+                            });
+                            window.livewire.on('CategoryStore', () => {
+                                $('#parent_id').select2();
+                            });
+                            $('#parent_id2').select2();
+                            $('#parent_id2').on('change', function(e) {
+                                let data = $(this).val();
+                                @this.set('parent_id2', data);
+                            });
+                            window.livewire.on('CategoryStore', () => {
+                                $('#parent_id2').select2();
+                            });
+                        });
+                    </script>
+
         @endsection
+
     </div>

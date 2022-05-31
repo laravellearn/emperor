@@ -12,4 +12,6 @@ class Category extends Model
     use SoftDeletes;
     protected $connection = "mysql-products";
 
+    protected $fillable = ['title','icon','image','description','metaTitle','metaDescription','slug','parent_id'];
+
 }
