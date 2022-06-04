@@ -53,7 +53,8 @@ Route::get('/users/permission/{user}', App\Http\Livewire\Admin\Users\Permission:
 Route::get('/users/info/{user}', App\Http\Livewire\Admin\Users\Info::class)->name('admin.users.info');
 Route::get('/users/edit/{user}', App\Http\Livewire\Admin\Users\Edit::class)->name('admin.users.edit');
 
+
 //---------------------------------------Product Categories---------------------------------------//
-Route::get('/product/categories', App\Http\Livewire\Admin\Products\Categories\Index::class)->name('admin.product.categories');
-Route::get('/product/categories/edit/{category}', App\Http\Livewire\Admin\Products\Categories\Edit::class)->name('admin.product.category.edit');
-Route::get('/roles/trashed', App\Http\Livewire\Admin\Products\Categories\Trash::class)->name('admin.product.categories.trash');
+Route::get('/product/categories', App\Http\Livewire\Admin\products\Categories\create\Index::class)->name('admin.product.categories');
+// Route::get('/product/categories/edit/{category}', App\Http\Livewire\Admin\Roles\Edit::class)->name('admin.roles.edit');
+// Route::get('/product/categories/trashed', App\Http\Livewire\Admin\Roles\Trash::class)->name('admin.roles.trash');

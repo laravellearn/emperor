@@ -8,10 +8,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory;
-    use SoftDeletes;
+    use HasFactory,SoftDeletes;
     protected $connection = "mysql-products";
 
-    protected $fillable = ['title','icon','image','description','metaTitle','metaDescription','slug','parent_id'];
+    protected $fillable = ['parent_id','title','description','slug','image','icon','isActive','metaTitle','metaDescription','level'];
+
+    public function parent()
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }
