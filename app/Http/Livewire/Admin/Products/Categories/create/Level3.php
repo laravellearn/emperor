@@ -8,7 +8,7 @@ use App\Models\Admin\Log;
 use App\Models\admin\products\Category;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Level2 extends Component
+class Level3 extends Component
 {
     use AuthorizesRequests;
 
@@ -50,7 +50,7 @@ class Level2 extends Component
             'metaDescription'      => $this->category->metaDescription,
             'parent_id' => $this->parent_id,
             'isActive' => 1,
-            'level' => 2,
+            'level' => 3,
         ]);
         $this->resetForm();
 
@@ -65,8 +65,8 @@ class Level2 extends Component
         $this->authorize('product-categories',Category::class);
 
         $categories = $this->readyToLoad ? Category::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(10) : [];
-        $parent = Category::where('level',1)->where('isActive',1)->get();
-        return view('livewire.admin.products.categories.create.level2',compact('categories','parent'));
+        $parent = Category::where('level',2)->where('isActive',1)->get();
+        return view('livewire.admin.products.categories.create.level3',compact('categories','parent'));
     }
 
     public function loadCategory()

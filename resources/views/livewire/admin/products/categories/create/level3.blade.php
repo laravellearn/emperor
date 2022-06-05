@@ -1,4 +1,4 @@
-@section('title', 'دسته بندی محصولات(سطح دو)')
+@section('title', 'دسته بندی محصولات(سطح سه)')
 @section('styles')
     <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
     <link rel="stylesheet" href="{{ asset('admin/css/default-assets/select.bootstrap4.css') }}">
@@ -12,7 +12,7 @@
                     @can('product-categories-create')
                         <div class="col-xl-4 box-margin height-card">
                             <div class="card card-body">
-                                <h4 class="card-title">افزودن دسته بندی در سطح دو</h4>
+                                <h4 class="card-title">افزودن دسته بندی در سطح سه</h4>
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-12 col-xs-12">
