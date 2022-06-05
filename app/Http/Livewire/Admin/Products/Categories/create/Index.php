@@ -32,34 +32,39 @@ class Index extends Component
 
     protected $rules = [
         'category.title'    => 'required',
-        'category.slug'    => 'required',
-        'category.description'    => 'required',
-        'category.icone'    => 'required',
-        'category.type'     => 'required',
+        'category.slug'    => 'nullable',
+        'category.description'    => 'nullable',
+        'category.icon'    => 'required',
+        'category.metaTitle'     => 'required',
+        'category.metaDescription'     => 'required',
         'category.image'     => 'nullable',
         'category.isActive'     => 'nullable',
     ];
 
-    public function LogoForm()
+    public function CategoryForm()
     {
-        $this->authorize('settings-footer-logo-create',Footerlogo::class);
+        $this->authorize('product-categories-create',Category::class);
 
         $this->validate();
-        $logo = $this->Footerlogo->query()->create([
-            'title'    => $this->Footerlogo->title,
-            'type'     => $this->Footerlogo->type,
-            'url'      => $this->Footerlogo->url,
+        $category = $this->category->query()->create([
+            'title'    => $this->category->title,
+            'slug' => str_replace(' ','-',$this->category->title),
+            'description'      => $this->category->description,
+            'icon'    => $this->category->icon,
+            'metaTitle'     => $this->category->metaTitle,
+            'metaDescription'      => $this->category->metaDescription,
             'isActive' => 1,
+            'level' => 1,
         ]);
         if ($this->image) {
-            $logo->update([
+            $category->update([
                 'image' => $this->uploadImage()
             ]);
         }
         $this->resetForm();
 
         //Create Log
-        Log::logWritter('create','لوگوی فوتر ایجاد شد - '.$logo->title);
+        Log::logWritter('create','دسته بندی برای محصول ایجاد شد - '.$category->title);
 
         $this->emit('toast', 'success', 'رکورد با موفقیت ثبت شد');
     }
@@ -68,7 +73,7 @@ class Index extends Component
     {
         $year = now()->year;
         $month = now()->month;
-        $directory = "footerlogo/$year/$month";
+        $directory = "products/catagories/$year/$month";
         $name = time() . '-' . $this->image->getClientOriginalName();
         $name = str_replace(' ', '-', $name);
         $this->image->storeAs($directory, $name);
@@ -77,34 +82,34 @@ class Index extends Component
 
     public function render()
     {
-        $this->authorize('settings-footer-logo',Footerlogo::class);
+        $this->authorize('product-categories',Category::class);
 
-        $logos = $this->readyToLoad ? Footerlogo::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(5) : [];
-        return view('livewire.admin.settings.footer.logo', compact('logos'));
+        $categories = $this->readyToLoad ? Category::where('title', 'LIKE', '%' . $this->search . '%')->latest()->paginate(10) : [];
+        return view('livewire.admin.products.categories.create.index',compact('categories'));
     }
 
-    public function loadLogo()
+    public function loadCategory()
     {
         $this->readyToLoad = true;
     }
 
     public function changeStatus($id)
     {
-        $this->authorize('settings-footer-logo-edit',Footerlogo::class);
+        $this->authorize('product-categories-edit',Category::class);
 
-        $logo = Footerlogo::find($id);
-        if ($logo->isActive == 1) {
-            $logo->update([
+        $category = Category::find($id);
+        if ($category->isActive == 1) {
+            $category->update([
                 'isActive' => 0
             ]);
         } else {
-            $logo->update([
+            $category->update([
                 'isActive' => 1
             ]);
         }
 
         //Create Log
-        Log::logWritter('update','وضعیت لوگوی فوتر تغییر کرد - '.$logo->title);
+        Log::logWritter('update','وضعیت دسته محصول تغییر کرد - '.$category->title);
 
         $this->emit('toast', 'success', 'وضعیت رکورد با موفقیت تغییر کرد');
     }
@@ -116,28 +121,25 @@ class Index extends Component
 
     public function delete()
     {
-        $this->authorize('settings-footer-logo-delete',Footerlogo::class);
+        $this->authorize('product-categories-delete',Category::class);
 
-        $logo = Footerlogo::find($this->deleteId);
-        $logo->delete();
+        $category = Category::find($this->deleteId);
+        $category->delete();
 
         //Create Log
-        Log::logWritter('delete', 'لوگوی فوتر حذف شد - ' . $logo->title);
+        Log::logWritter('delete', 'دسته محصول حذف شد - ' . $category->title);
 
         $this->emit('toast', 'success', 'ردیف با موفقیت حذف شد');
     }
 
     public function resetForm()
     {
-        $this->Footerlogo->title = null;
-        $this->Footerlogo->type = null;
-        $this->Footerlogo->image = null;
-        $this->Footerlogo->url = null;
+        $this->category->title = null;
+        $this->category->description = null;
+        $this->category->image = null;
+        $this->category->metaTitle = null;
+        $this->category->metaDescription = null;
+        $this->category->icon = null;
         $this->image = null;
-    }
-
-    public function render()
-    {
-        return view('livewire.admin.products.categories.create.index');
     }
 }

@@ -36,12 +36,12 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail111">عنوان متا:</label>
                                                 <input type="text" wire:model.lazy='category.metaTitle'
-                                                    class="form-control" id="metaTitle">
+                                                    class="form-control" id="meta-title">
                                                 <div id="counter1" style="font-size:12px"></div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputEmail111">توضیحات متا:</label>
-                                                <textarea wire:model.lazy='category.metaDescription' class="form-control" id="metaDescription"></textarea>
+                                                <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
                                                 <div id="counter2" style="font-size:12px"></div>
                                             </div>
 
@@ -102,7 +102,7 @@
                                         placeholder="جستجو...">
 
                                     <table id="datatable-buttons" class="table table-striped dt-responsive nowrap"
-                                        style="width:102%" wire:init='loadRole'>
+                                        style="width:102%" wire:init='loadCategory'>
                                         <thead>
                                             <tr>
                                                 <th>نام دسته بندی</th>
@@ -118,7 +118,7 @@
                                                 @foreach ($categories as $category)
                                                     <tr>
                                                         <td>{{ $category->title }}</td>
-                                                        <td>{{ $category->parent->title }}</td>
+                                                        <td>{{ isset($category->parent->title) ? $category->parent->title : '-' }}</td>
                                                         <td>سطح {{ $category->level }}</td>
                                                         <td>
                                                             @can('product-categories-edit')
@@ -177,22 +177,25 @@
             </div>
         </div>
         @include('livewire.admin.include.modal')
+        @section('scripts')
+            <script src="{{ asset('admin/js/MaxLength.min.js') }}"></script>
+            <script>
+                $(document).ready(function() {
+
+                    //Specifying the Character Count control explicitly
+                    $("#meta-title").MaxLength({
+                        MaxLength: 60,
+                        CharacterCountControl: $('#counter1')
+                    });
+                    $("#meta-description").MaxLength({
+                        MaxLength: 160,
+                        CharacterCountControl: $('#counter2')
+                    });
+
+                });
+            </script>
+        @endsection
         <script>
-            $(document).ready(function() {
-
-                //Specifying the Character Count control explicitly
-                $("#meta-title").MaxLength({
-                    MaxLength: 60,
-                    CharacterCountControl: $('#counter1')
-                });
-                $("#meta-description").MaxLength({
-                    MaxLength: 160,
-                    CharacterCountControl: $('#counter2')
-                });
-
-            });
-
-
             document.addEventListener('livewire:load', () => {
                 let progressSection = document.querySelector('#progressbar'),
                     progressBar = progressSection.querySelector('.progress-bar');

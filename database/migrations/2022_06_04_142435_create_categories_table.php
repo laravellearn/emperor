@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('level',['1','2','3']);
             $table->string('title');
             $table->string('slug');
-            $table->string('description');
+            $table->string('description')->nullable();
             $table->string('image')->nullable();
             $table->string('icon')->nullable();
             $table->string('metaTitle');
