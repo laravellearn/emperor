@@ -118,7 +118,8 @@
                                                 @foreach ($categories as $category)
                                                     <tr>
                                                         <td>{{ $category->title }}</td>
-                                                        <td>{{ isset($category->parent->title) ? $category->parent->title : '-' }}</td>
+                                                        <td>{{ isset($category->parent->title) ? $category->parent->title : '-' }}
+                                                        </td>
                                                         <td>سطح {{ $category->level }}</td>
                                                         <td>
                                                             @can('product-categories-edit')
@@ -145,9 +146,19 @@
                                                         </td>
                                                         <td>
                                                             @can('product-categories-edit')
-                                                                <a href="{{ route('admin.product.categories.edit', $category->id) }}"
-                                                                    class="action-icon"> <i
-                                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @if ($category->level == 1)
+                                                                    <a href="{{ route('admin.product.categories.edit', $category->id) }}"
+                                                                        class="action-icon"> <i
+                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @elseif($category->level == 2)
+                                                                    <a href="{{ route('admin.product.categories.edit.level2', $category->id) }}"
+                                                                        class="action-icon"> <i
+                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @else
+                                                                    <a href="{{ route('admin.product.categories.edit.level3', $category->id) }}"
+                                                                        class="action-icon"> <i
+                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @endif
                                                             @endcan
                                                             @can('product-categories-delete')
                                                                 <button wire:click="deleteId({{ $category->id }})"

@@ -61,6 +61,8 @@ Route::get('/product/categories/trashed', App\Http\Livewire\Admin\products\Categ
 
 //---------------------------------------Product Categories Level2---------------------------------------//
 Route::get('/product/categories/level2', App\Http\Livewire\Admin\products\Categories\create\Level2::class)->name('admin.product.categories.level2');
+Route::get('/product/categories/level2/{category}/edit', App\Http\Livewire\Admin\products\Categories\edit\Level2::class)->name('admin.product.categories.edit.level2');
 
 //---------------------------------------Product Categories Level3---------------------------------------//
 Route::get('/product/categories/level3', App\Http\Livewire\Admin\products\Categories\create\Level3::class)->name('admin.product.categories.level3');
+Route::get('/product/categories/level3/{category}/edit', App\Http\Livewire\Admin\products\Categories\edit\Level3::class)->name('admin.product.categories.edit.level3');

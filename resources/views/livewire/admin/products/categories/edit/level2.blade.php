@@ -1,4 +1,9 @@
-@section('title', 'ویرایش دسته محصول سطح یک')
+@section('title', 'ویرایش دسته محصول سطح دو')
+@section('styles')
+    <link rel="stylesheet" href="{{ asset('admin/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/css/default-assets/select.bootstrap4.css') }}">
+
+@endsection
 <div>
     <div class="main-content">
         <div class="data-table-area">
@@ -6,12 +11,27 @@
                 <div class="row">
                     <div class="col-xl-4 box-margin height-card">
                         <div class="card card-body">
-                            <h4 class="card-title">ویرایش دسته محصول سطح یک</h4>
+                            <h4 class="card-title">ویرایش دسته محصول سطح دو</h4>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
                                     <form wire:submit.prevent='CategoryForm'>
                                         @include('errors.error')
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail12">دسته مادر:</label>
+                                            <div wire:ignore>
+                                                <select class="js-example-basic-single form-control" required="required"
+                                                    wire:model.lazy="parent_id" id="parents" style="width: 100%;">
+                                                    @foreach ($parent as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            {{ $item->id == $category->parent_id ? 'selected' : '' }}>
+                                                            {{ $item->title }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+
                                         <div class="form-group">
                                             <label for="exampleInputEmail111">عنوان دسته بندی:</label>
                                             <input type="text" wire:model.lazy='category.title' class="form-control"
@@ -20,11 +40,6 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail111">توضیحات دسته بندی:</label>
                                             <textarea wire:model.lazy='category.description' class="form-control" id="exampleInputEmail111"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail111">کد آیکون:</label>
-                                            <input type="text" wire:model.lazy='category.icon' class="form-control"
-                                                id="exampleInputEmail111">
                                         </div>
                                         <div class="form-group">
                                             <label for="exampleInputEmail111">عنوان متا:</label>
@@ -37,31 +52,6 @@
                                             <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
                                             <div id="counter2" style="font-size:12px"></div>
                                         </div>
-
-
-                                        <div class="input-group cust-file-button mb-3">
-                                            <div class="custom-file">
-                                                <input type="file" wire:model="image"
-                                                    class="custom-file-input form-control" id="inputGroupFile03">
-                                                <label class="custom-file-label" for="inputGroupFile03">تصویر
-                                                    دسته بندی</label>
-                                                <span class="text-info" wire:target='image' wire:loading>درحال
-                                                    بارگزاری...</span>
-                                            </div>
-                                        </div>
-
-                                        <div wire:ignore id="progressbar" class="progress mb-0 mt-1 mb-1"
-                                            style="display: none">
-                                            <div class="progress-bar" role="progressbar" style="width: 0%;"
-                                                aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0٪
-                                            </div>
-                                        </div>
-
-                                        @if ($image)
-                                            <img class="form-control mt-3 mb-3" src="{{ $image->temporaryUrl() }}"
-                                                alt="">
-                                        @endif
-
 
                                         <button type="submit" class="btn btn-outline-success mb-2 mr-2"
                                             style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
@@ -185,6 +175,17 @@
                     CharacterCountControl: $('#counter2')
                 });
 
+            });
+
+            $(document).ready(function() {
+                $('#parents').select2();
+                $('#parents').on('change', function(e) {
+                    let data = $(this).val();
+                    @this.set('parent_id', data);
+                });
+                window.livewire.on('ParentStore', () => {
+                    $('#parents').select2();
+                });
             });
         </script>
     @endsection
