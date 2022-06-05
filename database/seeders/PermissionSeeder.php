@@ -322,6 +322,54 @@ class PermissionSeeder extends Seeder
             ],
 
             //End Product Categories
+
+            //Product Brands
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands",
+                'description' => "برند محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands-create",
+                'description' => "افزودن برند برای محصول",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands-trash",
+                'description' => "سطل زباله برند محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands-edit",
+                'description' => "ویرایش برند محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands-delete",
+                'description' => "حذف موقت برند محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands-forceDelete",
+                'description' => "حذف کامل برند محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-brands-restore",
+                'description' => "بازیابی برند محصولات",
+            ],
+
+            //End Product Brands
+
+
         ]);
     }
 }

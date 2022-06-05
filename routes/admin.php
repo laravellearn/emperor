@@ -53,16 +53,18 @@ Route::get('/users/permission/{user}', App\Http\Livewire\Admin\Users\Permission:
 Route::get('/users/info/{user}', App\Http\Livewire\Admin\Users\Info::class)->name('admin.users.info');
 Route::get('/users/edit/{user}', App\Http\Livewire\Admin\Users\Edit::class)->name('admin.users.edit');
 
-
+//---------------------------------------Products---------------------------------------//
 //---------------------------------------Product Categories Level1---------------------------------------//
 Route::get('/product/categories', App\Http\Livewire\Admin\products\Categories\create\Index::class)->name('admin.product.categories');
 Route::get('/product/categories/{category}/edit', App\Http\Livewire\Admin\products\Categories\edit\Index::class)->name('admin.product.categories.edit');
 Route::get('/product/categories/trashed', App\Http\Livewire\Admin\products\Categories\Trash::class)->name('admin.product.categories.trash');
-
 //---------------------------------------Product Categories Level2---------------------------------------//
 Route::get('/product/categories/level2', App\Http\Livewire\Admin\products\Categories\create\Level2::class)->name('admin.product.categories.level2');
 Route::get('/product/categories/level2/{category}/edit', App\Http\Livewire\Admin\products\Categories\edit\Level2::class)->name('admin.product.categories.edit.level2');
-
 //---------------------------------------Product Categories Level3---------------------------------------//
 Route::get('/product/categories/level3', App\Http\Livewire\Admin\products\Categories\create\Level3::class)->name('admin.product.categories.level3');
 Route::get('/product/categories/level3/{category}/edit', App\Http\Livewire\Admin\products\Categories\edit\Level3::class)->name('admin.product.categories.edit.level3');
+//---------------------------------------Product Brands---------------------------------------//
+Route::get('/product/brands', App\Http\Livewire\Admin\products\Brands\Index::class)->name('admin.product.brands');
+Route::get('/product/brands/{brand}/edit', App\Http\Livewire\Admin\products\Brands\Edit::class)->name('admin.product.brands.edit');
+Route::get('/product/brands/trashed', App\Http\Livewire\Admin\products\Brands\Trash::class)->name('admin.product.brands.trash');

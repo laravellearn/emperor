@@ -41,7 +41,9 @@ return new class extends Migration
         Schema::connection('mysql-products')->create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->string('slug')->nullable();
             $table->boolean('isActive')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
 
@@ -111,6 +113,7 @@ return new class extends Migration
         Schema::connection('mysql-products')->dropIfExists('color_product');
         Schema::connection('mysql-products')->dropIfExists('product_tag');
         Schema::connection('mysql-products')->dropIfExists('products');
+        Schema::connection('mysql-products')->dropIfExists('brands');
         Schema::connection('mysql-products')->dropIfExists('tags');
         Schema::connection('mysql-products')->dropIfExists('garanties');
         Schema::connection('mysql-products')->dropIfExists('colors');

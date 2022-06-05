@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Product extends Model
+class Brand extends Model
 {
     use HasFactory,SoftDeletes;
     protected $connection = "mysql-products";
     protected $fillable = ['title','isActive','slug'];
 
-    public function brand()
+    public function products()
     {
-        return $this->belongsTo(Brand::class);
+        return $this->belongsToMany(Product::class);
     }
+
 }
