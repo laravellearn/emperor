@@ -62,7 +62,13 @@
                                             <textarea wire:model.lazy='category.metaDescription' class="form-control" id="meta-description"></textarea>
                                             <div id="counter2" style="font-size:12px"></div>
                                         </div>
-
+                                        <div class="checkbox checkbox-primary d-inline">
+                                            <input type="checkbox"
+                                                wire:model="Footerlogo.isActive"
+                                                id="checkbox-p-1">
+                                            <label for="checkbox-p-1"
+                                                class="cr">فعال</label>
+                                        </div>
                                         <button type="submit" class="btn btn-outline-success mb-2 mr-2"
                                             style="float:left;"><i class="fa fa-save"></i> ذخیره</button>
                                     </form>

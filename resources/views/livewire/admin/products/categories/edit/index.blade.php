@@ -47,7 +47,14 @@
                                             <div id="counter2" style="font-size:12px"></div>
                                         </div>
 
-
+                                        <div class="checkbox checkbox-primary d-inline">
+                                            <input type="checkbox"
+                                                wire:model="category.isActive"
+                                                id="checkbox-p-1">
+                                            <label for="checkbox-p-1"
+                                                class="cr">فعال</label>
+                                        </div>
+                                        
                                         <div class="input-group cust-file-button mb-3">
                                             <div class="custom-file">
                                                 <input type="file" wire:model="image"
