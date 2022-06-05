@@ -51,7 +51,7 @@
                                                     <input type="file" wire:model="image"
                                                         class="custom-file-input form-control" id="inputGroupFile03">
                                                     <label class="custom-file-label" for="inputGroupFile03">تصویر
-                                                        لوگو</label>
+                                                        دسته بندی</label>
                                                     <span class="text-info" wire:target='image' wire:loading>درحال
                                                         بارگزاری...</span>
                                                 </div>
