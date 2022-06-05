@@ -11,6 +11,15 @@
                 <div class="row">
                     <div class="col-xl-4 box-margin height-card">
                         <div class="card card-body">
+                            <div class="row">
+                                <a href="{{ route('admin.product.categories') }}" class="btn btn-info col-6"
+                                    style="max-height:30px;margin-bottom:10px;border-left:2px solid white"><i class="fa fa-plus-square"></i> دسته
+                                    بندی سطح یک</a>
+                                <a href="{{ route('admin.product.categories.level2') }}" class="btn btn-info col-6"
+                                    style="max-height:30px;margin-bottom:10px"><i class="fa fa-plus-square"></i> دسته
+                                    بندی سطح دو</a>
+                            </div>
+
                             <h4 class="card-title">ویرایش دسته محصول سطح سه</h4>
                             <hr>
                             <div class="row">
@@ -127,9 +136,19 @@
                                                     </td>
                                                     <td>
                                                         @can('product-categories-edit')
-                                                            <a href="{{ route('admin.product.categories.edit', $category->id) }}"
-                                                                class="action-icon"> <i
-                                                                    class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                            @if ($category->level == 1)
+                                                                <a href="{{ route('admin.product.categories.edit', $category->id) }}"
+                                                                    class="action-icon"> <i
+                                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                            @elseif($category->level == 2)
+                                                                <a href="{{ route('admin.product.categories.edit.level2', $category->id) }}"
+                                                                    class="action-icon"> <i
+                                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                            @else
+                                                                <a href="{{ route('admin.product.categories.edit.level3', $category->id) }}"
+                                                                    class="action-icon"> <i
+                                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                            @endif
                                                         @endcan
                                                         @can('product-categories-delete')
                                                             <button wire:click="deleteId({{ $category->id }})"

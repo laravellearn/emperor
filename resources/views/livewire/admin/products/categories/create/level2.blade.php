@@ -12,6 +12,15 @@
                     @can('product-categories-create')
                         <div class="col-xl-4 box-margin height-card">
                             <div class="card card-body">
+                                <div class="row">
+                                    <a href="{{ route('admin.product.categories') }}" class="btn btn-info col-6"
+                                        style="max-height:30px;margin-bottom:10px;border-left:2px solid white"><i class="fa fa-plus-square"></i> دسته
+                                        بندی سطح یک</a>
+                                    <a href="{{ route('admin.product.categories.level3') }}" class="btn btn-info col-6"
+                                        style="max-height:30px;margin-bottom:10px"><i class="fa fa-plus-square"></i> دسته
+                                        بندی سطح سه</a>
+                                </div>
+
                                 <h4 class="card-title">افزودن دسته بندی در سطح دو</h4>
                                 <hr>
                                 <div class="row">
@@ -21,8 +30,8 @@
                                             <div class="form-group">
                                                 <label for="exampleInputEmail12">دسته بندی مادر:</label>
                                                 <div wire:ignore>
-                                                    <select class="form-control"
-                                                        wire:model.lazy="parent_id" id="parents" required="required" style="width: 100%;">
+                                                    <select class="form-control" wire:model.lazy="parent_id" id="parents"
+                                                        required="required" style="width: 100%;">
                                                         @foreach ($parent as $category)
                                                             <option value="{{ $category->id }}">
                                                                 {{ $category->title }}
@@ -131,9 +140,19 @@
                                                         </td>
                                                         <td>
                                                             @can('product-categories-edit')
-                                                                <a href="{{ route('admin.product.categories.edit', $category->id) }}"
-                                                                    class="action-icon"> <i
-                                                                        class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @if ($category->level == 1)
+                                                                    <a href="{{ route('admin.product.categories.edit', $category->id) }}"
+                                                                        class="action-icon"> <i
+                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @elseif($category->level == 2)
+                                                                    <a href="{{ route('admin.product.categories.edit.level2', $category->id) }}"
+                                                                        class="action-icon"> <i
+                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @else
+                                                                    <a href="{{ route('admin.product.categories.edit.level3', $category->id) }}"
+                                                                        class="action-icon"> <i
+                                                                            class="zmdi zmdi-edit zmdi-custom"></i></a>
+                                                                @endif
                                                             @endcan
                                                             @can('product-categories-delete')
                                                                 <button wire:click="deleteId({{ $category->id }})"

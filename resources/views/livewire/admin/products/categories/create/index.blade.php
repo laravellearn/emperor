@@ -13,6 +13,15 @@
 
                         <div class="col-xl-4 box-margin height-card">
                             <div class="card card-body">
+                                <div class="row">
+                                    <a href="{{ route('admin.product.categories.level2') }}" class="btn btn-info col-6"
+                                        style="max-height:30px;margin-bottom:10px;border-left:2px solid white"><i class="fa fa-plus-square"></i> دسته
+                                        بندی سطح دو</a>
+                                    <a href="{{ route('admin.product.categories.level3') }}" class="btn btn-info col-6"
+                                        style="max-height:30px;margin-bottom:10px"><i class="fa fa-plus-square"></i> دسته
+                                        بندی سطح سه</a>
+                                </div>
+
                                 <h4 class="card-title">افزودن دسته بندی در سطح یک</h4>
                                 <hr>
                                 <div class="row">

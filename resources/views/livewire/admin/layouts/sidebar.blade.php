@@ -113,12 +113,14 @@
                     </li> --}}
 
                     @canany(['product-categories'])
-                        <li class="treeview {{ Request::routeIs(['admin.product.categories']) ? 'active' : '' }}">
+                        <li
+                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
                                 @can('product-categories-create')
-                                    <li><a href="{{ route('admin.product.categories') }}">دسته بندی</a></li>
+                                    <li><a {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.categories') }}">دسته بندی</a></li>
                                 @endcan
                             </ul>
                         </li>
