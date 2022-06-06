@@ -1,4 +1,4 @@
-@section('title', 'ویرایش برند محصول')
+@section('title', 'ویرایش گارانتی محصول')
 <div>
     <div class="main-content">
         <div class="data-table-area">
@@ -7,19 +7,19 @@
                     <div class="col-xl-4 box-margin height-card">
                         <div class="card card-body">
 
-                            <h4 class="card-title">ویرایش برند</h4>
+                            <h4 class="card-title">ویرایش گارانتی</h4>
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12 col-xs-12">
-                                    <form wire:submit.prevent='BrandForm'>
+                                    <form wire:submit.prevent='GarantyForm'>
                                         @include('errors.error')
                                         <div class="form-group">
-                                            <label for="exampleInputEmail111">عنوان برند:</label>
-                                            <input type="text" wire:model.lazy='brand.title' class="form-control"
+                                            <label for="exampleInputEmail111">عنوان گارانتی:</label>
+                                            <input type="text" wire:model.lazy='garanty.title' class="form-control"
                                                 id="exampleInputEmail111">
                                         </div>
                                         <div class="checkbox checkbox-primary d-inline">
-                                            <input type="checkbox" wire:model="brand.isActive" id="checkbox-p-1">
+                                            <input type="checkbox" wire:model="garanty.isActive" id="checkbox-p-1">
                                             <label for="checkbox-p-1" class="cr">فعال</label>
                                         </div>
 
@@ -34,18 +34,18 @@
                     <div class="col-12 col-lg-8 box-margin">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title mb-2">لیست برند ها</h4>
+                                <h4 class="card-title mb-2">لیست گارانتی ها</h4>
                                 @can('role-trash')
-                                    <a href="{{ route('admin.product.brands.trash') }}" type="button"
+                                    <a href="{{ route('admin.product.garanties.trash') }}" type="button"
                                         class="btn btn-danger mb-2 mr-2" style="float:left;margin-top:-37px;"><i
                                             class="fa fa-trash"></i> سطل زباله <span class="badge badge-danger">
-                                            {{ \App\Models\Admin\products\Brand::onlyTrashed()->count() }}
+                                            {{ \App\Models\Admin\products\Garanty::onlyTrashed()->count() }}
                                         </span></a>
                                 @endcan
                                 {{-- <button type="button" class="btn btn-primary mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-file-excel-o"></i> خروجی
                                     اکسل</button> --}}
-                                <a href="{{ route('admin.product.brands') }}" class="btn btn-success mb-2 mr-2"
+                                <a href="{{ route('admin.product.garanties') }}" class="btn btn-success mb-2 mr-2"
                                     style="float:left;margin-top:-37px;"><i class="fa fa-plus-square"></i> افزودن</a>
 
                                 <hr>
@@ -53,10 +53,10 @@
                                     placeholder="جستجو...">
 
                                     <table id="datatable-buttons" class="table table-striped dt-responsive nowrap"
-                                        style="width:102%" wire:init='loadBrand'>
+                                        style="width:102%" wire:init='loadGaranty'>
                                         <thead>
                                             <tr>
-                                                <th>عنوان برند</th>
+                                                <th>عنوان 'گارانتی'</th>
                                                 <th>وضعیت</th>
                                                 <th>عملیات</th>
                                             </tr>
@@ -64,23 +64,23 @@
 
                                         @if ($readyToLoad)
                                             <tbody>
-                                                @foreach ($brands as $brand)
+                                                @foreach ($garanties as $garanty)
                                                     <tr>
-                                                        <td>{{ $brand->title }}</td>
+                                                        <td>{{ $garanty->title }}</td>
                                                         <td>
-                                                            @can('product-brands-edit')
-                                                                @if ($brand->isActive == 1)
-                                                                    <a wire:click="changeStatus({{ $brand->id }})"
+                                                            @can('product-garanties-edit')
+                                                                @if ($garanty->isActive == 1)
+                                                                    <a wire:click="changeStatus({{ $garanty->id }})"
                                                                         style="cursor:pointer"><span
                                                                             class="badge badge-success">فعال</span></a>
                                                                 @else
-                                                                    <a wire:click="changeStatus({{ $brand->id }})"
+                                                                    <a wire:click="changeStatus({{ $garanty->id }})"
                                                                         style="cursor:pointer"><span
                                                                             class="badge badge-danger">غیرفعال</span></a>
                                                                 @endif
                                                             @endcan
-                                                            @cannot('product-brands-edit')
-                                                                @if ($brand->isActive == 1)
+                                                            @cannot('product-garanties-edit')
+                                                                @if ($garanty->isActive == 1)
                                                                     <span style="cursor:pointer"><span
                                                                             class="badge badge-success">فعال</span></span>
                                                                 @else
@@ -91,13 +91,13 @@
 
                                                         </td>
                                                         <td>
-                                                            @can('product-brands-edit')
-                                                                    <a href="{{ route('admin.product.brands.edit', $brand->id) }}"
+                                                            @can('product-garanties-edit')
+                                                                    <a href="{{ route('admin.product.garanties.edit', $garanty->id) }}"
                                                                         class="action-icon"> <i
                                                                             class="zmdi zmdi-edit zmdi-custom"></i></a>
                                                             @endcan
-                                                            @can('product-brands-delete')
-                                                                <button wire:click="deleteId({{ $brand->id }})"
+                                                            @can('product-garanties-delete')
+                                                                <button wire:click="deleteId({{ $garanty->id }})"
                                                                     data-toggle="modal" data-target="#exampleModal"
                                                                     class="action-icon"> <i
                                                                         class="zmdi zmdi-delete zmdi-custom"></i></button>
@@ -106,7 +106,7 @@
                                                     </tr>
                                                 @endforeach
                                             </tbody>
-                                            {{ $brands->links() }}
+                                            {{ $garanties->links() }}
                                         @else
                                             <div class="alert alert-warning">
                                                 در حال بارگزاری اطلاعات از پایگاه داده ....

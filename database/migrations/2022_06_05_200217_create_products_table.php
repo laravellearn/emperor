@@ -25,7 +25,6 @@ return new class extends Migration
         Schema::connection('mysql-products')->create('garanties', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('value');
             $table->boolean('isActive')->default(1);
             $table->softDeletes();
             $table->timestamps();
@@ -92,13 +91,6 @@ return new class extends Migration
             $table->primary(['color_id','product_id']);
         });
 
-        Schema::connection('mysql-products')->create('garanty_product', function (Blueprint $table) {
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('emperor_products.products');
-            $table->unsignedBigInteger('garanty_id');
-            $table->foreign('garanty_id')->references('id')->on('emperor_products.garanties');
-            $table->primary(['garanty_id','product_id']);
-        });
 
     }
 
@@ -109,7 +101,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::connection('mysql-products')->dropIfExists('garanty_product');
         Schema::connection('mysql-products')->dropIfExists('color_product');
         Schema::connection('mysql-products')->dropIfExists('product_tag');
         Schema::connection('mysql-products')->dropIfExists('products');

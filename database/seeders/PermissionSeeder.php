@@ -369,6 +369,52 @@ class PermissionSeeder extends Seeder
 
             //End Product Brands
 
+            //Product Garanties
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties",
+                'description' => "گارانتی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties-create",
+                'description' => "افزودن گارانتی برای محصول",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties-trash",
+                'description' => "سطل زباله گارانتی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties-edit",
+                'description' => "ویرایش گارانتی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties-delete",
+                'description' => "حذف موقت گارانتی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties-forceDelete",
+                'description' => "حذف کامل گارانتی محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-garanties-restore",
+                'description' => "بازیابی گارانتی محصولات",
+            ],
+
+            //End Product Garanties
+
 
         ]);
     }

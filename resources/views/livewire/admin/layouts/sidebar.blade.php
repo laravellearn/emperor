@@ -112,9 +112,9 @@
                         </ul>
                     </li> --}}
 
-                    @canany(['product-categories', 'product-categories-create'])
+                    @canany(['product-categories', 'product-brands','product-garanties'])
                         <li
-                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3','admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash']) ? 'active' : '' }}">
+                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3','admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash','admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
@@ -125,6 +125,10 @@
                                 @can('product-brands')
                                     <li><a {{ Request::routeIs(['admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.product.brands') }}">برند ها</a></li>
+                                @endcan
+                                @can('product-garanties')
+                                    <li><a {{ Request::routeIs(['admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.garanties') }}">گارانتی ها</a></li>
                                 @endcan
 
                             </ul>

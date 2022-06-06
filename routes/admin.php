@@ -68,3 +68,7 @@ Route::get('/product/categories/level3/{category}/edit', App\Http\Livewire\Admin
 Route::get('/product/brands', App\Http\Livewire\Admin\products\Brands\Index::class)->name('admin.product.brands');
 Route::get('/product/brands/{brand}/edit', App\Http\Livewire\Admin\products\Brands\Edit::class)->name('admin.product.brands.edit');
 Route::get('/product/brands/trashed', App\Http\Livewire\Admin\products\Brands\Trash::class)->name('admin.product.brands.trash');
+//---------------------------------------Product Garanties---------------------------------------//
+Route::get('/product/garanties', App\Http\Livewire\Admin\products\Garanties\Index::class)->name('admin.product.garanties');
+Route::get('/product/garanties/{garanty}/edit', App\Http\Livewire\Admin\products\Garanties\Edit::class)->name('admin.product.garanties.edit');
+Route::get('/product/garanties/trashed', App\Http\Livewire\Admin\products\Garanties\Trash::class)->name('admin.product.garanties.trash');
