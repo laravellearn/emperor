@@ -6,7 +6,7 @@
     <script src="{{ asset('admin/js/default-assets/date-time.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/setting.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/bootstrap-growl.js') }}"></script>
-
+    <script src="js/default-assets/setting.js"></script>
     <!-- Active JS -->
     <script src="{{ asset('admin/js/default-assets/active.js') }}"></script>
 
@@ -16,5 +16,5 @@
     <script src="{{ mix('/js/app.js') }}"></script>
     <script src="{{ asset('admin/plugins/select2/js/select2.full.min.js') }}" defer></script>
 
-    <livewire:scripts />
     @yield('scripts')
+    <livewire:scripts />

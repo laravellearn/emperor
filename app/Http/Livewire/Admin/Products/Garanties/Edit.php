@@ -41,7 +41,7 @@ class Edit extends Component
 
     public function changeStatus($id)
     {
-        $this->authorize('product-garanties-edit',Brand::class);
+        $this->authorize('product-garanties-edit',Garanty::class);
 
         $garanty = Garanty::find($id);
         if ($garanty->isActive == 1) {
@@ -67,7 +67,7 @@ class Edit extends Component
 
     public function delete()
     {
-        $this->authorize('product-garanties-delete',Brand::class);
+        $this->authorize('product-garanties-delete',Garanty::class);
 
         $garanty = Garanty::find($this->deleteId);
         $garanty->delete();

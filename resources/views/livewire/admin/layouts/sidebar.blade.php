@@ -112,15 +112,15 @@
                         </ul>
                     </li> --}}
 
-                    @canany(['product-categories', 'product-brands','product-garanties'])
+                    @canany(['product-categories', 'product-brands','product-garanties','product-colors'])
                         <li
-                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3','admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash','admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash']) ? 'active' : '' }}">
+                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3','admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash','admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash','admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
                                 @can('product-categories')
                                     <li><a {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3']) ? 'style=color:#54c6d0' : '' }}
-                                            href="{{ route('admin.product.categories') }}">دسته بندی</a></li>
+                                            href="{{ route('admin.product.categories') }}">دسته بندی ها</a></li>
                                 @endcan
                                 @can('product-brands')
                                     <li><a {{ Request::routeIs(['admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash']) ? 'style=color:#54c6d0' : '' }}
@@ -130,6 +130,11 @@
                                     <li><a {{ Request::routeIs(['admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.product.garanties') }}">گارانتی ها</a></li>
                                 @endcan
+                                @can('product-colors')
+                                    <li><a {{ Request::routeIs(['admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.colors') }}">رنگ ها</a></li>
+                                @endcan
+
 
                             </ul>
 

@@ -7,6 +7,6 @@
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('admin/img/core-img/favicon.png') }}">
 <link rel="stylesheet" href="{{ asset('admin/style.css') }}">
-<livewire:styles />
 
 @yield('styles')
+<livewire:styles />

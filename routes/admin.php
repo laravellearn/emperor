@@ -72,3 +72,7 @@ Route::get('/product/brands/trashed', App\Http\Livewire\Admin\products\Brands\Tr
 Route::get('/product/garanties', App\Http\Livewire\Admin\products\Garanties\Index::class)->name('admin.product.garanties');
 Route::get('/product/garanties/{garanty}/edit', App\Http\Livewire\Admin\products\Garanties\Edit::class)->name('admin.product.garanties.edit');
 Route::get('/product/garanties/trashed', App\Http\Livewire\Admin\products\Garanties\Trash::class)->name('admin.product.garanties.trash');
+//---------------------------------------Product Colors---------------------------------------//
+Route::get('/product/colors', App\Http\Livewire\Admin\products\Colors\Index::class)->name('admin.product.colors');
+Route::get('/product/colors/{color}/edit', App\Http\Livewire\Admin\products\Colors\Edit::class)->name('admin.product.colors.edit');
+Route::get('/product/colors/trashed', App\Http\Livewire\Admin\products\Colors\Trash::class)->name('admin.product.colors.trash');

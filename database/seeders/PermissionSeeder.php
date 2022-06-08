@@ -415,6 +415,52 @@ class PermissionSeeder extends Seeder
 
             //End Product Garanties
 
+            //Product Colors
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors",
+                'description' => "رنگ محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors-create",
+                'description' => "افزودن رنگ برای محصول",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors-trash",
+                'description' => "سطل زباله رنگ محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors-edit",
+                'description' => "ویرایش رنگ محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors-delete",
+                'description' => "حذف موقت رنگ محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors-forceDelete",
+                'description' => "حذف کامل رنگ محصولات",
+            ],
+            [
+                'created_at' => new \DateTime,
+                'updated_at' => new \DateTime,
+                'title' => "product-colors-restore",
+                'description' => "بازیابی رنگ محصولات",
+            ],
+
+            //End Product Colors
+
 
         ]);
     }
