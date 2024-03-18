@@ -1,8 +1,8 @@
 require('./bootstrap');
 
-import Alpine from 'alpinejs';
-window.Alpine = Alpine;
-Alpine.start();
+// import Alpine from 'alpinejs';
+// window.Alpine = Alpine;
+// Alpine.start();
 
 let Swal = require('sweetalert2');
 

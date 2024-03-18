@@ -12,7 +12,8 @@
                         <div class="col-lg-8 col-md-12 col-xs-12 pull-right">
                             <div class="search-header search-box">
                                 <form action="#">
-                                    <input type="text" class="header-search-input" placeholder="جستجو در دیجی استور...">
+                                    <input type="text" class="header-search-input"
+                                        placeholder="جستجو در دیجی استور...">
                                     <button class="btn-search" type="submit"><img
                                             src="{{ asset('home/images/search.png') }}" alt="search"></button>
                                 </form>
@@ -53,8 +54,7 @@
                                     </ul>
                                     <div class="search-results-list js-search-ad-banner">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/banner-search.jpg') }}"
-                                                alt="banner-search">
+                                            <img src="{{ asset('home/images/banner-search.jpg') }}" alt="banner-search">
                                         </a>
                                     </div>
                                 </div>
@@ -69,7 +69,9 @@
                         <div class="mini-cart-header">
                             <a href="cart.html" style="color: #4a5f73;">
                                 <span class="mdi mdi-basket"></span>
-                                <span class="cart-count">2</span>
+                                <span class="cart-count">@php
+                                    \Cart::count();
+                                @endphp</span>
                             </a>
                             <div class="mini-cart-dropdown">
                                 <div class="header-cart-info-header">
@@ -82,98 +84,44 @@
                                     <div class="scrollbar" id="style-1">
                                         <div class="force-overflow">
                                             <ul class="header-basket-list">
-                                                <li class="js-mini-cart-item">
-                                                    <a href="#" class="header-basket-list-item">
-                                                        <div class="header-basket-list-item-image">
-                                                            <img src="{{ asset('home/images/product-slider-2/GalaxyS20Ultra.jpg') }}"
-                                                                alt="img-slider">
-                                                        </div>
-                                                        <div class="header-basket-list-item-content">
-                                                            <h1 class="header-basket-list-item-title">گوشی موبایل
-                                                                سامسونگ مدل Galaxy S20 Ultra SM-G988B/DS دو سیم کارت
-                                                                ظرفیت 128 گیگابایت</h1>
-                                                            <span class="header-basket-list-item-shipping-type">موجود در
-                                                                انبار
-                                                                دیجی‌کلا</span>
-                                                            <div class="header-basket-list-item-footer">
-                                                                <div class="header-basket-list-item-props">
-                                                                    <span class="header-basket-list-item-props-item"> ۱
-                                                                        عدد</span>
-                                                                    <span class="header-basket-list-item-props-item">
+                                                @foreach (Cart::content() as $row)
+
+                                                    <li class="js-mini-cart-item">
+                                                        <a href="#" class="header-basket-list-item">
+                                                            <div class="header-basket-list-item-image">
+                                                                <img src="{{ asset('home/images/product-slider-2/GalaxyS20Ultra.jpg') }}"
+                                                                    alt="img-slider">
+                                                            </div>
+                                                            <div class="header-basket-list-item-content">
+                                                                <h1 class="header-basket-list-item-title">{{ $row->title }}</h1>
+                                                                <span
+                                                                    class="header-basket-list-item-shipping-type">موجود
+                                                                    در
+                                                                    انبار
+                                                                    دیجی‌کلا</span>
+                                                                <div class="header-basket-list-item-footer">
+                                                                    <div class="header-basket-list-item-props">
                                                                         <span
-                                                                            class="header-basket-list-item-color-badge"
-                                                                            style="background: #9E9E9E">
+                                                                            class="header-basket-list-item-props-item">
+                                                                            ۱
+                                                                            عدد</span>
+                                                                        <span
+                                                                            class="header-basket-list-item-props-item">
+                                                                            <span
+                                                                                class="header-basket-list-item-color-badge"
+                                                                                style="background: #9E9E9E">
+                                                                            </span>
+                                                                            خاکستری
                                                                         </span>
-                                                                        خاکستری
-                                                                    </span>
-                                                                    <span class="header-basket-list-item-remove">
-                                                                        <i class="mdi mdi-delete"></i>
-                                                                    </span>
+                                                                        <span class="header-basket-list-item-remove">
+                                                                            <i class="mdi mdi-delete"></i>
+                                                                        </span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="js-mini-cart-item">
-                                                    <a href="#" class="header-basket-list-item">
-                                                        <div class="header-basket-list-item-image">
-                                                            <img src="{{ asset('home/images/product-slider-2/Huawei-WATCHFIT.jpg') }}"
-                                                                alt="img-slider">
-                                                        </div>
-                                                        <div class="header-basket-list-item-content">
-                                                            <h1 class="header-basket-list-item-title">ساعت هوشمند هوآوی
-                                                                مدل WATCH FIT</h1>
-                                                            <span class="header-basket-list-item-shipping-type">موجود در
-                                                                انبار
-                                                                دیجی‌کلا</span>
-                                                            <div class="header-basket-list-item-footer">
-                                                                <div class="header-basket-list-item-props">
-                                                                    <span class="header-basket-list-item-props-item"> ۱
-                                                                        عدد</span>
-                                                                    <span class="header-basket-list-item-props-item">
-                                                                        <span
-                                                                            class="header-basket-list-item-color-badge"
-                                                                            style="background: #00e676"></span>
-                                                                        سبز
-                                                                    </span>
-                                                                    <span class="header-basket-list-item-remove">
-                                                                        <i class="mdi mdi-delete"></i>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
-                                                <li class="js-mini-cart-item">
-                                                    <a href="#" class="header-basket-list-item">
-                                                        <div class="header-basket-list-item-image">
-                                                            <img src="{{ asset('home/images/product-slider-2/NIGHT-HUNTER.jpg') }}"
-                                                                alt="img-slider">
-                                                        </div>
-                                                        <div class="header-basket-list-item-content">
-                                                            <h1 class="header-basket-list-item-title">کامپیوتر دسکتاپ
-                                                                دیویژن مدل NIGHT HUNTER</h1>
-                                                            <span class="header-basket-list-item-shipping-type">موجود در
-                                                                انبار
-                                                                دیجی‌کلا</span>
-                                                            <div class="header-basket-list-item-footer">
-                                                                <div class="header-basket-list-item-props">
-                                                                    <span class="header-basket-list-item-props-item"> ۱
-                                                                        عدد</span>
-                                                                    <span class="header-basket-list-item-props-item">
-                                                                        <span
-                                                                            class="header-basket-list-item-color-badge"
-                                                                            style="background: #000000"></span>
-                                                                        مشکی
-                                                                    </span>
-                                                                    <span class="header-basket-list-item-remove">
-                                                                        <i class="mdi mdi-delete"></i>
-                                                                    </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                </li>
+                                                        </a>
+                                                    </li>
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -187,7 +135,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        <a href="#" class="header-cart-info-submit btn btn-danger">ثبت سفارش</a>
+                                        <a href="#" class="header-cart-info-submit btn btn-danger">ثبت </a>
                                     </div>
                                 </div>
                             </div>
@@ -458,7 +406,8 @@
                                             </p>
                                         </div>
                                         <div>
-                                            <a href="#" class="header-cart-info-submit btn btn-danger">ثبت سفارش</a>
+                                            <a href="#" class="header-cart-info-submit btn btn-danger">ثبت
+                                                سفارش</a>
                                         </div>
                                     </div>
                                 </div>
@@ -474,8 +423,7 @@
             <nav class="main-menu">
                 <ul class="new-list-menu">
                     <li class="item-list-menu megamenu-1 category nav-overlay"><a href="#"
-                            class="list-category first after" style="font-weight: bold;"><i
-                                class="mdi mdi-menu"></i>
+                            class="list-category first after" style="font-weight: bold;"><i class="mdi mdi-menu"></i>
                             دسته بندی کالاها</a>
 
                         <ul class="list-menu-level-2">
@@ -490,17 +438,16 @@
                                                 class="list-category-megamenu">همه دسته بندی های
                                                 {{ $category->title }}</a>
                                         </li>
-                                        @foreach (\App\Models\Admin\products\Category::where('level', 2)->where('isActive', 1)->where('parent_id', $category->id)->get()
-    as $item2)
+                                        @foreach (\App\Models\Admin\products\Category::where('level', 2)->where('isActive', 1)->where('parent_id', $category->id)->get() as $item2)
                                             <li class="item-megamenu-title"><a
                                                     href="/product/category/{{ $item2->slug }}"
                                                     class="list-category-megamenu-3"><span>{{ $item2->title }}<i
                                                             class="fa fa-angle-left"></i></span></a></li>
-                                        @foreach (\App\Models\Admin\products\Category::where('level', 3)->where('isActive', 1)->where('parent_id', $item2->id)->get() as $item3)
-                                            <li class="item-megamenu-item"><a href="/product/category/{{ $item3->slug }}"
-                                                    class="list-category-megamenu-3">{{ $item3->title }}</a></li>
-
-                                                            @endforeach
+                                            @foreach (\App\Models\Admin\products\Category::where('level', 3)->where('isActive', 1)->where('parent_id', $item2->id)->get() as $item3)
+                                                <li class="item-megamenu-item"><a
+                                                        href="/product/category/{{ $item3->slug }}"
+                                                        class="list-category-megamenu-3">{{ $item3->title }}</a></li>
+                                            @endforeach
                                         @endforeach
                                     </ul>
                                 </li>
@@ -512,8 +459,9 @@
 
                     <li class="item-list-menu megamenu-1"><a href="#" class="list-category first after"
                             style="font-weight: bold;"><i class="mdi mdi-store text-warning"></i> سوپر مارکت</a></li>
-                    <li class="item-list-menu megamenu-1 nav-overlay"><a href="#" class="list-category first after"
-                            style="font-weight: bold;"><i class="mdi mdi-sale text-danger"></i> تخفیف و پیشنهاد ها</a>
+                    <li class="item-list-menu megamenu-1 nav-overlay"><a href="#"
+                            class="list-category first after" style="font-weight: bold;"><i
+                                class="mdi mdi-sale text-danger"></i> تخفیف و پیشنهاد ها</a>
                         <ul class="list-menu-level-2 list-menu-discounts-offers">
                             <li class="discounts-offers-list-item">
                                 <ul>
@@ -618,7 +566,8 @@
                             دیجی پلاس
                         </a>
                     </li>
-                    <li class="item-list-menu megamenu-1 item-set"><a href="#" class="list-category first after">سوالی
+                    <li class="item-list-menu megamenu-1 item-set"><a href="#"
+                            class="list-category first after">سوالی
                             دارید؟</a>
                     </li>
                     <li class="item-list-menu megamenu-1 item-set"><a href="#"

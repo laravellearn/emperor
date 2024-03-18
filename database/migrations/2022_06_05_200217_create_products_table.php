@@ -61,6 +61,7 @@ return new class extends Migration
             $table->foreign('brand_id')->references('id')->on('emperor_products.brands');
             $table->string('description');
             $table->text('body');
+            $table->string('image')->nullable();
             $table->string('price');
             $table->string('discountPrice')->nullable();
             $table->string('number')->default(0);

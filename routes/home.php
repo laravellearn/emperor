@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Home\Profile\Address;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/user/profile/addresses/{id}', [App\Http\Controllers\Home\ProfileController::class, 'getCities']);
 
-Route::get('/', App\Http\Livewire\Home\Home\Index::class)->name('home');
+Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 //---------------------------------------Authentication---------------------------------------//
 Route::get('/register', App\Http\Livewire\Home\Users\Register::class)->name('register');
@@ -25,7 +27,24 @@ Route::get('/verify-mobile-forget/{id}', App\Http\Livewire\Home\Users\ForgetVeri
 Route::get('/change-password/{code}', App\Http\Livewire\Home\Users\ChangePassword::class)->name('change.password');
 
 //---------------------------------------Profile For Users---------------------------------------//
+Route::post('/addresses', [App\Http\Controllers\Home\ProfileController::class,'store'])->middleware('auth')->name('addresses.store');
+
 Route::group(['namespace' => 'App\Http\Livewire\Home\Profile', 'prefix' => 'user/profile', 'middleware' => 'auth'], function () {
+    Route::get('/addresses', Address::class)->name('user.address');
+
     Route::get('/', Index::class)->name('user.profile');
+
 });
+
+//---------------------------------------Products---------------------------------------//
+Route::get('/product/{slug}','App\Http\Controllers\Home\Products\ProductController@single')->name('product.single');
+
+//---------------------------------------Add to Cart---------------------------------------//
+Route::post('/product/cart/add','App\Http\Controllers\Home\Products\CartController@add')->name('product.add.cart');
 // \Auth::routes();
+
+Route::get('/cart/index','App\Http\Controllers\Home\Products\CartController@orders')->name('orders.index');
+
+//---------------------------------------Payments---------------------------------------//
+Route::get('/product/{id}/purchase','App\Http\Controllers\Home\PurchaseController@purchase')->name('product.purchase');
+Route::get('/product/{id}/purchase/result','App\Http\Controllers\Home\PurchaseController@result')->name('product.result');

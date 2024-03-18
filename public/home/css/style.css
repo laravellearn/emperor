@@ -1583,14 +1583,14 @@ nav.main-menu ul.new-list-menu li.item-list-menu ul.list-menu-discounts-offers .
 
 .adplacement-container-column .adplacement-item {
     margin-left: 0;
-    margin-bottom: 16px;
+    margin-bottom: -130px;
     display: block;
-    height: auto;
+    height: 380px;
     float: left;
 }
 
 .adplacement-container-column .adplacement-item:last-child {
-    margin-bottom: 0;
+    margin-bottom: -120px;
 }
 
 .adplacement-container-column .adplacement-item .adplacement-sponsored-box {
@@ -1612,7 +1612,6 @@ nav.main-menu ul.new-list-menu li.item-list-menu ul.list-menu-discounts-offers .
     background: url(../images/amazing/svg-amazing.svg) 100% no-repeat;
     float: left;
     width: 100%;
-    height: 100%;
 }
 
 .slider-amazing {

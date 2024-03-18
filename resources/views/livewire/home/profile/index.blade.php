@@ -40,7 +40,7 @@
                     </a>
                 </div>
                 <ul class="profile-menu-items">
-                    <li><a href="profile.html" class="profile-menu-url active-profile"><span
+                    <li><a href="{{ route('user.profile') }}" class="profile-menu-url active-profile"><span
                                 class="mdi mdi-account-outline"></span>پروفایل</a></li>
                     <li><a href="profile-order.html" class="profile-menu-url"><span class="mdi mdi-basket"></span>همه
                             سفارش ها</a></li>
@@ -51,7 +51,7 @@
                             علاقه مندی ها</a></li>
                     <li><a href="profile-comments.html" class="profile-menu-url"><span
                                 class="mdi mdi-comment-multiple-outline"></span>نقد و نظرات</a></li>
-                    <li><a href="profile-addresses.html" class="profile-menu-url"><span
+                    <li><a href="{{ route('user.address') }}" class="profile-menu-url"><span
                                 class="mdi mdi-map-marker-outline"></span>آدرس
                             ها</a></li>
                     <li><a href="#" class="profile-menu-url"><span class="mdi mdi-history"></span>بازدید های اخیر</a>

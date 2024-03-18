@@ -22,7 +22,7 @@ class Edit extends Component
 
     protected $rules = [
         'color.title'    => 'required',
-        'color.value'    => 'required|min:7|max:7',
+        'color.value'    => 'required',
         'color.isActive'     => 'nullable',
     ];
 

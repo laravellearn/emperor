@@ -73,7 +73,7 @@
                                                 @foreach ($colors as $color)
                                                     <tr>
                                                         <td>{{ $color->title }}</td>
-                                                        <td style="background-color:{{ $color->value }}">{{ $color->value }}</td>
+                                                        <td><div style="width:10px;height:10px;background-color:{{ $color->value }}"></div></td>
                                                         <td>
                                                             @can('product-colors-edit')
                                                                 @if ($color->isActive == 1)

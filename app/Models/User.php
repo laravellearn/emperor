@@ -92,6 +92,26 @@ class User extends Authenticatable
         return !!$roles->intersect($this->roles)->all();
     }
 
+    public function transactions()
+    {
+        return $this->belongsToMany(Transaction::class);
+    }
+
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class);
+    }
+
+    public function items()
+    {
+        return $this->belongsToMany(Item::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
     public function getCreatedAtAttribute($created_at)
     {
         $createDate = new Verta($created_at);

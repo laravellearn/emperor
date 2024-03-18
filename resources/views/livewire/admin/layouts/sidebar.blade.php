@@ -112,12 +112,18 @@
                         </ul>
                     </li> --}}
 
-                    @canany(['product-categories', 'product-brands','product-garanties','product-colors'])
+                    @canany(['product-categories', 'product-brands', 'product-garanties', 'product-colors',
+                        'product-attribute', 'product-galleries'])
                         <li
-                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3','admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash','admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash','admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash']) ? 'active' : '' }}">
+                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3', 'admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash', 'admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash', 'admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash', 'admin.product.attributes', 'admin.product.attributes.edit', 'admin.product.attributes.trash', 'admin.products', 'admin.product.galleries']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
+                                @can('products')
+                                    <li><a {{ Request::routeIs(['admin.products', 'admin.products.edit', 'admin.products.trash']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.products') }}">محصولات</a></li>
+                                @endcan
+
                                 @can('product-categories')
                                     <li><a {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.product.categories') }}">دسته بندی ها</a></li>
@@ -134,17 +140,37 @@
                                     <li><a {{ Request::routeIs(['admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.product.colors') }}">رنگ ها</a></li>
                                 @endcan
-
+                                @can('product-attributes')
+                                    <li><a {{ Request::routeIs(['admin.product.attributes', 'admin.product.attributes.edit', 'admin.product.attributes.trash']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.attributes') }}">ویژگی ها</a></li>
+                                @endcan
+                                @can('product-galleries')
+                                    <li><a {{ Request::routeIs(['admin.product.galleries']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.galleries') }}">گالری تصاویر محصول</a></li>
+                                @endcan
 
                             </ul>
 
                         </li>
                     @endcan
 
+                    <li
+                        class="treeview {{ Request::routeIs(['admin.orders.index', 'admin.carts.index']) ? 'active' : '' }}">
+                        @canany(['orders'])
+                            <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>مدیریت سفارشات</span> <i
+                                    class="fa fa-angle-left"></i></a>
+                            <ul class="treeview-menu">
+                                <li><a {{ Request::routeIs(['admin.orders.index']) ? 'style=color:#54c6d0' : '' }}
+                                        href="{{ route('admin.orders.index') }}">تمام سفارشات</a></li>
+                                <li><a {{ Request::routeIs(['admin.carts.index']) ? 'style=color:#54c6d0' : '' }}
+                                        href="{{ route('admin.carts.index') }}">سبد خرید ها</a></li>
+                            </ul>
+                        @endcan
+
+                    </li>
 
                     @canany(['users'])
-                        <li
-                            class="treeview {{ Request::routeIs(['admin.users', 'admin.users.create']) ? 'active' : '' }}">
+                        <li class="treeview {{ Request::routeIs(['admin.users', 'admin.users.create']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="zmdi zmdi-accounts-alt"></i> <span>کاربران</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
@@ -189,7 +215,7 @@
                     @endcan
 
                     <li
-                        class="treeview {{ Request::routeIs(['admin.settings.footer.label', 'admin.settings.footer.social', 'admin.settings.footer.logo', 'admin.settings.footer.logo.update', 'admin.settings.footer.menu', 'admin.settings.footer.menu.update', 'admin.settings.footer.namad', 'admin.settings.footer.logo.trash']) ? 'active' : '' }}">
+                        class="treeview {{ Request::routeIs(['admin.settings.footer.label', 'admin.settings.footer.social', 'admin.settings.footer.logo', 'admin.settings.footer.logo.update', 'admin.settings.footer.menu', 'admin.settings.footer.menu.update', 'admin.settings.footer.namad', 'admin.settings.footer.logo.trash', 'admin.settings.index']) ? 'active' : '' }}">
                         @canany(['setting-footer'])
                             <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> <span>تنظیمات</span> <i
                                     class="fa fa-angle-left"></i></a>
@@ -200,6 +226,10 @@
                                 <!-- تنظیمات فوتر-برچسب ها-تنظیمات عمومی(لوگو و ...) -  -->
                                 <li><a {{ Request::routeIs(['admin.settings.footer.label', 'admin.settings.footer.social', 'admin.settings.footer.logo', 'admin.settings.footer.logo.update', 'admin.settings.footer.menu', 'admin.settings.footer.menu.update', 'admin.settings.footer.namad', 'admin.settings.footer.logo.trash']) ? 'style=color:#54c6d0' : '' }}
                                         href="{{ route('admin.settings.footer') }}">تنظیمات فوتر</a></li>
+                            @endcan
+                            @canany(['setting-index'])
+                                <li><a {{ Request::routeIs(['admin.settings.index']) ? 'style=color:#54c6d0' : '' }}
+                                        href="{{ route('admin.settings.sliders') }}">تنظیمات صفحه اصلی</a></li>
                             @endcan
                             <!-- استان و شهر و ... -  -->
                             <li><a href="#">تنظیمات فروشگاه</a></li>

@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Hekmatinasser\Verta\Laravel\VertaServiceProvider::class,
+        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -193,7 +194,8 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // ...
         'Verta' => Hekmatinasser\Verta\Verta::class,
-
+        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        
     ])->toArray(),
 
 ];

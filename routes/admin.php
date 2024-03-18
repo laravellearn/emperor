@@ -19,6 +19,8 @@ Route::get('/', App\Http\Livewire\Admin\Home\Index::class)->name('admin.home');
 //---------------------------------------Settings---------------------------------------//
 //Settings Footer ETC
 Route::get('/settings/footer', App\Http\Livewire\Admin\Settings\Footer\Index::class)->name('admin.settings.footer');
+//Settings Slider Index
+Route::get('/settings/sliders', App\Http\Livewire\Admin\Settings\Index\Index::class)->name('admin.settings.sliders');
 //Settings Footer ETC
 Route::get('/settings/footer/label', App\Http\Livewire\Admin\Settings\Footer\Label::class)->name('admin.settings.footer.label');
 Route::get('/settings/footer/socialmedia', App\Http\Livewire\Admin\Settings\Footer\Social::class)->name('admin.settings.footer.social');
@@ -31,6 +33,8 @@ Route::get('/settings/footer/menu', App\Http\Livewire\Admin\Settings\Footer\Menu
 Route::get('/settings/footer/menu/{Footermenu}', App\Http\Livewire\Admin\Settings\Footer\menuUpdate::class)->name('admin.settings.footer.menu.update');
 //Settings Footer Enamad
 Route::get('/settings/footer/namad', App\Http\Livewire\Admin\Settings\Footer\Namad::class)->name('admin.settings.footer.namad');
+//Settings Index Page
+Route::get('/settings/index', App\Http\Livewire\Admin\Settings\Index\Index::class)->name('admin.settings.index');
 
 //------------------------------------------Logs--------------------------------------------//
 Route::get('/logs', App\Http\Livewire\Admin\Logs\Index::class)->name('admin.logs');
@@ -54,6 +58,12 @@ Route::get('/users/info/{user}', App\Http\Livewire\Admin\Users\Info::class)->nam
 Route::get('/users/edit/{user}', App\Http\Livewire\Admin\Users\Edit::class)->name('admin.users.edit');
 
 //---------------------------------------Products---------------------------------------//
+Route::get('/products', App\Http\Livewire\Admin\products\Products\Index::class)->name('admin.products');
+Route::get('/products/create', App\Http\Livewire\Admin\products\Products\Create::class)->name('admin.products.create');
+Route::get('/products/{product}/edit', App\Http\Livewire\Admin\products\Products\Edit::class)->name('admin.products.edit');
+Route::get('/products/trashed', App\Http\Livewire\Admin\products\Products\Trash::class)->name('admin.products.trash');
+Route::get('/products/galleries', App\Http\Livewire\Admin\Products\Galleries\Index::class)->name('admin.product.galleries');
+
 //---------------------------------------Product Categories Level1---------------------------------------//
 Route::get('/product/categories', App\Http\Livewire\Admin\products\Categories\create\Index::class)->name('admin.product.categories');
 Route::get('/product/categories/{category}/edit', App\Http\Livewire\Admin\products\Categories\edit\Index::class)->name('admin.product.categories.edit');
@@ -68,6 +78,14 @@ Route::get('/product/categories/level3/{category}/edit', App\Http\Livewire\Admin
 Route::get('/product/brands', App\Http\Livewire\Admin\products\Brands\Index::class)->name('admin.product.brands');
 Route::get('/product/brands/{brand}/edit', App\Http\Livewire\Admin\products\Brands\Edit::class)->name('admin.product.brands.edit');
 Route::get('/product/brands/trashed', App\Http\Livewire\Admin\products\Brands\Trash::class)->name('admin.product.brands.trash');
+//---------------------------------------Product Attributes---------------------------------------//
+Route::get('/product/attributes', App\Http\Livewire\Admin\products\Attributes\Index::class)->name('admin.product.attributes');
+Route::get('/product/attributes/{attribute}/edit', App\Http\Livewire\Admin\products\Attributes\Edit::class)->name('admin.product.attributes.edit');
+Route::get('/product/attributes/trashed', App\Http\Livewire\Admin\products\Attributes\Trash::class)->name('admin.product.attributes.trash');
+Route::get('/product/attributes/{attribute}/values/index', App\Http\Livewire\Admin\products\Attributes\values\Index::class)->name('admin.product.attributes.value');
+Route::get('/product/attributes/{product}', 'App\Http\Controllers\Admin\ProductController@index')->name('admin.product.attributes.index');
+Route::post('/product/attributes/{product}/store', 'App\Http\Controllers\Admin\ProductController@store')->name('admin.product.attributes.create');
+
 //---------------------------------------Product Garanties---------------------------------------//
 Route::get('/product/garanties', App\Http\Livewire\Admin\products\Garanties\Index::class)->name('admin.product.garanties');
 Route::get('/product/garanties/{garanty}/edit', App\Http\Livewire\Admin\products\Garanties\Edit::class)->name('admin.product.garanties.edit');
@@ -76,3 +94,6 @@ Route::get('/product/garanties/trashed', App\Http\Livewire\Admin\products\Garant
 Route::get('/product/colors', App\Http\Livewire\Admin\products\Colors\Index::class)->name('admin.product.colors');
 Route::get('/product/colors/{color}/edit', App\Http\Livewire\Admin\products\Colors\Edit::class)->name('admin.product.colors.edit');
 Route::get('/product/colors/trashed', App\Http\Livewire\Admin\products\Colors\Trash::class)->name('admin.product.colors.trash');
+//---------------------------------------Orders---------------------------------------//
+Route::get('/orders', App\Http\Livewire\Admin\products\Order::class)->name('admin.orders.index');
+Route::get('/carts', App\Http\Livewire\Admin\products\Cart::class)->name('admin.carts.index');

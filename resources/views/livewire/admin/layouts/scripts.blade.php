@@ -6,7 +6,6 @@
     <script src="{{ asset('admin/js/default-assets/date-time.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/setting.js') }}"></script>
     <script src="{{ asset('admin/js/default-assets/bootstrap-growl.js') }}"></script>
-    <script src="js/default-assets/setting.js"></script>
     <!-- Active JS -->
     <script src="{{ asset('admin/js/default-assets/active.js') }}"></script>
 
