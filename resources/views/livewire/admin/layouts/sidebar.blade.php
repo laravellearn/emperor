@@ -113,9 +113,9 @@
                     </li> --}}
 
                     @canany(['product-categories', 'product-brands', 'product-garanties', 'product-colors',
-                        'product-attribute', 'product-galleries'])
+                        'product-attribute', 'product-galleries','admin.product.prices'])
                         <li
-                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3', 'admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash', 'admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash', 'admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash', 'admin.product.attributes', 'admin.product.attributes.edit', 'admin.product.attributes.trash', 'admin.products', 'admin.product.galleries']) ? 'active' : '' }}">
+                            class="treeview {{ Request::routeIs(['admin.product.categories', 'admin.product.categories.edit','admin.product.prices', 'admin.product.categories.trash', 'admin.product.categories.level2', 'admin.product.categories.edit.level2', 'admin.product.categories.level3', 'admin.product.categories.edit.level3', 'admin.product.brands', 'admin.product.brands.edit', 'admin.product.brands.trash', 'admin.product.garanties', 'admin.product.garanties.edit', 'admin.product.garanties.trash', 'admin.product.colors', 'admin.product.colors.edit', 'admin.product.colors.trash', 'admin.product.attributes', 'admin.product.attributes.edit', 'admin.product.attributes.trash', 'admin.products', 'admin.product.galleries']) ? 'active' : '' }}">
                             <a href="javascript:void(0)"><i class="fa fa-shopping-bag"></i> <span>محصولات</span> <i
                                     class="fa fa-angle-left"></i></a>
                             <ul class="treeview-menu">
@@ -148,12 +148,21 @@
                                     <li><a {{ Request::routeIs(['admin.product.galleries']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.product.galleries') }}">گالری تصاویر محصول</a></li>
                                 @endcan
+                                @can('product-prices')
+                                    <li><a {{ Request::routeIs(['admin.product.prices']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.product.prices') }}">تنوع محصولات</a></li>
+                                @endcan
 
                             </ul>
 
                         </li>
                     @endcan
-
+                    @can('payments')
+                        <li class="{{ Request::routeIs(['admin.payments.index']) ? 'active' : '' }}">
+                            <a href="{{ route('admin.payments.index') }}"><i class="zmdi zmdi-chart"></i><span>
+                                    تسویه حساب ها</span></a>
+                        </li>
+                    @endcan
                     <li
                         class="treeview {{ Request::routeIs(['admin.orders.index', 'admin.carts.index']) ? 'active' : '' }}">
                         @canany(['orders'])
@@ -177,6 +186,8 @@
                                 @can('users')
                                     <li><a {{ Request::routeIs(['admin.users']) ? 'style=color:#54c6d0' : '' }}
                                             href="{{ route('admin.users') }}">لیست کاربران</a></li>
+                                    <li><a {{ Request::routeIs(['admin.vendors']) ? 'style=color:#54c6d0' : '' }}
+                                            href="{{ route('admin.vendors') }}">درخواست فروشندگی</a></li>
                                 @endcan
                                 @can('user-create')
                                     <li><a {{ Request::routeIs(['admin.users.create']) ? 'style=color:#54c6d0' : '' }}
@@ -205,6 +216,13 @@
                             </ul>
                         </li>
 
+                    @endcan
+
+                    @can('transactions')
+                        <li class="{{ Request::routeIs(['admin.transactions.index']) ? 'active' : '' }}">
+                            <a href="{{ route('admin.transactions.index') }}"><i class="zmdi zmdi-chart"></i><span>
+                                    تراکنش های بانکی</span></a>
+                        </li>
                     @endcan
 
                     @can('logs')

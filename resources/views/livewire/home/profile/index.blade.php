@@ -1,4 +1,4 @@
-@section('title','پروفایل کاربری')
+@section('title', 'پروفایل کاربری')
 <div>
     <!--search-category------------------------->
     <div class="col-lg-3 col-md-4 col-xs-12">
@@ -54,12 +54,32 @@
                     <li><a href="{{ route('user.address') }}" class="profile-menu-url"><span
                                 class="mdi mdi-map-marker-outline"></span>آدرس
                             ها</a></li>
-                    <li><a href="#" class="profile-menu-url"><span class="mdi mdi-history"></span>بازدید های اخیر</a>
+                    <li><a href="#" class="profile-menu-url"><span class="mdi mdi-history"></span>بازدید های
+                            اخیر</a>
                     </li>
-                    <li><a href="profile-personal-info.html" class="profile-menu-url"><span
-                                class="mdi mdi-account-circle"></span>اطلاعات شخصی</a></li>
                     <li>
-                        <a  wire:click="logout({{ $user->id }})" style="cursor: pointer;" class="profile-menu-url">
+
+                        <a href="profile-personal-info.html" class="profile-menu-url"><span
+                                class="mdi mdi-account-circle"></span>اطلاعات شخصی</a>
+                    </li>
+                    @if ($user->typeUser != 'vendor')
+                        <form action="{{ route('vendor.request', $user) }}" method="post">
+                            @method('patch')
+                            @csrf
+                            <li><button type="submit" class="profile-menu-url active-profile"><span
+                                        class="mdi mdi-account-outline"></span>درخواست فروشندگی</button></li>
+                        </form>
+                    @else
+                        <li>
+                            <a href="{{ route('vendor.product.get') }}" style="cursor: pointer;" class="profile-menu-url">
+                                <span class="mdi mdi-power"></span>افزودن محصول
+                            </a>
+                        </li>
+                    @endif
+
+
+                    <li>
+                        <a wire:click="logout({{ $user->id }})" style="cursor: pointer;" class="profile-menu-url">
                             <span class="mdi mdi-power"></span>خروج
                         </a>
                     </li>
@@ -119,7 +139,8 @@
             </div>
             <div class="profile-stats mt-3">
                 <div class="profile-recent-fav">
-                    <a href="#"><img src="{{ asset('home/images/product-slider-2/111472656.jpg') }}" alt="profile"></a>
+                    <a href="#"><img src="{{ asset('home/images/product-slider-2/111472656.jpg') }}"
+                            alt="profile"></a>
                     <div class="profile-recent-fav-col">
                         <a href="#">گوشی موبایل سامسونگ مدل Samsung Galaxy S10 Plus SM...</a>
                         <div class="profile-recent-fav-price">۱,۷۴۶,۰۰۰تومان</div>
@@ -132,7 +153,8 @@
                 </div>
 
                 <div class="profile-recent-fav">
-                    <a href="#"><img src="{{ asset('home/images/product-slider-2/111472656.jpg') }}" alt="profile"></a>
+                    <a href="#"><img src="{{ asset('home/images/product-slider-2/111472656.jpg') }}"
+                            alt="profile"></a>
                     <div class="profile-recent-fav-col">
                         <a href="#">گوشی موبایل سامسونگ مدل Samsung Galaxy S10 Plus SM...</a>
                         <div class="profile-recent-fav-price">۱,۷۴۶,۰۰۰تومان</div>
@@ -144,7 +166,8 @@
                     </div>
                 </div>
                 <div class="profile-stats-action">
-                    <a href="#" class="link-spoiler-edit"><i class="fa fa-pencil"></i>مشاهده و ویرایش لیست علاقه
+                    <a href="#" class="link-spoiler-edit"><i class="fa fa-pencil"></i>مشاهده و ویرایش لیست
+                        علاقه
                         مندی</a>
                 </div>
             </div>
@@ -226,25 +249,29 @@
     <div class="adplacement pull-right">
         <div class="col-6 col-lg-3 pull-right" style="padding-left:0;">
             <a href="#" class="item-adplacement">
-                <img src="{{ asset('home/images/post-adplacement/1000012860.jpg') }}" title="صوتی و تصویری" alt="adplacement">
+                <img src="{{ asset('home/images/post-adplacement/1000012860.jpg') }}" title="صوتی و تصویری"
+                    alt="adplacement">
             </a>
         </div>
 
         <div class="col-6 col-lg-3 pull-right">
             <a href="#" class="item-adplacement">
-                <img src="{{ asset('home/images/post-adplacement/1000012872.jpg') }}" title="شوینده ظروف" alt="adplacement">
+                <img src="{{ asset('home/images/post-adplacement/1000012872.jpg') }}" title="شوینده ظروف"
+                    alt="adplacement">
             </a>
         </div>
 
         <div class="col-6 col-lg-3 pull-right" style="padding-left:0;">
             <a href="#" class="item-adplacement">
-                <img src="{{ asset('home/images/post-adplacement/1000013192.jpg') }}" title="افس" alt="adplacement">
+                <img src="{{ asset('home/images/post-adplacement/1000013192.jpg') }}" title="افس"
+                    alt="adplacement">
             </a>
         </div>
 
         <div class="col-6 col-lg-3 pull-right">
             <a href="#" class="item-adplacement">
-                <img src="{{ asset('home/images/post-adplacement/1000012909.jpg') }}" title="مراقبت پوست و مو" alt="adplacement">
+                <img src="{{ asset('home/images/post-adplacement/1000012909.jpg') }}" title="مراقبت پوست و مو"
+                    alt="adplacement">
             </a>
         </div>
     </div>
@@ -263,8 +290,8 @@
                                 <div class="owl-item active" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/111460776.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/111460776.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">
@@ -280,8 +307,8 @@
                                 <div class="owl-item active" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/111474228.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/111474228.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">
@@ -297,8 +324,8 @@
                                 <div class="owl-item active" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/112145268.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/112145268.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">
@@ -314,8 +341,8 @@
                                 <div class="owl-item active" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/111475300.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/111475300.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">
@@ -331,8 +358,8 @@
                                 <div class="owl-item" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/113542184.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/113542184.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">
@@ -348,8 +375,8 @@
                                 <div class="owl-item" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/111469793.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/111469793.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">
@@ -365,8 +392,8 @@
                                 <div class="owl-item" style="width: 315.75px; margin-left: 10px;">
                                     <div class="item">
                                         <a href="#">
-                                            <img src="{{ asset('home/images/product-slider-2/111472656.jpg') }}" class="img-fluid"
-                                                alt="img-slider">
+                                            <img src="{{ asset('home/images/product-slider-2/111472656.jpg') }}"
+                                                class="img-fluid" alt="img-slider">
                                         </a>
                                         <h2 class="post-title">
                                             <a href="#">

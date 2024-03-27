@@ -2,6 +2,7 @@
 
 namespace App\Models\Admin\Products;
 
+use App\Models\Price;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -16,6 +17,11 @@ class Garanty extends Model
     public function products()
     {
         return $this->belongsToMany(Product::class);
+    }
+
+    public function prices()
+    {
+        return $this->belongsToMany(Price::class);
     }
 
     public function getDeletedAtAttribute($deleted_at)

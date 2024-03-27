@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Home;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\products\Product;
 use App\Models\Cart;
+use App\Models\Financial;
+use App\Models\Item;
 use App\Models\Order;
 use App\Models\Productorder;
 use App\Models\Transaction;
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Shetabit\Multipay\Invoice;
 use Shetabit\Payment\Facade\Payment;
 use Exception;
+use Gloudemans\Shoppingcart\Facades\Cart as FacadesCart;
 use SoapFault;
 use Shetabit\Multipay\Exceptions\InvalidPaymentException;
 use Shetabit\Multipay\Exceptions\PurchaseFailedException;
@@ -28,7 +31,7 @@ class PurchaseController extends Controller
     public function purchase($id)
     {
         $user = Auth::user();
-        $cart = Cart::where('user_id',$user->id)->first();
+        $cart = Cart::where('user_id', $user->id)->first();
 
         $cartExist = Order::where('user_id', $user->id)->where('cart_id', $cart->id)->first();
 
@@ -76,30 +79,32 @@ class PurchaseController extends Controller
     {
         $cart = Cart::findOrFail($id);
 
-        if($request->missing('payment_id')){
+        if ($request->missing('payment_id')) {
             return "خطایی در پرداخت بوجود آمد...";
         }
 
-        $transaction = Transaction::where('payment_id',$request->payment_id)->first();
-        if(empty($transaction)){
+        $transaction = Transaction::where('payment_id', $request->payment_id)->first();
+        if (empty($transaction)) {
             return "خطایی در پرداخت بوجود آمد...";
         }
 
-        if($transaction->user_id !== Auth::id()){
+        if ($transaction->user_id !== Auth::id()) {
             return "خطایی در پرداخت بوجود آمد...";
         }
 
-        if($cart->id !== $transaction->cart_id){
+        if ($cart->id !== $transaction->cart_id) {
             return "خطایی در پرداخت بوجود آمد...";
         }
 
-        if($transaction->status !== Transaction::STATUS_PENDING){
-            return "خطایی در پرداخت بوجود آمد...";
-        }
+        // if($transaction->status !== Transaction::STATUS_PENDING){
+        //     dd('5');
 
-        try{
+        //     return "خطایی در پرداخت بوجود آمد...";
+        // }
+
+        try {
             $receipt = Payment::amount($transaction->paid)
-            ->transactionId($transaction->transaction_id)->verify();
+                ->transactionId($transaction->transaction_id)->verify();
             $transaction->transaction_result = $receipt;
             $transaction->status = Transaction::STATUS_SUCCESS;
             $transaction->save();
@@ -119,21 +124,34 @@ class PurchaseController extends Controller
             ]);
 
             //افزودن محصولات سفارش در جدول مربوطه
-            foreach (Cart::content() as $row){
-                $product = Product::findOrFail($row->id);
-                Productorder::create([
-                    'user_id' => Auth::id(),
-                    'order_id' => $order->id,
-                    'cart_id' => $cart->id,
-                    'product_id' => $product->id,
-                    'price' => $product->price
-                ]);
+            // dd(FacadesCart::content());
+            $item = Item::where("cart_id", $cart->id)->get();
+            foreach (FacadesCart::content() as $row) {
+                if ($item->count == 0) {
+                    Item::create([
+                        'user_id' => Auth::id(),
+                        'order_id' => $order->id,
+                        'cart_id' => $cart->id,
+                        'product_id' => $row->id,
+                        'price' => $row->price,
+                        'number' => $row->qty
+                    ]);
+                } else {
+                    $item = Item::where("cart_id", $cart->id)->first();
+                    $item->update([
+                        'order_id' => $order->id,
+                        'cart_id' => $cart->id
+                    ]);
+                    $financial = Financial::where('item_id',$item->id)->first();
+                    $financial->update([
+                        'status' => "paid"
+                    ]);
+                }
             }
 
-
             return "پرداخت شما با موفقیت انجام شد...";
-        }catch(Exception|InvalidPaymentException $e){
-            if($e->getCode() < 0){
+        } catch (Exception | InvalidPaymentException $e) {
+            if ($e->getCode() < 0) {
                 $transaction->status = Transaction::STATUS_FAILED;
                 $transaction->transaction_result = [
                     'message' => $e->getMessage(),
@@ -144,6 +162,4 @@ class PurchaseController extends Controller
             return "خطایی در پرداخت بوجود آمد...";
         }
     }
-
-
 }

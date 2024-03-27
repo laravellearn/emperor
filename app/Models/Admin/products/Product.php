@@ -6,6 +6,7 @@ use App\Models\admin\products\Category;
 use App\Models\Admin\Products\Color;
 use App\Models\Admin\Products\Tag;
 use App\Models\Item;
+use App\Models\Price;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,11 @@ class Product extends Model
     public function brand()
     {
         return $this->belongsTo(Brand::class);
+    }
+
+    public function prices()
+    {
+        return $this->belongsToMany(Price::class);
     }
 
     public function garanty()

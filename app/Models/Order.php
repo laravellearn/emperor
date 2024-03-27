@@ -23,6 +23,11 @@ class Order extends Model
         return $this->belongsTo(Cart::class);
     }
 
+    public function vendor()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     public function getCreatedAtAttribute($created_at)
     {

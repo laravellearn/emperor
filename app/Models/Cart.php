@@ -33,6 +33,11 @@ class Cart extends Model
         return $this->belongsToMany(Order::class);
     }
 
+    public function vendor()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     public function getCreatedAtAttribute($created_at)
     {

@@ -41,6 +41,7 @@ Route::get('/product/{slug}','App\Http\Controllers\Home\Products\ProductControll
 
 //---------------------------------------Add to Cart---------------------------------------//
 Route::post('/product/cart/add','App\Http\Controllers\Home\Products\CartController@add')->name('product.add.cart');
+Route::post('/product/cart/addPrices','App\Http\Controllers\Home\Products\CartController@addPrices')->name('product.add.cart.prices');
 // \Auth::routes();
 
 Route::get('/cart/index','App\Http\Controllers\Home\Products\CartController@orders')->name('orders.index');
@@ -48,3 +49,13 @@ Route::get('/cart/index','App\Http\Controllers\Home\Products\CartController@orde
 //---------------------------------------Payments---------------------------------------//
 Route::get('/product/{id}/purchase','App\Http\Controllers\Home\PurchaseController@purchase')->name('product.purchase');
 Route::get('/product/{id}/purchase/result','App\Http\Controllers\Home\PurchaseController@result')->name('product.result');
+//---------------------------------------vendor---------------------------------------//
+Route::patch('/profile/vendor/{user}/request','App\Http\Controllers\Home\ProfileController@vendor')->name('vendor.request');
+Route::get('/profile/vendor/product','App\Http\Controllers\Home\ProfileController@product')->name('vendor.product.get');
+Route::post('/profile/vendor/product','App\Http\Controllers\Home\ProfileController@productPost')->name('vendor.product.post');
+Route::post('/profile/vendor/payments/request','App\Http\Controllers\Home\ProfileController@paymentsRequest')->name('vendor.payments.request');
+Route::get('/profile/vendor/payments','App\Http\Controllers\Home\ProfileController@paymentsList')->name('vendor.payments.list');
+
+//---------------------------------------search---------------------------------------//
+Route::post('/search','App\Http\Controllers\HomeController@search')->name('search');
+

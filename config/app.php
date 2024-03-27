@@ -195,7 +195,7 @@ return [
         // ...
         'Verta' => Hekmatinasser\Verta\Verta::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
-        
+
     ])->toArray(),
 
 ];

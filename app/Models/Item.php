@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Item extends Model
 {
     use HasFactory;
+    protected $connection = "mysql-products";
 
-    protected $fillable = ['user_id','product_id','cart_id','price','number'];
+    protected $fillable = ['user_id','product_id','cart_id','price','number','order_id','vendor_id'];
 
     public function user()
     {
@@ -25,6 +26,16 @@ class Item extends Model
     public function cart()
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function order()
+    {
+        return $this->belongsTo(Order::class);
+    }
+
+    public function vendor()
+    {
+        return $this->belongsTo(User::class);
     }
 
 }

@@ -205,9 +205,18 @@
                                     <ul class="mb-0">
                                         <li>
                                             @php
-                                                $category1 = App\Models\Admin\products\Category::where('id', $product->level1_id)->first();
-                                                $category2 = App\Models\Admin\products\Category::where('id', $product->level2_id)->first();
-                                                $category3 = App\Models\Admin\products\Category::where('id', $product->level3_id)->first();
+                                                $category1 = App\Models\Admin\products\Category::where(
+                                                    'id',
+                                                    $product->level1_id,
+                                                )->first();
+                                                $category2 = App\Models\Admin\products\Category::where(
+                                                    'id',
+                                                    $product->level2_id,
+                                                )->first();
+                                                $category3 = App\Models\Admin\products\Category::where(
+                                                    'id',
+                                                    $product->level3_id,
+                                                )->first();
                                             @endphp
                                             <a href="{{ $category1->slug }}" class="link-border">
                                                 {{ $category1->title }}
@@ -236,165 +245,167 @@
                         </div>
                         <form action="{{ route('product.add.cart') }}" method="post">
                             @csrf
-                        <div class="product-attributes">
-                            <div class="col-lg-8 col-md-8 col-xs-12 pull-right pr-0">
-                                <div class="product-config">
-                                    <span class="product-title-en">Xiaomi Redmi Note 10 M2101K7AG Dual SIM 128GB And 6GB
-                                        RAM Mobile Phone</span>
-                                    <div class="product-engagement">
-                                        <div class="product-engagement-item">
-                                            <div class="product-engagement-rating">۳.۷
-                                                <span class="product-engagement-rating-num">
-                                                    (۳)
-                                                </span>
+                            <div class="product-attributes">
+                                <div class="col-lg-8 col-md-8 col-xs-12 pull-right pr-0">
+                                    <div class="product-config">
+                                        <span class="product-title-en">Xiaomi Redmi Note 10 M2101K7AG Dual SIM 128GB And
+                                            6GB
+                                            RAM Mobile Phone</span>
+                                        <div class="product-engagement">
+                                            <div class="product-engagement-item">
+                                                <div class="product-engagement-rating">۳.۷
+                                                    <span class="product-engagement-rating-num">
+                                                        (۳)
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="product-engagement-item">
+                                                <div class="product-engagement-set"></div>
+                                                <div class="product-engagement-link" data-activate-tab="comments">
+                                                    ۸۱
+                                                    دیدگاه کاربران
+                                                </div>
+                                            </div>
+                                            <div class="product-engagement-item">
+                                                <div class="product-engagement-set"></div>
+                                                <div class="product-engagement-link" data-activate-tab="questions">
+                                                    ۱۴
+                                                    پرسش و پاسخ
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="product-engagement-item">
-                                            <div class="product-engagement-set"></div>
-                                            <div class="product-engagement-link" data-activate-tab="comments">
-                                                ۸۱
-                                                دیدگاه کاربران
+                                        <div class="product-config-wrapper">
+                                            <div class="product-variants">
+                                                <span>انتخاب رنگ: </span>
+                                                <ul>
+                                                    @foreach ($product->colors as $color)
+                                                        <li class="js-c-ui-variant">
+                                                            <label class="ui-variant-color">
+                                                                <span class="ui-variant-shape"
+                                                                    style="background-color: {{ $color->value }}"></span>
+                                                                <input type="radio" value="{{ $color->value }}"
+                                                                    name="color" id="variant"
+                                                                    class="js-variant-selector" checked="">
+                                                                <span class="ui-variant-check"></span>
+                                                            </label>
+                                                        </li>
+                                                    @endforeach
+                                                </ul>
                                             </div>
-                                        </div>
-                                        <div class="product-engagement-item">
-                                            <div class="product-engagement-set"></div>
-                                            <div class="product-engagement-link" data-activate-tab="questions">
-                                                ۱۴
-                                                پرسش و پاسخ
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-config-wrapper">
-                                        <div class="product-variants">
-                                            <span>انتخاب رنگ: </span>
-                                            <ul>
-                                                @foreach ($product->colors as $color)
-                                                    <li class="js-c-ui-variant">
-                                                        <label class="ui-variant-color">
-                                                            <span class="ui-variant-shape"
-                                                                style="background-color: {{ $color->value }}"></span>
-                                                            <input type="radio" value="{{ $color->value }}"
-                                                                name="color" id="variant" class="js-variant-selector"
-                                                                checked="">
-                                                            <span class="ui-variant-check"></span>
-                                                        </label>
+                                            <div class="product-params">
+                                                <ul>
+                                                    <li class="title-product-features">
+                                                        ویژگی‌های محصول
                                                     </li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                        <div class="product-params">
-                                            <ul>
-                                                <li class="title-product-features">
-                                                    ویژگی‌های محصول
-                                                </li>
-                                                <li>
-                                                    <span>حافظه داخلی: </span>
-                                                    <span>128 گیگابایت</span>
-                                                </li>
-                                                <li>
-                                                    <span>شبکه های ارتباطی: </span>
-                                                    <span>2G،3G،4G</span>
-                                                </li>
-                                                <li>
-                                                    <span>حس‌گرها: </span>
-                                                    <span> قطب‌نما (Compass)،شتاب‌سنج (Accelerometer)،مجاورت
-                                                        (Proximity)،ژیروسکوپ (Gyro)،اثرانگشت زیر صفحه نمایش
-                                                        (FingerPrint|Under-Display)</span>
-                                                </li>
-                                                <li class="product-params-more">
-                                                    <span>مقدار RAM:</span>
-                                                    <span> 6 گیگابایت</span>
-                                                </li>
-                                                <li class="product-params-more">
-                                                    <span>رزولوشن عکس: </span>
-                                                    <span>48 مگاپیکسل</span>
-                                                </li>
-                                                <li class="product-params-more">
-                                                    <span>باتری قابل تعویض: </span>
-                                                    <span>خیر</span>
-                                                </li>
-                                                <li class="product-params-more">
-                                                    <span>بازه‌ی اندازه صفحه نمایش: </span>
-                                                    <span>6.43 اینچ و بزرگتر</span>
-                                                </li>
-                                                <li class="product-params-more">
-                                                    <span>ویژگی‌های خاص: </span>
-                                                    <span> مناسب عکاسی فبلت مجهز به حس‌گر اثرانگشت مناسب عکاسی
-                                                        سلفی</span>
-                                                </li>
-                                                <li class="product-params-more">
-                                                    <span>نسخه سیستم عامل: </span>
-                                                    <span>Android 11</span>
-                                                </li>
-                                                <li class="product-params-more-handler">
-                                                    <a href="#" class="link-border">
-                                                        <span class="show-more">موارد بیشتر</span>
-                                                        <span class="show-less">بستن</span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                            <div class="product-additional-info">
-                                                <div class="product-additional-item">
-                                                    <p>هشدار سامانه همتا: حتما در زمان تحویل دستگاه، به کمک کد فعال‌سازی
-                                                        چاپ شده روی جعبه یا کارت گارانتی، دستگاه را از طریق #7777*، برای
-                                                        سیم‌کارت خود فعال‌سازی کنید. آموزش تصویری در آدرس اینترنتی
-                                                        hmti.ir/05
-                                                    </p>
+                                                    <li>
+                                                        <span>حافظه داخلی: </span>
+                                                        <span>128 گیگابایت</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>شبکه های ارتباطی: </span>
+                                                        <span>2G،3G،4G</span>
+                                                    </li>
+                                                    <li>
+                                                        <span>حس‌گرها: </span>
+                                                        <span> قطب‌نما (Compass)،شتاب‌سنج (Accelerometer)،مجاورت
+                                                            (Proximity)،ژیروسکوپ (Gyro)،اثرانگشت زیر صفحه نمایش
+                                                            (FingerPrint|Under-Display)</span>
+                                                    </li>
+                                                    <li class="product-params-more">
+                                                        <span>مقدار RAM:</span>
+                                                        <span> 6 گیگابایت</span>
+                                                    </li>
+                                                    <li class="product-params-more">
+                                                        <span>رزولوشن عکس: </span>
+                                                        <span>48 مگاپیکسل</span>
+                                                    </li>
+                                                    <li class="product-params-more">
+                                                        <span>باتری قابل تعویض: </span>
+                                                        <span>خیر</span>
+                                                    </li>
+                                                    <li class="product-params-more">
+                                                        <span>بازه‌ی اندازه صفحه نمایش: </span>
+                                                        <span>6.43 اینچ و بزرگتر</span>
+                                                    </li>
+                                                    <li class="product-params-more">
+                                                        <span>ویژگی‌های خاص: </span>
+                                                        <span> مناسب عکاسی فبلت مجهز به حس‌گر اثرانگشت مناسب عکاسی
+                                                            سلفی</span>
+                                                    </li>
+                                                    <li class="product-params-more">
+                                                        <span>نسخه سیستم عامل: </span>
+                                                        <span>Android 11</span>
+                                                    </li>
+                                                    <li class="product-params-more-handler">
+                                                        <a href="#" class="link-border">
+                                                            <span class="show-more">موارد بیشتر</span>
+                                                            <span class="show-less">بستن</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                                <div class="product-additional-info">
+                                                    <div class="product-additional-item">
+                                                        <p>هشدار سامانه همتا: حتما در زمان تحویل دستگاه، به کمک کد فعال‌سازی
+                                                            چاپ شده روی جعبه یا کارت گارانتی، دستگاه را از طریق #7777*، برای
+                                                            سیم‌کارت خود فعال‌سازی کنید. آموزش تصویری در آدرس اینترنتی
+                                                            hmti.ir/05
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-xs-12 pull-left sticky-sidebar" style="padding:0">
-                                <div class="product-seller-info">
-                                    <div class="js-seller-info-changable">
-                                        <div class="product-seller-row">
-                                            <div class="product-seller-first-line d-inline-block">فروشنده:</div>
-                                            <a href="#" class="js-seller-count-row">
-                                                <span class="js-seller-count u-text-bold">۲</span>
-                                                <span class="u-text-bold"> فروشنده</span>
-                                                دیگر
-                                            </a>
-                                        </div>
-                                        <div class="product-seller-row product-seller-row-guarantee">
-                                            <div class="js-guarantee-text">گارانتی: {{ $product->garanty->title }}
-                                                <i class="mdi mdi-check"></i>
+                                <div class="col-lg-4 col-md-4 col-xs-12 pull-left sticky-sidebar" style="padding:0">
+                                    <div class="product-seller-info">
+                                        <div class="js-seller-info-changable">
+                                            <div class="product-seller-row">
+                                                <div class="product-seller-first-line d-inline-block">فروشنده:</div>
+                                                <a href="#" class="js-seller-count-row">
+                                                    <span class="js-seller-count u-text-bold">۲</span>
+                                                    <span class="u-text-bold"> فروشنده</span>
+                                                    دیگر
+                                                </a>
                                             </div>
-                                        </div>
-                                        <div class="product-seller-row js-seller-info-shipment">
-                                            <div class="js-guarantee-text">
-                                                موجود در انبار فروشنده
-                                                <i class="mdi mdi-content-save-outline"></i>
-                                            </div>
-                                            <div class="product-delivery-warehouse">آماده ارسال</div>
-                                        </div>
-                                        <div class="product-seller-row">
-                                            <div class="product-seller-digiclub">
-                                                <img src="assets/images/digiclub.png" alt="digiclub">
-                                                <div>
-                                                    <span>۱۵۰</span>
-                                                    امتیاز دیجی‌کلاب
+                                            <div class="product-seller-row product-seller-row-guarantee">
+                                                <div class="js-guarantee-text">گارانتی: {{ $product->garanty->title }}
+                                                    <i class="mdi mdi-check"></i>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="product-seller-row">
-                                            <div class="product-seller-row-price">
-                                                <div class="product-seller-price-label">
-                                                    قیمت فروشنده
+                                            <div class="product-seller-row js-seller-info-shipment">
+                                                <div class="js-guarantee-text">
+                                                    موجود در انبار فروشنده
+                                                    <i class="mdi mdi-content-save-outline"></i>
                                                 </div>
-                                                <div class="product-seller-price-real">
-                                                    <div class="product-seller-price-prev">
-                                                        {{ number_format($product->price) }}</div>
-                                                    تومان
+                                                <div class="product-delivery-warehouse">آماده ارسال</div>
+                                            </div>
+                                            <div class="product-seller-row">
+                                                <div class="product-seller-digiclub">
+                                                    <img src="assets/images/digiclub.png" alt="digiclub">
+                                                    <div>
+                                                        <span>۱۵۰</span>
+                                                        امتیاز دیجی‌کلاب
+                                                    </div>
                                                 </div>
                                             </div>
+                                            <div class="product-seller-row">
+                                                <div class="product-seller-row-price">
+                                                    <div class="product-seller-price-label">
+                                                        قیمت فروشنده
+                                                    </div>
+                                                    <div class="product-seller-price-real">
+                                                        <div class="product-seller-price-prev">
+                                                            {{ number_format($product->price) }}</div>
+                                                        تومان
+                                                    </div>
+                                                </div>
                                                 <input type="hidden" value="{{ $product->id }}" name="id">
                                                 <div class="product-seller-row-price">
                                                     <div class="product-seller-price-label">
                                                         تعداد:
                                                     </div>
-                                                    <input type="number" name="number" value="1" class="form-control">
+                                                    <input type="number" name="number" value="1"
+                                                        class="form-control">
                                                 </div>
                                                 <div class="product-remaining-in-stock-parent">
                                                     <div class="cart-view-count">
@@ -409,12 +420,12 @@
                                                     </span>
                                                 </button>
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
 
                         <div class="product-feature-body">
                             <div class="product-feature">
@@ -477,198 +488,64 @@
                 </div>
                 <div class="table-suppliers">
                     <div class="table-suppliers-body">
-                        <div class="table-suppliers-row table-suppliers-row-active">
-                            <div class="table-suppliers-cell table-suppliers-cell-title">
-                                <div class="seller-wrapper">
-                                    <p class="table-suppliers-seller-name">
-                                        <span><a href="#">دیجی‌استور</a></span>
-                                    </p>
-                                    <div class="table-suppliers-rating">
-                                        <div class="product-seller-second-line">
-                                            عملکرد:
-                                            <span class="u-text-bold">۵</span>
-                                            از ۵
-                                            <span class="u-divider"></span>
-                                            <span class="u-text-bold">۸۳٪</span>
-                                            رضایت از کالا
+                        @foreach ($prices as $price)
+                            <div class="table-suppliers-row table-suppliers-row-active">
+                                <div class="table-suppliers-cell table-suppliers-cell-title">
+                                    <div class="seller-wrapper">
+                                        <p class="table-suppliers-seller-name">
+                                            <span><a href="#">{{ $price->user->name }}</a></span>
+                                        </p>
+                                        <div class="table-suppliers-rating">
+                                            <div class="product-seller-second-line">
+                                                عملکرد:
+                                                <span class="u-text-bold">۵</span>
+                                                از ۵
+                                                <span class="u-divider"></span>
+                                                <span class="u-text-bold">۸۳٪</span>
+                                                رضایت از کالا
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="table-suppliers-cell table-suppliers-cell-no-lead-time">
-                                <div class="seller-wrapper">
-                                    <p>آماده ارسال</p>
+                                <div class="table-suppliers-cell table-suppliers-cell-no-lead-time">
+                                    <div class="seller-wrapper">
+                                        <p>آماده ارسال</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="table-suppliers-cell table-suppliers-cell-guarantee">
-                                <div class="seller-wrapper">
-                                    <span>گارانتی ۱۸ ماهه دیجی استور</span>
+                                <div class="table-suppliers-cell table-suppliers-cell-guarantee">
+                                    <div class="seller-wrapper">
+                                        <span>{{ $price->garanty->title }}</span>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="table-suppliers-cell table-suppliers-cell-price">
-                                <div class="seller-wrapper">
-                                    <div class="price-secondary">
-                                        <div class="price-value">
-                                            ۳,۲۱۵,۰۰۰
-                                            <span class="price-currency">تومان</span>
+                                <div class="table-suppliers-cell table-suppliers-cell-price">
+                                    <div class="seller-wrapper">
+                                        <div class="price-secondary">
+                                            <div class="price-value">
+                                                {{ number_format($price->price) }}
+                                                <span class="price-currency">تومان</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="table-suppliers-cell table-suppliers-cell-action">
-                                <div class="seller-wrapper">
-                                    <a href="#" class="js-btn-add-to-cart">افزودن به سبد</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-suppliers-row">
-                            <div class="table-suppliers-cell table-suppliers-cell-title">
-                                <div class="seller-wrapper">
-                                    <p class="table-suppliers-seller-name">
-                                        <span><a href="#">دیجی‌استور</a></span>
-                                    </p>
-                                    <div class="table-suppliers-rating">
-                                        <div class="product-seller-second-line">
-                                            عملکرد:
-                                            <span class="u-text-bold">۵</span>
-                                            از ۵
-                                            <span class="u-divider"></span>
-                                            <span class="u-text-bold">۸۳٪</span>
-                                            رضایت از کالا
-                                        </div>
+                                <div class="table-suppliers-cell table-suppliers-cell-action">
+                                    <div class="seller-wrapper">
+                                        <form action="{{ route('product.add.cart.prices') }}" method="post">
+                                            @csrf
+                                            <input type="hidden" value="{{ $price->id }}" name="id">
+                                            <input type="hidden" value="{{ $price->user_id }}" name="vendor_id">
+                                        <button type="submit" class="js-btn-add-to-cart">افزودن به سبد</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
+                        @endforeach
 
-                            <div class="table-suppliers-cell table-suppliers-cell-no-lead-time">
-                                <div class="seller-wrapper">
-                                    <p>آماده ارسال</p>
-                                </div>
-                            </div>
 
-                            <div class="table-suppliers-cell table-suppliers-cell-guarantee">
-                                <div class="seller-wrapper">
-                                    <span>گارانتی ۱۸ ماهه دیجی استور</span>
-                                </div>
-                            </div>
 
-                            <div class="table-suppliers-cell table-suppliers-cell-price">
-                                <div class="seller-wrapper">
-                                    <div class="price-secondary">
-                                        <div class="price-value">
-                                            ۳,۲۱۵,۰۰۰
-                                            <span class="price-currency">تومان</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-action">
-                                <div class="seller-wrapper">
-                                    <a href="#" class="js-btn-add-to-cart">افزودن به سبد</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-suppliers-row in-filter in-list">
-                            <div class="table-suppliers-cell table-suppliers-cell-title">
-                                <div class="seller-wrapper">
-                                    <p class="table-suppliers-seller-name">
-                                        <span><a href="#">دیجی‌استور</a></span>
-                                    </p>
-                                    <div class="table-suppliers-rating">
-                                        <div class="product-seller-second-line">
-                                            عملکرد:
-                                            <span class="u-text-bold">۵</span>
-                                            از ۵
-                                            <span class="u-divider"></span>
-                                            <span class="u-text-bold">۸۳٪</span>
-                                            رضایت از کالا
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-no-lead-time">
-                                <div class="seller-wrapper">
-                                    <p>آماده ارسال</p>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-guarantee">
-                                <div class="seller-wrapper">
-                                    <span>گارانتی ۱۸ ماهه دیجی استور</span>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-price">
-                                <div class="seller-wrapper">
-                                    <div class="price-secondary">
-                                        <div class="price-value">
-                                            ۳,۲۱۵,۰۰۰
-                                            <span class="price-currency">تومان</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-action">
-                                <div class="seller-wrapper">
-                                    <a href="#" class="js-btn-add-to-cart">افزودن به سبد</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="table-suppliers-row in-filter in-list">
-                            <div class="table-suppliers-cell table-suppliers-cell-title">
-                                <div class="seller-wrapper">
-                                    <p class="table-suppliers-seller-name">
-                                        <span><a href="#">دیجی‌استور</a></span>
-                                    </p>
-                                    <div class="table-suppliers-rating">
-                                        <div class="product-seller-second-line">
-                                            عملکرد:
-                                            <span class="u-text-bold">۵</span>
-                                            از ۵
-                                            <span class="u-divider"></span>
-                                            <span class="u-text-bold">۸۳٪</span>
-                                            رضایت از کالا
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-no-lead-time">
-                                <div class="seller-wrapper">
-                                    <p>آماده ارسال</p>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-guarantee">
-                                <div class="seller-wrapper">
-                                    <span>گارانتی ۱۸ ماهه دیجی استور</span>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-price">
-                                <div class="seller-wrapper">
-                                    <div class="price-secondary">
-                                        <div class="price-value">
-                                            ۳,۲۱۵,۰۰۰
-                                            <span class="price-currency">تومان</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="table-suppliers-cell table-suppliers-cell-action">
-                                <div class="seller-wrapper">
-                                    <a href="#" class="js-btn-add-to-cart">افزودن به سبد</a>
-                                </div>
-                            </div>
-                        </div>
                         <div class="table-suppliers-more">
                             <a href="#" class="link-border">مشاهده
                                 <span class="show-more more-suppliers-count">( فروشنــــده / گارانتی بیشتـــــر)
@@ -2115,8 +1992,7 @@
                                         <div class="question-filter">
                                             <div class="form-auth-row d-inline-block mb-0">
                                                 <label class="ui-checkbox">
-                                                    <input type="checkbox" value="1" name="login"
-                                                        id="remember1">
+                                                    <input type="checkbox" value="1" name="login" id="remember1">
                                                     <span class="ui-checkbox-check"></span>
                                                 </label>
                                                 <label for="remember1" class="remember-me">پرسش‌های پاسخ داده شده
@@ -2124,8 +2000,7 @@
                                             </div>
                                             <div class="form-auth-row d-inline-block mt-0 mb-0">
                                                 <label class="ui-checkbox">
-                                                    <input type="checkbox" value="1" name="login"
-                                                        id="remember2">
+                                                    <input type="checkbox" value="1" name="login" id="remember2">
                                                     <span class="ui-checkbox-check"></span>
                                                 </label>
                                                 <label for="remember2" class="remember-me">پرسش‌های بی‌پاسخ
@@ -2157,8 +2032,7 @@
                     <div class="mini-buy-box-fixed">
                         <div class="mini-buy-box js-mini-buy-box">
                             <div class="mini-buy-box-product-info">
-                                <img src="{{ $product->image }}" class="mini-buy-box-product-info-img"
-                                    alt="img-slider">
+                                <img src="{{ $product->image }}" class="mini-buy-box-product-info-img" alt="img-slider">
                                 <div class="mini-buy-box-product-info-info">
                                     <div class="title">{{ $product->title }}</div>
                                     <div class="colors ">

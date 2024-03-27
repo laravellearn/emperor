@@ -23,11 +23,14 @@
 
                         <div class="col-lg-8 col-md-12 col-xs-12 pull-right">
                             <div class="search-header search-box">
-                                <form action="#">
-                                    <input type="text" class="header-search-input" placeholder="جستجو در دیجی استور...">
+                                <form action="{{ route('search') }}" method="post">
+                                    @csrf
+                                    <input type="text" class="header-search-input"
+                                        placeholder="جستجو در فروشگاه..." name="title">
                                     <button class="btn-search" type="submit"><img
                                             src="{{ asset('home/images/search.png') }}" alt="search"></button>
                                 </form>
+
                                 <div class="search-result">
                                     <ul class="search-result-list">
                                         <li>

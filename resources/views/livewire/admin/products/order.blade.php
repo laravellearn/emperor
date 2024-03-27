@@ -69,7 +69,7 @@
 
                                                         <td>
                                                             @can('orders')
-                                                                <a href="" class="action-icon"> <i
+                                                                <a href="{{ route('admin.orders.status.edit',$order) }}" class="action-icon"> <i
                                                                         class="zmdi zmdi-view-list zmdi-custom"></i></a>
 
                                                                 <a href="" class="action-icon"> <i

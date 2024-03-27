@@ -59,6 +59,20 @@
                     </li>
                     <li><a href="profile-personal-info.html" class="profile-menu-url"><span
                                 class="mdi mdi-account-circle"></span>اطلاعات شخصی</a></li>
+                    @if ($user->typeUser != 'vendor')
+                        <form action="{{ route('vendor.request', $user) }}" method="post">
+                            @method('patch')
+                            @csrf
+                            <li><button type="submit" class="profile-menu-url active-profile"><span
+                                        class="mdi mdi-account-outline"></span>درخواست فروشندگی</button></li>
+                        </form>
+                    @else
+                        <li>
+                            <a href="{{ route('vendor.product.get') }}" style="cursor: pointer;" class="profile-menu-url">
+                                <span class="mdi mdi-power"></span>افزودن محصول
+                            </a>
+                        </li>
+                    @endif
                     <li>
                         <a wire:click="logout({{ $user->id }})" style="cursor: pointer;" class="profile-menu-url">
                             <span class="mdi mdi-power"></span>خروج
@@ -160,16 +174,15 @@
                     </thead>
                     <tbody>
                         @foreach ($addresses as $address)
-                        <tr>
-                            <td>1</td>
-                            <td class="order-code">{{ $address->title }}</td>
-                            <td>{{ $address->province->name }}</td>
-                            <td>{{ $address->city->name }}</td>
-                            <td>{{ $address->mobile }}</td>
-                            <td class="text-success">{{ $address->phone }}</td>
-                            <td><i class="fa fa-angle-left"></i></td>
-                        </tr>
-
+                            <tr>
+                                <td>1</td>
+                                <td class="order-code">{{ $address->title }}</td>
+                                <td>{{ $address->province->name }}</td>
+                                <td>{{ $address->city->name }}</td>
+                                <td>{{ $address->mobile }}</td>
+                                <td class="text-success">{{ $address->phone }}</td>
+                                <td><i class="fa fa-angle-left"></i></td>
+                            </tr>
                         @endforeach
 
                     </tbody>

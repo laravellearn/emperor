@@ -8,6 +8,7 @@ use App\Models\Admin\Log;
 use SoapClient;
 use App\Models\Admin\Permissions\Permission;
 use App\Models\Admin\Permissions\Role;
+use App\Models\Home\Token;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -23,7 +24,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'name', 'mobile', 'email', 'password', 'mobile_verified_at','email_verified_at','profilePhoto','isActive'
+        'name', 'mobile', 'email', 'password', 'mobile_verified_at','email_verified_at','profilePhoto','isActive','vendorRequest','typeUser'
     ];
 
     /**
@@ -70,6 +71,16 @@ class User extends Authenticatable
     public function tokens()
     {
         return $this->belongsToMany(Token::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
+    }
+
+    public function prices()
+    {
+        return $this->belongsToMany(Price::class);
     }
 
     public function permissions()

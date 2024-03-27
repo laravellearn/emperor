@@ -56,6 +56,7 @@ Route::get('/users/create', App\Http\Livewire\Admin\Users\Create::class)->name('
 Route::get('/users/permission/{user}', App\Http\Livewire\Admin\Users\Permission::class)->name('admin.users.permission');
 Route::get('/users/info/{user}', App\Http\Livewire\Admin\Users\Info::class)->name('admin.users.info');
 Route::get('/users/edit/{user}', App\Http\Livewire\Admin\Users\Edit::class)->name('admin.users.edit');
+Route::get('/vendors', App\Http\Livewire\Admin\Users\Vendor::class)->name('admin.vendors');
 
 //---------------------------------------Products---------------------------------------//
 Route::get('/products', App\Http\Livewire\Admin\products\Products\Index::class)->name('admin.products');
@@ -63,6 +64,7 @@ Route::get('/products/create', App\Http\Livewire\Admin\products\Products\Create:
 Route::get('/products/{product}/edit', App\Http\Livewire\Admin\products\Products\Edit::class)->name('admin.products.edit');
 Route::get('/products/trashed', App\Http\Livewire\Admin\products\Products\Trash::class)->name('admin.products.trash');
 Route::get('/products/galleries', App\Http\Livewire\Admin\Products\Galleries\Index::class)->name('admin.product.galleries');
+Route::get('/products/prices', App\Http\Livewire\Admin\Products\Price::class)->name('admin.product.prices');
 
 //---------------------------------------Product Categories Level1---------------------------------------//
 Route::get('/product/categories', App\Http\Livewire\Admin\products\Categories\create\Index::class)->name('admin.product.categories');
@@ -97,3 +99,9 @@ Route::get('/product/colors/trashed', App\Http\Livewire\Admin\products\Colors\Tr
 //---------------------------------------Orders---------------------------------------//
 Route::get('/orders', App\Http\Livewire\Admin\products\Order::class)->name('admin.orders.index');
 Route::get('/carts', App\Http\Livewire\Admin\products\Cart::class)->name('admin.carts.index');
+Route::get('/product/orders/{id}/edit', 'App\Http\Controllers\Admin\OrderController@status')->name('admin.orders.status.edit');
+Route::patch('/product/orders/{id}/update', 'App\Http\Controllers\Admin\OrderController@statusPost')->name('admin.orders.status.update');
+//---------------------------------------Transactions---------------------------------------//
+Route::get('/transactions', App\Http\Livewire\Admin\products\Transaction::class)->name('admin.transactions.index');
+//---------------------------------------Payments---------------------------------------//
+Route::get('/payments', App\Http\Livewire\Admin\products\Payment::class)->name('admin.payments.index');

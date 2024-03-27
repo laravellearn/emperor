@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\admin\products\Category;
 use App\Models\Admin\products\Image;
 use App\Models\Admin\products\Product;
+use App\Models\Price;
+use Fouladgar\EloquentBuilder\EloquentBuilder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,6 +17,8 @@ class ProductController extends Controller
     public function single($slug)
     {
         $product = Product::where('slug',$slug)->first();
+        $prices = Price::where('product_id',$product->id)->where('isActive',1)->get();
+
         $user = Auth::user();
         $categories = Category::where('isActive',1)->where('level',1)->get();
         $footer = DB::connection('mysql-settings')->table('footers')->get();
@@ -45,6 +49,7 @@ class ProductController extends Controller
         'menus2',
         'menus3',
         'menus4',
-        'menus5','images','attributes'));
+        'menus5','images','attributes','prices'));
     }
+
 }
