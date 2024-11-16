@@ -225,6 +225,13 @@
                         </li>
                     @endcan
 
+                    @can('contacts')
+                        <li class="{{ Request::routeIs(['admin.contacts.index']) ? 'active' : '' }}">
+                            <a href="{{ route('admin.contacts.index') }}"><i class="zmdi zmdi-mail-reply"></i><span>
+                                    درخواست تماس ها</span></a>
+                        </li>
+                    @endcan
+
                     @can('logs')
                         <li class="{{ Request::routeIs(['admin.logs']) ? 'active' : '' }}">
                             <a href="{{ route('admin.logs') }}"><i class="zmdi zmdi-chart"></i><span>گزارشات

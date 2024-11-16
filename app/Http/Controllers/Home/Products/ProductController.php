@@ -52,4 +52,41 @@ class ProductController extends Controller
         'menus5','images','attributes','prices'));
     }
 
+    public function category($slug)
+    {
+        $category = Category::where('slug',$slug)->first();
+        $products = Product::where('level1_id',$category->id)->orWhere('level2_id',$category->id)->orWhere('level3_id',$category->id)->get();
+
+        $user = Auth::user();
+        $categories = Category::where('isActive',1)->where('level',1)->get();
+        $footer = DB::connection('mysql-settings')->table('footers')->get();
+        $footer = $footer[0];
+        $topLogoFooter = DB::connection('mysql-settings')->table('footer-logos')
+            ->where('isActive', 1)->where('type', 'top')->where('deleted_at', null)->get();
+        $bottomLogoFooter = DB::connection('mysql-settings')->table('footer-logos')
+            ->where('isActive', 1)->where('type', 'bottom')->where('deleted_at', null)->get();
+
+        $menus1 = DB::connection('mysql-settings')->table('footer-menus')
+            ->where('isActive', 1)->where('type', 'widgetLabel1')->get();
+        $menus2 = DB::connection('mysql-settings')->table('footer-menus')
+            ->where('isActive', 1)->where('type', 'widgetLabel2')->get();
+        $menus3 = DB::connection('mysql-settings')->table('footer-menus')
+            ->where('isActive', 1)->where('type', 'widgetLabel3')->get();
+        $menus4 = DB::connection('mysql-settings')->table('footer-menus')
+            ->where('isActive', 1)->where('type', 'widgetLabel4')->get();
+        $menus5 = DB::connection('mysql-settings')->table('footer-menus')
+            ->where('isActive', 1)->where('type', 'widgetLabel5')->get();
+
+
+        return view('livewire.home.products.category',compact('products','user','categories','footer',
+        'topLogoFooter',
+        'bottomLogoFooter',
+        'menus1',
+        'menus2',
+        'menus3',
+        'menus4',
+        'menus5'));
+    }
+
+
 }

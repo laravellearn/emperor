@@ -586,6 +586,9 @@
                             class="list-category first after">فروشنده
                             شوید</a>
                     </li>
+                    <li class="item-list-menu megamenu-1 item-set"><a href="/contact-us"
+                        class="list-category first after">تماس با ما</a>
+                </li>
                     <li class="map-city-item">
                         <a href="#" class="map-city">لطفا شهر و استان
                             خود را انتخاب کنید

@@ -105,3 +105,5 @@ Route::patch('/product/orders/{id}/update', 'App\Http\Controllers\Admin\OrderCon
 Route::get('/transactions', App\Http\Livewire\Admin\products\Transaction::class)->name('admin.transactions.index');
 //---------------------------------------Payments---------------------------------------//
 Route::get('/payments', App\Http\Livewire\Admin\products\Payment::class)->name('admin.payments.index');
+//---------------------------------------Contacts---------------------------------------//
+Route::get('/contacts', App\Http\Livewire\Admin\Contact::class)->name('admin.contacts.index');

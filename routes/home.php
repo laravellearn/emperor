@@ -36,8 +36,14 @@ Route::group(['namespace' => 'App\Http\Livewire\Home\Profile', 'prefix' => 'user
 
 });
 
+
+Route::get('/contact-us','App\Http\Controllers\Home\ContactController@index')->name('contact.index');
+Route::post('/contact-us','App\Http\Controllers\Home\ContactController@store')->name('contact.store');
+
+
 //---------------------------------------Products---------------------------------------//
 Route::get('/product/{slug}','App\Http\Controllers\Home\Products\ProductController@single')->name('product.single');
+Route::get('/product/category/{slug}','App\Http\Controllers\Home\Products\ProductController@category')->name('product.category');
 
 //---------------------------------------Add to Cart---------------------------------------//
 Route::post('/product/cart/add','App\Http\Controllers\Home\Products\CartController@add')->name('product.add.cart');
